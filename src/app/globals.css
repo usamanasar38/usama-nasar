@@ -70,3 +70,12 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+.active .nav-indicator {
+  @apply w-16 bg-slate-200;
+}
+
+.active .nav-text {
+  @apply bg-slate-200;
+}
