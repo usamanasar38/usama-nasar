@@ -13,15 +13,16 @@ const Main = () => {
         </div>
         <div>
           <p className="mb-4">
-            I'm a Full-Stack Developer passionate about building seamless,
-            scalable, and user-friendly web applications that merge thoughtful
-            design with robust engineering. I thrive at the intersection of
-            front-end and back-end development, creating solutions that are not
-            only visually appealing but also optimized for performance,
-            security, and usability.
+            I'm a passionate Full-Stack Developer who loves crafting seamless,
+            high-performance web applications that blend elegant design with
+            efficient engineering. I specialize in building scalable front-end
+            and back-end solutions using modern technologies like React, Vue.js,
+            Angular, NestJS and Node.js. My goal is to create intuitive and
+            responsive digital experiences that not only look great but also
+            perform flawlessly across all devices.
           </p>
           <p className="mb-4">
-            Currently, I'm a Lead Front-End Engineer at
+            Currently, I'm Lead Front-End Engineer at{" "}
             <a
               className="font-medium text-slate-200 hover:text-teal-300 focus-visible:text-teal-300"
               href="https://www.rehanisoko.com/"
@@ -30,14 +31,26 @@ const Main = () => {
               aria-label="Rehani Soko (opens in a new tab)"
             >
               Rehani Soko
-            </a>
-            , specializing ....
+            </a>{" "}
+            specializing in performance and optimizing web applications. I work
+            on creating seamless user experiences while ensuring the
+            applications are scalable, efficient, and maintainable.
+          </p>
+          <p className="mb-4">
+            Over the years, I've had the opportunity to work on diverse
+            projects—ranging from startups to large-scale enterprises — where I've
+            contributed to everything from UI/UX enhancements to backend
+            integrations and performance optimizations. I enjoy solving complex
+            problems, collaborating with teams, and continuously learning to
+            stay ahead of industry trends.
+          </p>
+          <p className="mb-4">
+            When I'm not coding, you'll find me exploring new tech, reading,
+            occasional gaming, spending time with my family or enjoying outdoor
+            adventures.
           </p>
         </div>
       </section>
-
-
-      
     </main>
   );
 };
