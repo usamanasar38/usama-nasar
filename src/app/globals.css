@@ -73,9 +73,9 @@ body {
 
 
 .active .nav-indicator {
-  @apply w-16 bg-slate-200;
+  @apply w-16 text-slate-200;
 }
 
 .active .nav-text {
-  @apply bg-slate-200;
+  @apply text-slate-200;
 }
