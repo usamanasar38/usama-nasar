@@ -1,3 +1,4 @@
+import CursorSpotlight from "@/components/cursor-spotlight";
 import { DATA } from "@/data/resume";
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
@@ -63,9 +64,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} bg-slate-900 leading-relaxed text-slate-400 antialiased selection:bg-teal-300 selection:text-teal-900`}
+        className={`${inter.variable} bg-slate-900 leading-relaxed text-slate-400 antialiased selection:bg-teal-300 selection:text-teal-900 relative`}
       >
-        {children}
+        <CursorSpotlight>{children}</CursorSpotlight>
       </body>
     </html>
   );
