@@ -8,6 +8,7 @@ export const DATA = {
     title: "Usama Nasar",
     description: "Usama Nasar is a Full Stack engineer who builds scalable, efficient, user-centric, pixel-perfect digital experiences for the web.",
   },
+  resumeLink: 'media/Usama+Nasar+Resume.pdf',
   description:
     "I build scalable, efficient, user-centric, pixel-perfect digital experiences for the web.",
   summary: "",

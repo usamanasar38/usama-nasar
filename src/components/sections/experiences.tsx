@@ -71,7 +71,7 @@ const Experiences = () => (
       <div className="mt-12">
         <a
           className="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300 group/link text-base"
-          href="/resume.pdf"
+          href={DATA.resumeLink}
           target="_blank"
           rel="noreferrer noopener"
           aria-label="View Full Resume (opens in a new tab)"
