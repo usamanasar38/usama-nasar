@@ -35,6 +35,7 @@ const ExperienceCard = ({
               </span>
             </a>
           </div>
+          {experience.roles.map((role, index) => (<div key={index} className="text-slate-500" aria-hidden="true">{role}</div>))}
         </h3>
         <p className="mt-2 text-sm leading-normal">{experience.description}</p>
         <ul className="mt-2 flex flex-wrap" aria-label="Technologies used">

@@ -1,6 +1,6 @@
 import CursorSpotlight from "@/components/cursor-spotlight";
-import { DATA } from "@/data/resume";
-import type { Metadata } from "next";
+import { METADATA } from "@/data/resume";
+import type { Metadata, Viewport } from "next";
 import localFont from 'next/font/local';
 import "./globals.css";
 
@@ -50,11 +50,14 @@ const inter = localFont({
   adjustFontFallback: 'Arial',
   variable: '--font-inter',
   preload: true,
-})
+});
 
-export const metadata: Metadata = {
-  ...DATA.seo
-};
+export const viewport: Viewport = {
+  themeColor: '#0f172a',
+  colorScheme: 'dark',
+}
+
+export const metadata: Metadata = METADATA;
 
 export default function RootLayout({
   children,
