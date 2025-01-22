@@ -4,6 +4,10 @@ export const DATA = {
   initials: "UN",
   url: "https://usama.io",
   location: "Mandi Bahauddin, Punjab, PK",
+  seo: {
+    title: "Usama Nasar",
+    description: "Usama Nasar is a Full Stack engineer who builds scalable, efficient, user-centric, pixel-perfect digital experiences for the web.",
+  },
   description:
     "I build scalable, efficient, user-centric, pixel-perfect digital experiences for the web.",
   summary: "",
