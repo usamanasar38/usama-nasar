@@ -48,6 +48,7 @@ const inter = localFont({
   ],
   adjustFontFallback: 'Arial',
   variable: '--font-inter',
+  preload: true,
 })
 
 export const metadata: Metadata = {
