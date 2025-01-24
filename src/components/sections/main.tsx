@@ -13,7 +13,7 @@ const Main = () => {
             About
           </h2>
         </div>
-        <div>
+        <div className="text-justify">
           <p className="mb-4">
             I'm a passionate Full-Stack Developer who loves crafting seamless,
             high-performance web applications that blend elegant design with
