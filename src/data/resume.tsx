@@ -79,7 +79,7 @@ export const DATA = {
       title: "Lead Frontend Developer",
       start: "Aug 2024",
       end: "Present",
-      description: "This is description",
+      description: "At Rehani Soko, I lead the development of scalable front-end and back-end solutions, ensuring seamless integration of user-focused designs with robust functionality. I collaborate closely with a team of developers to enhance web performance, optimize web vitals, and ensure code quality through thorough reviews. My work involves diagnosing critical issues, implementing scalable solutions, and improving application efficiency to deliver a smooth user experience.",
     },
     {
       company: "Love, Bonito",
@@ -107,7 +107,7 @@ export const DATA = {
       title: "Software Engineer",
       start: "Dec 2021",
       end: "Dec 2024",
-      description: "",
+      description: "During my time at Love, Bonito, I played a key role in migrating their legacy Vue.js e-commerce platform to Next.js, achieving a 3x improvement in web performance and a 50% reduction in load times. I integrated global payment solutions, streamlined the checkout process by reducing API calls, and contributed to infrastructure cost savings through optimized CI/CD pipelines. Additionally, I mentored junior developers and collaborated with cross-functional teams to deliver a seamless customer experience.",
     },
     {
       company: "Mahjoz | محجوز",
@@ -129,7 +129,7 @@ export const DATA = {
       title: "Senior Frontend Engineer",
       start: "Aug 2022",
       end: "Dec 2022",
-      description: "",
+      description: "At Mahjoz, I focused on optimizing front-end performance and delivering high-quality user interfaces using modern JavaScript frameworks. I conducted extensive testing, identified and fixed bugs early in the development cycle, and collaborated with product managers to streamline workflows. My contributions improved team efficiency, accelerated product releases, and enhanced the overall user experience.",
     },
     {
       company: "Contrive Solutions",
@@ -149,6 +149,9 @@ export const DATA = {
         "PHP",
         "Laravel",
         "Jest",
+        "MySQL",
+        "MongoDB",
+        "PostgreSQL",
         "Git",
         "CI/CD",
       ],
@@ -156,7 +159,29 @@ export const DATA = {
       title: "Full Stack Developer",
       start: "Aug 2019",
       end: "Nov 2021",
-      description: "",
+      description: "During my tenure at Contrive Solutions, I played a key role in developing and optimizing web applications as a Full-Stack Developer. I led the migration of an Express.js project to TypeScript using Nest.js, which significantly improved code maintainability, scalability, and overall project structure. My contributions also included building a high-accuracy web scraping solution with Node.js and Puppeteer, achieving an 80% captcha bypass success rate, streamlining data extraction processes, and enhancing automation efficiency. On the front-end, I worked extensively with Angular to transform design mockups into fully interactive, responsive web pages that ensured seamless navigation and visual consistency across devices. I implemented performance optimizations that improved application efficiency by 10%, addressed cross-browser compatibility challenges, and fine-tuned the overall user experience. Additionally, I collaborated with cross-functional teams, provided technical guidance to junior developers, and contributed to the successful delivery of multiple projects within tight deadlines while maintaining high coding standards and best practices.",
+    },
+    {
+      company: "Freelance",
+      href: "",
+      roles: [],
+      technologiesUsed: [
+        "Javascript",
+        "Vue.js",
+        "HTML & CSS",
+        "Vuex",
+        "Node.js",
+        "Jest",
+        "Git",
+        "MySQL",
+        "MongoDB",
+        'Firebase',
+      ],
+      location: "Gujrat, PK",
+      title: "Full Stack Developer",
+      start: "Sep 2018",
+      end: "Dec 2019",
+      description: "As a freelance Full-Stack Developer, I worked with various clients to design and develop custom web solutions tailored to their business needs. I specialized in building RESTful APIs, implementing server-side logic with Node.js, and creating responsive front-end interfaces using Vue.js and React.js. My work focused on improving user satisfaction by addressing workflow gaps and enhancing system efficiency.",
     },
   ],
   education: [
@@ -210,12 +235,33 @@ export const DATA = {
 } as const;
 
 export const METADATA: Metadata = {
-  title: "Usama Nasar",
+  title: DATA.name,
   description: "Usama Nasar is a Full Stack engineer who builds scalable, efficient, user-centric, pixel-perfect digital experiences for the web.",
   openGraph: {
 
   },
-  icons: [],
+  icons: [
+    {
+      rel: 'icon',
+      sizes: '16x16',
+      url: '/favicon-16x16.png'
+    },
+    {
+      rel: 'icon',
+      sizes: '32x32',
+      url: '/favicon-32x32.png'
+    },
+    {
+      rel: 'icon',
+      sizes: '192x192',
+      url: '/android-chrome-192x192.png'
+    },
+    {
+      rel: 'icon',
+      sizes: '512x192',
+      url: '/android-chrome-512x512.png'
+    },
+  ],
   keywords: [
     "Full-Stack Developer",
     "Full Stack Developer",
