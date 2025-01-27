@@ -1,3 +1,4 @@
+import { Footer } from "../footer";
 import Experiences from "./experiences";
 
 const Main = () => {
@@ -54,6 +55,7 @@ const Main = () => {
         </div>
       </section>
       <Experiences />
+      <Footer />
     </main>
   );
 };
