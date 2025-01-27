@@ -1,5 +1,5 @@
 import { Badge } from "@/components/badge";
-import { DATA } from "@/data/resume";
+import { DATA } from "@/data";
 
 export default function Logo() {
   return (

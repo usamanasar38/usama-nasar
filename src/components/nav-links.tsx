@@ -1,5 +1,5 @@
 "use client";
-import { DATA } from "@/data/resume";
+import { DATA } from "@/data";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";

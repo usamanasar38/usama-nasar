@@ -1,4 +1,4 @@
-import { DATA, METADATA } from "@/data/resume";
+import { DATA, METADATA } from "@/data";
 import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {

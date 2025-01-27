@@ -1,5 +1,5 @@
 import CursorSpotlight from "@/components/cursor-spotlight";
-import { METADATA } from "@/data/resume";
+import { METADATA } from "@/data";
 import type { Metadata, Viewport } from "next";
 import localFont from 'next/font/local';
 import "./globals.css";

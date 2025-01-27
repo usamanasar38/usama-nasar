@@ -1,4 +1,4 @@
-import { DATA } from "@/data/resume";
+import { DATA } from "@/data";
 import Link from "next/link";
 import GitHub from "../icons/github";
 import LinkedIn from "../icons/linkedin";

@@ -1,4 +1,4 @@
-import { DATA } from "@/data/resume";
+import { DATA } from "@/data";
 import { Badge } from "../badge";
 import LinkIcon from "../icons/link-icon";
 

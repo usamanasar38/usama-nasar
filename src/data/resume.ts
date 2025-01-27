@@ -1,5 +1,3 @@
-import { Metadata } from "next";
-
 export const DATA = {
   name: "Usama Nasar",
   role: "Full Stack Engineer",
@@ -80,6 +78,16 @@ export const DATA = {
       start: "Aug 2024",
       end: "Present",
       description: "At Rehani Soko, I lead the development of scalable front-end and back-end solutions, ensuring seamless integration of user-focused designs with robust functionality. I collaborate closely with a team of developers to enhance web performance, optimize web vitals, and ensure code quality through thorough reviews. My work involves diagnosing critical issues, implementing scalable solutions, and improving application efficiency to deliver a smooth user experience.",
+      projects: [
+        {
+          title: "Rehani Soko",
+          href: "https://rehanisoko.com/",
+          featured: false,
+          description: "",
+          technologies: [],
+          image: "websiteLink",
+        },
+      ],
     },
     {
       company: "Love, Bonito",
@@ -108,6 +116,16 @@ export const DATA = {
       start: "Dec 2021",
       end: "Dec 2024",
       description: "During my time at Love, Bonito, I played a key role in migrating their legacy Vue.js e-commerce platform to Next.js, achieving a 3x improvement in web performance and a 50% reduction in load times. I integrated global payment solutions, streamlined the checkout process by reducing API calls, and contributed to infrastructure cost savings through optimized CI/CD pipelines. Additionally, I mentored junior developers and collaborated with cross-functional teams to deliver a seamless customer experience.",
+      projects: [
+        {
+          title: "Love, Bonito",
+          href: "https://lovebonito.com/",
+          featured: false,
+          description: "",
+          technologies: [],
+          image: "websiteLink",
+        }
+      ],
     },
     {
       company: "Mahjoz | محجوز",
@@ -130,6 +148,16 @@ export const DATA = {
       start: "Aug 2022",
       end: "Dec 2022",
       description: "At Mahjoz, I focused on optimizing front-end performance and delivering high-quality user interfaces using modern JavaScript frameworks. I conducted extensive testing, identified and fixed bugs early in the development cycle, and collaborated with product managers to streamline workflows. My contributions improved team efficiency, accelerated product releases, and enhanced the overall user experience.",
+      projects: [
+        {
+          title: "Mahjoz (SaaS)",
+          href: "https://app.mahjoz.io/",
+          featured: false,
+          description: "",
+          technologies: [],
+          image: "websiteLink",
+        },
+      ],
     },
     {
       company: "Contrive Solutions",
@@ -160,6 +188,32 @@ export const DATA = {
       start: "Aug 2019",
       end: "Nov 2021",
       description: "During my tenure at Contrive Solutions, I played a key role in developing and optimizing web applications as a Full-Stack Developer. I led the migration of an Express.js project to TypeScript using Nest.js, which significantly improved code maintainability, scalability, and overall project structure. My contributions also included building a high-accuracy web scraping solution with Node.js and Puppeteer, achieving an 80% captcha bypass success rate, streamlining data extraction processes, and enhancing automation efficiency. On the front-end, I worked extensively with Angular to transform design mockups into fully interactive, responsive web pages that ensured seamless navigation and visual consistency across devices. I implemented performance optimizations that improved application efficiency by 10%, addressed cross-browser compatibility challenges, and fine-tuned the overall user experience. Additionally, I collaborated with cross-functional teams, provided technical guidance to junior developers, and contributed to the successful delivery of multiple projects within tight deadlines while maintaining high coding standards and best practices.",
+      projects: [
+        {
+          title: "Soundblock",
+          href: "https://soundblock.com/",
+          featured: true,
+          description: "",
+          technologies: [],
+          image: "websiteLink",
+        },
+        {
+          title: "EsportsConstruct",
+          href: "https://esportsconstruct.com/",
+          featured: true,
+          description: "",
+          technologies: [],
+          image: "websiteLink",
+        },
+        {
+          title: "Finlex",
+          href: "https://finlex.io/en/",
+          featured: true,
+          description: "",
+          technologies: [],
+          image: "websiteLink",
+        },
+      ],
     },
     // {
     //   company: "Freelance",
@@ -198,123 +252,5 @@ export const DATA = {
       dates: "2019 - 2015",
     },
   ],
-  projects: [
-    {
-      title: "Love, Bonito",
-      href: "https://lovebonito.com/",
-      active: true,
-      description: "",
-      technologies: [],
-      image: "websiteLink",
-    },
-    {
-      title: "Rehani Soko",
-      href: "https://rehanisoko.com/",
-      active: true,
-      description: "",
-      technologies: [],
-      image: "websiteLink",
-    },
-    {
-      title: "Mahjoz (SaaS)",
-      href: "https://app.mahjoz.io/",
-      active: true,
-      description: "",
-      technologies: [],
-      image: "websiteLink",
-    },
-    {
-      title: "Soundblock",
-      href: "https://soundblock.com/",
-      active: true,
-      description: "",
-      technologies: [],
-      image: "websiteLink",
-    },
-  ],
 } as const;
 
-export const METADATA: Metadata = {
-  title: DATA.name,
-  description: "Usama Nasar is a Full Stack engineer who builds scalable, efficient, user-centric, pixel-perfect digital experiences for the web.",
-  openGraph: {
-  },
-  icons: [
-    {
-      rel: 'icon',
-      sizes: '16x16',
-      url: '/favicon-16x16.png'
-    },
-    {
-      rel: 'icon',
-      sizes: '32x32',
-      url: '/favicon-32x32.png'
-    },
-    {
-      rel: 'icon',
-      sizes: '192x192',
-      url: '/android-chrome-192x192.png'
-    },
-    {
-      rel: 'icon',
-      sizes: '512x192',
-      url: '/android-chrome-512x512.png'
-    },
-    {
-      rel: 'apple-touch-icon',
-      url: '/apple-touch-icon.png'
-    },
-  ],
-  keywords: [
-    "Full-Stack Developer",
-    "Full Stack Developer",
-    "Front-End Developer",
-    "Front-End Engineer",
-    "Back-End Development",
-    "React.js",
-    "Vue.js",
-    "Next.js",
-    "Nuxt.js",
-    "NestJS",
-    "Node.js",
-    "JavaScript",
-    "TypeScript",
-    "Web Development",
-    "UI/UX Design",
-    "Responsive Web Design",
-    "Performance Optimization",
-    "API Integration",
-    "RESTful APIs",
-    "Microservices",
-    "GraphQL",
-    "MySQL",
-    "CSS",
-    "SCSS",
-    "TailwindCSS",
-    "Bootstrap",
-    "State Management",
-    "Redux",
-    "Zustand",
-    "Vuex",
-    "Testing",
-    "Jest",
-    "Cypress",
-    "Playwright",
-    "Git",
-    "CI/CD",
-    "Agile Development",
-    "Problem-Solving",
-    "Code Quality",
-    "Technical Documentation",
-    "Collaboration",
-    "Team Leadership",
-    "Software Architecture",
-    "Cloud Computing",
-    "Docker",
-    "Firebase",
-    "Web Security",
-    "Authentication",
-    "SEO Optimization",
-    "Continuous Learning"
-  ],
-};
