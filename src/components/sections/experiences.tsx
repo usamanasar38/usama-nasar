@@ -1,6 +1,7 @@
 import { DATA } from "@/data";
 import { Badge } from "../badge";
 import LinkIcon from "../icons/link-icon";
+import { RelatedLinks } from "../related-links";
 
 const ExperienceCard = ({
   experience,
@@ -39,6 +40,7 @@ const ExperienceCard = ({
           {experience.roles.map((role, index) => (<div key={index} className="text-slate-500" aria-hidden="true">{role}</div>))}
         </h3>
         <p className="mt-2 text-sm leading-normal text-justify">{experience.description}</p>
+        <RelatedLinks projects={experience.projects} />
         <ul className="mt-2 flex flex-wrap" aria-label="Technologies used">
           {experience.technologiesUsed.map((tech) => (
             <li key={tech} className="mr-1.5 mt-2">
