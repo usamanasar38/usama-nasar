@@ -1,4 +1,5 @@
 import { DATA } from "@/data/resume";
+import { Badge } from "../badge";
 import LinkIcon from "../icons/link-icon";
 
 const ExperienceCard = ({
@@ -41,9 +42,7 @@ const ExperienceCard = ({
         <ul className="mt-2 flex flex-wrap" aria-label="Technologies used">
           {experience.technologiesUsed.map((tech) => (
             <li key={tech} className="mr-1.5 mt-2">
-              <div className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">
-                {tech}
-              </div>
+              <Badge>{tech}</Badge>
             </li>
           ))}
         </ul>

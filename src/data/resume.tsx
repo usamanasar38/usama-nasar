@@ -238,7 +238,6 @@ export const METADATA: Metadata = {
   title: DATA.name,
   description: "Usama Nasar is a Full Stack engineer who builds scalable, efficient, user-centric, pixel-perfect digital experiences for the web.",
   openGraph: {
-
   },
   icons: [
     {
@@ -260,6 +259,10 @@ export const METADATA: Metadata = {
       rel: 'icon',
       sizes: '512x192',
       url: '/android-chrome-512x512.png'
+    },
+    {
+      rel: 'apple-touch-icon',
+      url: '/apple-touch-icon.png'
     },
   ],
   keywords: [
