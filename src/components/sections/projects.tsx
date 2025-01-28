@@ -4,7 +4,7 @@ import { Badge } from "../badge";
 import LinkIcon from "../icons/link-icon";
 
 const allProjects = DATA.work
-  .map((experience) => experience.projects)
+  .map((experience) => experience.projects.filter(project => !project.hidden))
   .flat(1)
   .sort((project1, project2) => project1.position - project2.position);
 
