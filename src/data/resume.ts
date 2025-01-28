@@ -2,7 +2,7 @@ export const DATA = {
   name: "Usama Nasar",
   role: "Full Stack Engineer",
   initials: "UN",
-  url: "https://usama.io",
+  url: "https://usama-nasar.vercel.app",
   location: "Mandi Bahauddin, Punjab, PK",
   resumeLink: "media/Usama+Nasar+Resume.pdf",
   description:

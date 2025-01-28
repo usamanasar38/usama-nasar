@@ -17,7 +17,7 @@ const Main = () => {
         </div>
         <div className="text-justify">
           <p className="mb-4">
-            I'm a passionate Full-Stack Developer who loves crafting seamless,
+            I&apos;m a passionate Full-Stack Developer who loves crafting seamless,
             high-performance web applications that blend elegant design with
             efficient engineering. I specialize in building scalable front-end
             and back-end solutions using modern technologies like React, Vue.js,
@@ -26,7 +26,7 @@ const Main = () => {
             perform flawlessly across all devices.
           </p>
           <p className="mb-4">
-            Currently, I'm Lead Front-End Engineer at{" "}
+            Currently, I&apos;m Lead Front-End Engineer at{" "}
             <a
               className="font-medium text-slate-200 hover:text-teal-300 focus-visible:text-teal-300"
               href="https://www.rehanisoko.com/"
@@ -41,15 +41,15 @@ const Main = () => {
             applications are scalable, efficient, and maintainable.
           </p>
           <p className="mb-4">
-            Over the years, I've had the opportunity to work on diverse
-            projects—ranging from startups to large-scale enterprises — where I've
+            Over the years, I&apos;ve had the opportunity to work on diverse
+            projects—ranging from startups to large-scale enterprises — where I&apos;ve
             contributed to everything from UI/UX enhancements to backend
             integrations and performance optimizations. I enjoy solving complex
             problems, collaborating with teams, and continuously learning to
             stay ahead of industry trends.
           </p>
           <p className="mb-4">
-            When I'm not coding, you'll find me exploring new tech, reading,
+            When I&apos;m not coding, you&apos;ll find me exploring new tech, reading,
             occasional gaming, spending time with my family or enjoying outdoor
             adventures.
           </p>
