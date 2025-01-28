@@ -51,26 +51,7 @@ export const Footer = () => (
       >
         Inter
       </a>
-      {' '}typeface. Loosely designed in{' '}
-      <a
-        href="https://www.figma.com/"
-        className="font-medium text-slate-400 hover:text-teal-300 focus-visible:text-teal-300"
-        target="_blank"
-        rel="noreferrer noopener"
-        aria-label="Figma (opens in a new tab)"
-      >
-        Figma
-      </a>
-      {' '}by{' '}
-      <a
-        href="https://brittanychiang.com/"
-        className="font-medium text-slate-400 hover:text-teal-300 focus-visible:text-teal-300"
-        target="_blank"
-        rel="noreferrer noopener"
-        aria-label="Brittany Chiang (opens in a new tab)"
-      >
-        Brittany Chiang
-      </a>.
+      {' '}typeface.
     </p>
   </footer>
 );
