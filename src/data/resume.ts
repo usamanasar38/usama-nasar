@@ -230,10 +230,10 @@ export const DATA = {
       projects: [
         {
           title: "Soundblock",
-          href: "https://https://soundblock.arena.com/",
+          href: "https://soundblock.arena.com/",
           featured: true,
           hidden: true,
-          description: "Soundblock is rights management & administration built using both web2 and web3 infrastructure. Developed a shared library used across all Arena projects, ensuring uniformity in UI elements like buttons, form elements etc. This strategy allowed for centralized updates and consistent design across various applications. Inte",
+          description: "Soundblock is rights management & administration built using both web2 and web3 infrastructure. Developed a shared library used across all Arena projects, ensuring uniformity in UI elements like buttons, form elements etc. This strategy allowed for centralized updates and consistent design across various applications.",
           technologies: ["Angular", "Typescript", "HTML & CSS", "NgRx", "Jest", "SCSS"],
           position: 4,
           image: "/media/soundblock.png",
