@@ -4,7 +4,7 @@ export const DATA = {
   initials: "UN",
   url: "https://usama-nasar.vercel.app",
   location: "Mandi Bahauddin, Punjab, PK",
-  resumeLink: "media/Usama+Nasar+Resume.pdf",
+  resumeLink: "https://drive.google.com/file/d/1uJDI32gdkDALvF5COhtpHSIlLJzwUteg/view?usp=sharing",
   description:
     "I build scalable, efficient, user-centric, pixel-perfect digital experiences for the web.",
   summary: "",
