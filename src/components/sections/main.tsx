@@ -1,5 +1,6 @@
 import { Footer } from "../footer";
 import Experiences from "./experiences";
+import { OpenSourceContributions } from "./open-source-contributions";
 import { Projects } from "./projects";
 
 const Main = () => {
@@ -56,6 +57,7 @@ const Main = () => {
         </div>
       </section>
       <Experiences />
+      <OpenSourceContributions />
       <Projects />
       <Footer />
     </main>

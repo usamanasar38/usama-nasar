@@ -33,6 +33,7 @@ export const DATA = {
   navbar: [
     { href: "#about", label: "About" },
     { href: "#experience", label: "Experience" },
+    { href: "#open-source", label: "Open Source" },
     { href: "#projects", label: "Projects" },
   ],
   contact: {
@@ -288,6 +289,7 @@ export const DATA = {
       "title": "Continue.dev — Open Source AI Code Assistant (25K+ GitHub Stars)",
       "href": "https://github.com/continuedev/continue",
       "description": "Open Source AI Code Assistant with 25K+ GitHub Stars. Contributed to Continue.dev, a widely-used tool that integrates with popular IDEs like VS Code and JetBrains to help developers write better code faster.",
+      "image": "/media/continue-dev.png"
     }
   ],
   education: [
