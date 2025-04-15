@@ -283,6 +283,13 @@ export const DATA = {
     //   description: "As a freelance Full-Stack Developer, I worked with various clients to design and develop custom web solutions tailored to their business needs. I specialized in building RESTful APIs, implementing server-side logic with Node.js, and creating responsive front-end interfaces using Vue.js and React.js. My work focused on improving user satisfaction by addressing workflow gaps and enhancing system efficiency.",
     // },
   ],
+  openSource: [
+    {
+      "title": "Continue.dev — Open Source AI Code Assistant (25K+ GitHub Stars)",
+      "href": "https://github.com/continuedev/continue",
+      "description": "Open Source AI Code Assistant with 25K+ GitHub Stars. Contributed to Continue.dev, a widely-used tool that integrates with popular IDEs like VS Code and JetBrains to help developers write better code faster.",
+    }
+  ],
   education: [
     {
       school: "University of Gujrat",
