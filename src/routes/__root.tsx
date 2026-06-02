@@ -1,6 +1,9 @@
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
+import { ThemeProvider } from 'next-themes';
+
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 import { DATA } from '../data';
 
@@ -11,22 +14,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var theme = localStorage.getItem('theme');
-                if (!theme) {
-                  theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                }
-                if (theme === 'dark') document.documentElement.classList.add('dark');
-              })();
-            `,
-          }}
-        />
       </head>
       <body>
-        {children}
+        <ThemeProvider>
+          <TooltipProvider>{children}</TooltipProvider>
+        </ThemeProvider>
         <TanStackDevtools
           config={{
             position: 'bottom-right',
