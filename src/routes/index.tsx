@@ -1,13 +1,28 @@
 import { createFileRoute } from '@tanstack/react-router';
 
+import { About } from '../components/about';
+import { Education } from '../components/education';
+import { Experience } from '../components/experience';
+import { Footer } from '../components/footer';
+import { Hero } from '../components/hero';
+import { Navbar } from '../components/navbar';
+import { OpenSource } from '../components/open-source';
+import { Projects } from '../components/projects';
+
 function Home() {
   return (
-    <div className="p-8">
-      <h1 className="text-4xl font-bold">Welcome to TanStack Start</h1>
-      <p className="mt-4 text-lg">
-        Edit <code>src/routes/index.tsx</code> to get started.
-      </p>
-    </div>
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Experience />
+        <Education />
+        <OpenSource />
+        <Projects />
+      </main>
+      <Footer />
+    </>
   );
 }
 
