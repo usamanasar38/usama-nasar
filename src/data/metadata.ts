@@ -82,5 +82,6 @@ export const METADATA = {
     'Continuous Learning',
   ],
   openGraph: {},
+  repository: 'https://github.com/usamanasar38/usama-nasar',
   title: DATA.name,
 };

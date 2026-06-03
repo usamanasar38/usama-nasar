@@ -6,7 +6,7 @@ import { ThemeProvider } from 'next-themes';
 import { TooltipProvider } from '@/components/ui/tooltip';
 
 import { NotFound } from '../components/not-found';
-import { DATA } from '../data';
+import { DATA, METADATA } from '../data';
 
 import appCss from '../styles.css?url';
 
@@ -40,10 +40,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 export const Route = createRootRoute({
   head: () => ({
     links: [
-      {
-        href: appCss,
-        rel: 'stylesheet',
-      },
+      { href: appCss, rel: 'stylesheet' },
+      { href: DATA.url, rel: 'canonical' },
+      { href: METADATA.repository, rel: 'source' },
     ],
     meta: [
       {

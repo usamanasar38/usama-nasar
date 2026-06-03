@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 
+import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
 import { ExperienceSection } from '@/components/sections/experience';
 import { HeroSection } from '@/components/sections/hero';
@@ -11,7 +12,7 @@ function Home() {
   return (
     <>
       <Header />
-      <main className="mx-auto max-w-2xl px-6 pb-24 pt-28">
+      <main className="mx-auto max-w-2xl px-6 pb-16 pt-28">
         <div className="space-y-20">
           <HeroSection />
           <TechStackSection />
@@ -19,10 +20,8 @@ function Home() {
           <ProjectsSection />
           <OpenSourceSection />
         </div>
-        <footer className="mt-20 border-t border-border pt-8 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} {' · '} Usama Nasar
-        </footer>
       </main>
+      <Footer />
     </>
   );
 }

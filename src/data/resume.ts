@@ -81,7 +81,7 @@ export const DATA = {
     'CI/CD',
   ],
   summary: '',
-  url: 'https://usama-nasar.vercel.app',
+  url: 'https://usamanasar.dev/',
   work: [
     {
       company: 'Rehani Soko',
