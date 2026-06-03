@@ -1,13 +1,24 @@
 import { createFileRoute } from '@tanstack/react-router';
 
+import { PortfolioAbout } from '@/components/portfolio-about';
+import { PortfolioExperience } from '@/components/portfolio-experience';
+import { PortfolioFooter } from '@/components/portfolio-footer';
+import { PortfolioHero } from '@/components/portfolio-hero';
+import { PortfolioNav } from '@/components/portfolio-nav';
+import { PortfolioOpenSource } from '@/components/portfolio-opensource';
+import { PortfolioProjects } from '@/components/portfolio-projects';
+
 function Home() {
   return (
-    <div className="p-8">
-      <h1 className="text-4xl font-bold">Welcome to TanStack Start</h1>
-      <p className="mt-4 text-lg">
-        Edit <code>src/routes/index.tsx</code> to get started.
-      </p>
-    </div>
+    <>
+      <PortfolioHero />
+      <PortfolioNav />
+      <PortfolioAbout />
+      <PortfolioExperience />
+      <PortfolioOpenSource />
+      <PortfolioProjects />
+      <PortfolioFooter />
+    </>
   );
 }
 

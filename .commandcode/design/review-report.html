@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Usama Nasar Portfolio - Review Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      }
+      .mono {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+      .report-section {
+        border: 1px solid #222226;
+        background: #0a0a0b;
+        position: relative;
+      }
+      .corner-box {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #222226;
+        background: #000;
+      }
+    </style>
+  </head>
+  <body class="bg-black text-[#fafafa]">
+    <main class="mx-auto w-full max-w-6xl px-5 py-8 md:px-10 md:py-12">
+      <header class="report-section mb-8 p-6 md:p-8">
+        <div
+          class="corner-box left-0 top-0 -translate-x-1/2 -translate-y-1/2"
+        ></div>
+        <div
+          class="corner-box right-0 top-0 translate-x-1/2 -translate-y-1/2"
+        ></div>
+        <div
+          class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"
+        >
+          <div>
+            <div class="mono mb-2 text-xs tracking-widest text-[#666]">
+              // REVIEW
+            </div>
+            <h1 class="text-4xl font-bold tracking-tight md:text-6xl">
+              Usama Nasar
+            </h1>
+          </div>
+          <div class="mono text-left text-xs text-[#666] md:text-right">
+            <div>COMMANDCODE REPORT</div>
+            <div class="text-[#444]">2026-06-03</div>
+          </div>
+        </div>
+      </header>
+
+      <section class="report-section mb-8 p-6 md:p-8">
+        <div
+          class="corner-box left-0 top-0 -translate-x-1/2 -translate-y-1/2"
+        ></div>
+        <div
+          class="corner-box right-0 top-0 translate-x-1/2 -translate-y-1/2"
+        ></div>
+        <div class="grid gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+          <div>
+            <div class="mono mb-2 text-xs tracking-widest text-[#666]">
+              // OVERALL
+            </div>
+            <div class="text-6xl font-bold tracking-tight md:text-7xl">32</div>
+            <div class="mt-1 text-lg text-[#666]">/ 50</div>
+            <div
+              class="mt-4 inline-flex border border-[#fbbf24]/30 bg-[#fbbf24]/10 px-3 py-1 text-sm text-[#fbbf24]"
+            >
+              GOOD — NEEDS FOCUSED FIXES
+            </div>
+          </div>
+          <div>
+            <div class="mono mb-3 text-xs tracking-widest text-[#666]">
+              // TL;DR
+            </div>
+            <p class="text-sm leading-6 text-[#a0a0a0]">
+              Warm amber editorial direction with a confident first impression.
+              The palette is distinctive for a developer portfolio. Two critical
+              contrast failures: project card body copy at 2.59:1 and page-wide
+              muted-foreground at 3.17:1 — both below WCAG AA. Section structure
+              is mechanically identical across all six sections, creating a flat
+              reading rhythm. Three high-impact fixes will move this from 32 to
+              ~38/50.
+            </p>
+            <p class="mt-4 text-sm leading-6 text-[#fbbf24]">
+              P0: Fix contrast on project cards and muted-foreground. P1: Vary
+              section structure and group tech by category. P2: Company names,
+              mobile date order, project card link scope.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="report-section mb-8 p-6 md:p-8">
+        <div class="mono mb-6 text-xs tracking-widest text-[#666]">
+          // LENS SCORES
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[720px] border-collapse text-sm">
+            <thead>
+              <tr
+                class="border-b border-[#222226] text-left mono text-xs text-[#666]"
+              >
+                <th class="py-3 pr-4 font-normal">#</th>
+                <th class="py-3 pr-4 font-normal">LENS</th>
+                <th class="py-3 pr-4 font-normal">SCORE</th>
+                <th class="py-3 font-normal">KEY FINDING</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-[#1a1a1e]">
+                <td class="py-4 pr-4 text-[#555]">1</td>
+                <td class="py-4 pr-4 text-[#fafafa]">First Impression</td>
+                <td class="py-4 pr-4 text-[#34d399]">7/10</td>
+                <td class="py-4 text-[#a0a0a0]">
+                  Amber divider line is a strong editorial signal, but it is the
+                  only gesture and never repeats.
+                </td>
+              </tr>
+              <tr class="border-b border-[#1a1a1e]">
+                <td class="py-4 pr-4 text-[#555]">2</td>
+                <td class="py-4 pr-4 text-[#fafafa]">Hierarchy</td>
+                <td class="py-4 pr-4 text-[#fbbf24]">6/10</td>
+                <td class="py-4 text-[#a0a0a0]">
+                  Six sections share an identical structural formula. Timeline
+                  dots are nearly invisible.
+                </td>
+              </tr>
+              <tr class="border-b border-[#1a1a1e]">
+                <td class="py-4 pr-4 text-[#555]">3</td>
+                <td class="py-4 pr-4 text-[#fafafa]">Color Voice</td>
+                <td class="py-4 pr-4 text-[#fbbf24]">7/10</td>
+                <td class="py-4 text-[#a0a0a0]">
+                  Distinctive amber palette. Two systemic contrast failures:
+                  project cards 2.59:1, body text 3.17:1.
+                </td>
+              </tr>
+              <tr class="border-b border-[#1a1a1e]">
+                <td class="py-4 pr-4 text-[#555]">4</td>
+                <td class="py-4 pr-4 text-[#fafafa]">Type Voice</td>
+                <td class="py-4 pr-4 text-[#fbbf24]">6/10</td>
+                <td class="py-4 text-[#a0a0a0]">
+                  Solid Inter foundation. Section heading formula is
+                  mechanically applied; company names lack distinction.
+                </td>
+              </tr>
+              <tr class="border-b border-[#1a1a1e]">
+                <td class="py-4 pr-4 text-[#555]">5</td>
+                <td class="py-4 pr-4 text-[#fafafa]">Interaction Feel</td>
+                <td class="py-4 pr-4 text-[#fbbf24]">6/10</td>
+                <td class="py-4 text-[#a0a0a0]">
+                  Core works. Full-card links block text selection.
+                  External-link icons are hover-only.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="report-section mb-8 p-6 md:p-8">
+        <div class="mono mb-6 text-xs tracking-widest text-[#666]">
+          // WHAT'S WORKING
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <article class="border border-[#1f1f24] p-4">
+            <h2 class="mb-2 text-sm font-semibold">Color Distinctiveness</h2>
+            <p class="text-sm leading-6 text-[#a0a0a0]">
+              Amber accent at oklch(0.72 0.15 85) is warm and confident — not
+              the generic blue-violet or cool-gray of most dev portfolios.
+              Warm-tinted background has real authorship.
+            </p>
+          </article>
+          <article class="border border-[#1f1f24] p-4">
+            <h2 class="mb-2 text-sm font-semibold">Accessibility Foundation</h2>
+            <p class="text-sm leading-6 text-[#a0a0a0]">
+              Skip-to-content link, semantic landmarks, prefers-reduced-motion
+              guards, visible focus rings — all present and working. Prior
+              checkup fixes held.
+            </p>
+          </article>
+          <article class="border border-[#1f1f24] p-4">
+            <h2 class="mb-2 text-sm font-semibold">Composition Variety</h2>
+            <p class="text-sm leading-6 text-[#a0a0a0]">
+              Not everything is a card grid. Timeline, flowing chips, 2-col
+              project cards, and icon-led open source each have their own
+              spatial logic. The variety is the right idea.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="report-section mb-8 p-6 md:p-8">
+        <div class="mono mb-6 text-xs tracking-widest text-[#666]">
+          // PRIORITY ISSUES
+        </div>
+        <div class="space-y-5">
+          <article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+            <div class="mono mb-2 text-xs text-[#f43f5e]">P0</div>
+            <h2 class="mb-2 text-lg font-semibold">
+              Systemic Contrast Failure on Body Copy
+            </h2>
+            <p class="mb-4 text-sm leading-6 text-[#a0a0a0]">
+              muted-foreground at oklch(0.52 0.01 80) on background oklch(0.13
+              0.004 80) = 3.17:1. On card bg oklch(0.17 0.005 80) = 2.59:1
+              (project descriptions). WCAG AA requires 4.5:1 for text-sm and
+              smaller. These are not edge cases — they affect every paragraph
+              and every card on the page.
+            </p>
+            <div
+              class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]"
+            >
+              FIX: Bump muted-foreground to oklch(0.6 0.01 80) for body text on
+              background. Use oklch(0.68 0.005 80) for text on card surfaces.
+              Target 4.5:1 minimum.
+            </div>
+          </article>
+          <article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+            <div class="mono mb-2 text-xs text-[#fbbf24]">P1</div>
+            <h2 class="mb-2 text-lg font-semibold">
+              Uniform Section Rhythm Feels Flat
+            </h2>
+            <p class="mb-4 text-sm leading-6 text-[#a0a0a0]">
+              All six sections use mono-label → 3xl-heading → content. No
+              section has a distinct structural identity. The page reads as a
+              flat list rather than a paced portfolio with highlights and
+              quieter moments.
+            </p>
+            <div
+              class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]"
+            >
+              FIX: Give one section a different background treatment (alternate
+              bg). Vary the heading pattern in at least one section. Add section
+              dividers that echo the hero's amber line.
+            </div>
+          </article>
+          <article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+            <div class="mono mb-2 text-xs text-[#fbbf24]">P1</div>
+            <h2 class="mb-2 text-lg font-semibold">
+              Tech Stack Lacks Categorization
+            </h2>
+            <p class="mb-4 text-sm leading-6 text-[#a0a0a0]">
+              20 skills in a flat wrapping list with no grouping. A hiring
+              manager scanning for "React experience" or "testing familiarity"
+              has no visual landmarks. Categories would add scan-ability and
+              convey engineering depth.
+            </p>
+            <div
+              class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]"
+            >
+              FIX: Group skills into categories: Languages, Frameworks &
+              Libraries, Testing & CI, Tools. Add small category labels between
+              groups.
+            </div>
+          </article>
+          <article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+            <div class="mono mb-2 text-xs text-[#fbbf24]">P2</div>
+            <h2 class="mb-2 text-lg font-semibold">
+              Company Names Lack Visual Distinction
+            </h2>
+            <p class="mb-4 text-sm leading-6 text-[#a0a0a0]">
+              Company names in experience items are rendered in the same
+              muted-foreground as body copy. "Rehani Soko", "Love Bonito",
+              "Contrive Solutions" should carry more visual weight as brand
+              names that hiring managers recognize.
+            </p>
+            <div
+              class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]"
+            >
+              FIX: Use font-semibold for company names, or a distinct color
+              treatment. Separate company from location visually.
+            </div>
+          </article>
+          <article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+            <div class="mono mb-2 text-xs text-[#fbbf24]">P2</div>
+            <h2 class="mb-2 text-lg font-semibold">
+              Full-Card Links Block Text Selection
+            </h2>
+            <p class="mb-4 text-sm leading-6 text-[#a0a0a0]">
+              Project cards are wrapped in &lt;a&gt; tags, making the entire
+              card a link. Users cannot select and copy project names,
+              descriptions, or technology tags. This is hostile to the common
+              recruiting workflow of copying text for notes.
+            </p>
+            <div
+              class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]"
+            >
+              FIX: Make only the project title the link. Wrap the card in a
+              &lt;div&gt; and add a click handler, or restructure so the title
+              link is the only interactive target.
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="report-section mb-8 p-6 md:p-8">
+        <div class="mono mb-6 text-xs tracking-widest text-[#666]">
+          // NEXT MODES
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="border border-[#333] px-3 py-1 text-sm text-[#a0a0a0]"
+            >/design recolor (contrast fix)</span
+          >
+          <span class="border border-[#333] px-3 py-1 text-sm text-[#a0a0a0]"
+            >/design relayout (tech groups)</span
+          >
+          <span class="border border-[#333] px-3 py-1 text-sm text-[#a0a0a0]"
+            >/design refine (section variety)</span
+          >
+          <span class="border border-[#333] px-3 py-1 text-sm text-[#a0a0a0]"
+            >/design interaction (link scope)</span
+          >
+        </div>
+      </section>
+
+      <footer class="mono py-8 text-center text-xs tracking-widest text-[#444]">
+        Generated with CommandCode - 2026-06-03
+      </footer>
+    </main>
+  </body>
+</html>
