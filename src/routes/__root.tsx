@@ -5,6 +5,7 @@ import { ThemeProvider } from 'next-themes';
 
 import { TooltipProvider } from '@/components/ui/tooltip';
 
+import { NotFound } from '../components/not-found';
 import { DATA } from '../data';
 
 import appCss from '../styles.css?url';
@@ -16,7 +17,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <ThemeProvider>
+        <ThemeProvider defaultTheme="dark" attribute="class">
           <TooltipProvider>{children}</TooltipProvider>
         </ThemeProvider>
         <TanStackDevtools
@@ -62,6 +63,6 @@ export const Route = createRootRoute({
       },
     ],
   }),
-  notFoundComponent: () => <div>Not Found</div>,
+  notFoundComponent: NotFound,
   shellComponent: RootDocument,
 });

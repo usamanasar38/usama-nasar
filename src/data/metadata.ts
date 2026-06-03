@@ -1,8 +1,6 @@
-import type { Metadata } from 'next';
-
 import { DATA } from './resume';
 
-export const METADATA: Metadata = {
+export const METADATA = {
   description:
     'Usama Nasar is a Full Stack engineer who builds scalable, efficient, user-centric, pixel-perfect digital experiences for the web.',
   icons: [

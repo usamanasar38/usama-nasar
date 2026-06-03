@@ -14,6 +14,11 @@ export const DATA = {
         navbar: true,
         url: 'https://www.linkedin.com/in/usama-nasar/',
       },
+      Twitter: {
+        name: 'Twitter',
+        navbar: true,
+        url: 'https://x.com/usamanasar_',
+      },
     },
     tel: '+92 304 2323349',
   },
