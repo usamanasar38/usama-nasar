@@ -1,3 +1,4 @@
+import { Tooltip } from '@base-ui/react/tooltip';
 import {
   ArrowUpRightIcon,
   EnvelopeSimpleIcon,
@@ -5,13 +6,10 @@ import {
   LinkedinLogoIcon,
   XLogoIcon,
 } from '@phosphor-icons/react';
+import { motion } from 'motion/react';
+import { useMemo } from 'react';
 
 import { Button } from '@/components/ui/button';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
 import { DATA } from '@/data';
 
 const socialLinks = [
@@ -38,6 +36,8 @@ const socialLinks = [
 ] as const;
 
 export function HeroSection() {
+  const handle = useMemo(() => Tooltip.createHandle<string>(), []);
+
   return (
     <section>
       <p className="text-sm text-muted-foreground">Hey, I'm</p>
@@ -52,27 +52,56 @@ export function HeroSection() {
       </p>
       <div className="mt-8 flex items-center justify-between">
         <div className="flex items-center gap-1">
-          {socialLinks.map(({ href, label, Icon }) => (
-            <Tooltip key={label}>
-              <TooltipTrigger
-                render={
-                  <a
-                    href={href}
-                    target={href.startsWith('mailto') ? undefined : '_blank'}
-                    rel={
-                      href.startsWith('mailto')
-                        ? undefined
-                        : 'noopener noreferrer'
+          {/* Single tooltip that repositions across all triggers without closing */}
+          <Tooltip.Root handle={handle} disableHoverablePopup>
+            {({ payload: label }) => (
+              <Tooltip.Portal>
+                <Tooltip.Positioner
+                  side="top"
+                  sideOffset={6}
+                  className="isolate z-50 transition-[transform] duration-[120ms] ease-out data-[instant]:transition-none"
+                >
+                  <Tooltip.Popup
+                    render={
+                      <motion.div
+                        layout="size"
+                        transition={{ duration: 0.15, ease: 'easeOut' }}
+                      />
                     }
-                    className="inline-flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                    aria-label={label}
+                    className="inline-flex w-fit origin-(--transform-origin) items-center rounded-md bg-foreground px-2 py-0.5 text-xs text-background data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-[state=delayed-open]:animate-in data-[state=delayed-open]:fade-in-0 data-[state=delayed-open]:zoom-in-95"
                   >
-                    <Icon className="size-3.5" />
-                  </a>
-                }
-              />
-              <TooltipContent>{label}</TooltipContent>
-            </Tooltip>
+                    {label ?? ''}
+                    <Tooltip.Arrow className="z-50 size-2.5 translate-y-[calc(-50%-2px)] rotate-45 rounded-[2px] bg-foreground fill-foreground data-[side=top]:-bottom-2.5" />
+                  </Tooltip.Popup>
+                </Tooltip.Positioner>
+              </Tooltip.Portal>
+            )}
+          </Tooltip.Root>
+
+          {/* Detached triggers — each shares the same Root via handle */}
+          {socialLinks.map(({ href, label, Icon }) => (
+            <Tooltip.Trigger
+              key={label}
+              handle={handle}
+              payload={label}
+              delay={0}
+              closeDelay={150}
+              render={
+                <a
+                  href={href}
+                  target={href.startsWith('mailto') ? undefined : '_blank'}
+                  rel={
+                    href.startsWith('mailto')
+                      ? undefined
+                      : 'noopener noreferrer'
+                  }
+                  className="inline-flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  aria-label={label}
+                />
+              }
+            >
+              <Icon className="size-3.5" />
+            </Tooltip.Trigger>
           ))}
         </div>
         <Button
