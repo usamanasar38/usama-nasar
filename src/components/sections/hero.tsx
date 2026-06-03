@@ -7,7 +7,7 @@ import {
   XLogoIcon,
 } from '@phosphor-icons/react';
 import { motion } from 'motion/react';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { DATA } from '@/data';
@@ -37,6 +37,7 @@ const socialLinks = [
 
 export function HeroSection() {
   const handle = useMemo(() => Tooltip.createHandle<string>(), []);
+  const [hoveredLabel, setHoveredLabel] = useState<string | null>(null);
 
   return (
     <section>
@@ -51,7 +52,7 @@ export function HeroSection() {
         {DATA.description}
       </p>
       <div className="mt-8 flex items-center justify-between">
-        <div className="flex items-center gap-1">
+        <div className="flex items-center">
           {/* Single tooltip that repositions across all triggers without closing */}
           <Tooltip.Root handle={handle} disableHoverablePopup>
             {({ payload: label }) => (
@@ -78,31 +79,44 @@ export function HeroSection() {
             )}
           </Tooltip.Root>
 
-          {/* Detached triggers — each shares the same Root via handle */}
-          {socialLinks.map(({ href, label, Icon }) => (
-            <Tooltip.Trigger
-              key={label}
-              handle={handle}
-              payload={label}
-              delay={0}
-              closeDelay={150}
-              render={
-                <a
-                  href={href}
-                  target={href.startsWith('mailto') ? undefined : '_blank'}
-                  rel={
-                    href.startsWith('mailto')
-                      ? undefined
-                      : 'noopener noreferrer'
-                  }
-                  className="inline-flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                  aria-label={label}
-                />
-              }
-            >
-              <Icon className="size-3.5" />
-            </Tooltip.Trigger>
-          ))}
+          {/* No gap between triggers — eliminates the dead zone between buttons */}
+          <div
+            className="flex items-center"
+            onMouseLeave={() => setHoveredLabel(null)}
+          >
+            {socialLinks.map(({ href, label, Icon }) => (
+              <Tooltip.Trigger
+                key={label}
+                handle={handle}
+                payload={label}
+                delay={0}
+                closeDelay={150}
+                onMouseEnter={() => setHoveredLabel(label)}
+                render={
+                  <a
+                    href={href}
+                    target={href.startsWith('mailto') ? undefined : '_blank'}
+                    rel={
+                      href.startsWith('mailto')
+                        ? undefined
+                        : 'noopener noreferrer'
+                    }
+                    className="relative inline-flex size-7 items-center justify-center rounded-md text-muted-foreground"
+                    aria-label={label}
+                  />
+                }
+              >
+                {hoveredLabel === label && (
+                  <motion.span
+                    layoutId="social-hover-bg"
+                    className="absolute inset-0 rounded-md bg-muted"
+                    transition={{ damping: 30, stiffness: 400, type: 'spring' }}
+                  />
+                )}
+                <Icon className="relative z-10 size-3.5" />
+              </Tooltip.Trigger>
+            ))}
+          </div>
         </div>
         <Button
           variant="outline"
