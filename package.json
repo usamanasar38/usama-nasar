@@ -3,6 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://usamanasar.dev/",
+  "author": {
+    "name": "Usama Nasar",
+    "email": "contact@usamanasar.dev",
+    "url": "https://github.com/usamanasar38"
+  },
+  "contributors": [
+    {
+      "name": "Usama Nasar",
+      "email": "contact@usamanasar.dev",
+      "url": "https://github.com/usamanasar38"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/usamanasar38/usama-nasar"

@@ -1,6 +1,6 @@
 export const DATA = {
   contact: {
-    email: 'usamanasar38@gmail.com',
+    email: 'contact@usamanasar.dev',
     social: {
       GitHub: {
         // icon: Icons.github,

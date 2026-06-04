@@ -127,6 +127,7 @@ export function HeroSection() {
               <ArrowUpRightIcon />
             </a>
           }
+          nativeButton={false}
         />
       </div>
     </section>
