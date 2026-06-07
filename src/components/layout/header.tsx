@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 
 import { ThemeToggle } from '@/components/theme-toggle';
-import { DATA } from '@/data';
+import { DATA } from '@/data/resume';
 
 const NAV_ITEMS = [
   { href: '#experience', label: 'Experience' },

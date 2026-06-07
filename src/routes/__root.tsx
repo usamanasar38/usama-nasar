@@ -1,10 +1,12 @@
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
+import { MotionConfig } from 'motion/react';
 import { ThemeProvider } from 'next-themes';
 
 import { TooltipProvider } from '@/components/ui/tooltip';
-import { DATA, METADATA } from '@/data';
+import { METADATA } from '@/data/metadata';
+import { DATA } from '@/data/resume';
 import { jsonLd } from '@/lib/seo';
 
 import { NotFound } from '../components/not-found';
@@ -23,7 +25,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <ThemeProvider defaultTheme="dark" attribute="class">
-          <TooltipProvider>{children}</TooltipProvider>
+          <MotionConfig reducedMotion="user">
+            <TooltipProvider>{children}</TooltipProvider>
+          </MotionConfig>
         </ThemeProvider>
         <TanStackDevtools
           config={{ position: 'bottom-right' }}

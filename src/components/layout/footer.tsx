@@ -7,7 +7,8 @@ import {
 } from '@phosphor-icons/react';
 import { motion } from 'motion/react';
 
-import { DATA, METADATA } from '@/data';
+import { METADATA } from '@/data/metadata';
+import { DATA } from '@/data/resume';
 
 const socialLinks = [
   {
@@ -55,7 +56,7 @@ export function Footer() {
     <footer className="border-t border-border">
       <div className="mx-auto max-w-2xl px-6 py-8">
         <div className="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-start sm:justify-between sm:text-left">
-          <div className="space-y-1.5">
+          <div className="flex flex-col gap-1.5">
             <p className="text-xs text-muted-foreground">
               The source code is available on{' '}
               <a
@@ -103,7 +104,7 @@ export function Footer() {
                   aria-label={label}
                   className="inline-flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  <Icon className="size-3.5" />
+                  <Icon className="size-3.5" aria-hidden />
                 </a>
               ))}
             </div>
@@ -122,7 +123,7 @@ export function Footer() {
           >
             <HeartIcon
               weight="fill"
-              className="size-3 text-red-500"
+              className="size-3 text-destructive"
               aria-hidden
             />
           </motion.span>

@@ -10,7 +10,18 @@ import { motion } from 'motion/react';
 import { useMemo, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
-import { DATA } from '@/data';
+import { DATA } from '@/data/resume';
+
+type SocialIcon = React.ComponentType<{ className?: string }>;
+
+interface SocialLinkProps {
+  href: string;
+  label: string;
+  Icon: SocialIcon;
+  handle: ReturnType<typeof Tooltip.createHandle<string>>;
+  isHovered: boolean;
+  onMouseEnter: () => void;
+}
 
 const socialLinks = [
   {
@@ -35,6 +46,43 @@ const socialLinks = [
   },
 ] as const;
 
+function SocialLink({
+  href,
+  label,
+  Icon,
+  handle,
+  isHovered,
+  onMouseEnter,
+}: SocialLinkProps) {
+  return (
+    <Tooltip.Trigger
+      handle={handle}
+      payload={label}
+      delay={0}
+      closeDelay={150}
+      onMouseEnter={onMouseEnter}
+      render={
+        <a
+          href={href}
+          target={href.startsWith('mailto') ? undefined : '_blank'}
+          rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+          className="relative inline-flex size-7 items-center justify-center rounded-md text-muted-foreground"
+          aria-label={label}
+        />
+      }
+    >
+      {isHovered && (
+        <motion.span
+          layoutId="social-hover-bg"
+          className="absolute inset-0 rounded-md bg-muted"
+          transition={{ damping: 30, stiffness: 400, type: 'spring' }}
+        />
+      )}
+      <Icon className="relative z-10 size-3.5" aria-hidden />
+    </Tooltip.Trigger>
+  );
+}
+
 export function HeroSection() {
   const handle = useMemo(() => Tooltip.createHandle<string>(), []);
   const [hoveredLabel, setHoveredLabel] = useState<string | null>(null);
@@ -42,7 +90,7 @@ export function HeroSection() {
   return (
     <section>
       <p className="text-sm text-muted-foreground">Hey, I'm</p>
-      <h1 className="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">
+      <h1 className="mt-2 text-pretty text-4xl font-bold tracking-tight sm:text-5xl">
         {DATA.name}
       </h1>
       <p className="mt-2 text-base font-medium text-muted-foreground">
@@ -85,36 +133,15 @@ export function HeroSection() {
             onMouseLeave={() => setHoveredLabel(null)}
           >
             {socialLinks.map(({ href, label, Icon }) => (
-              <Tooltip.Trigger
+              <SocialLink
                 key={label}
+                href={href}
+                label={label}
+                Icon={Icon}
                 handle={handle}
-                payload={label}
-                delay={0}
-                closeDelay={150}
+                isHovered={hoveredLabel === label}
                 onMouseEnter={() => setHoveredLabel(label)}
-                render={
-                  <a
-                    href={href}
-                    target={href.startsWith('mailto') ? undefined : '_blank'}
-                    rel={
-                      href.startsWith('mailto')
-                        ? undefined
-                        : 'noopener noreferrer'
-                    }
-                    className="relative inline-flex size-7 items-center justify-center rounded-md text-muted-foreground"
-                    aria-label={label}
-                  />
-                }
-              >
-                {hoveredLabel === label && (
-                  <motion.span
-                    layoutId="social-hover-bg"
-                    className="absolute inset-0 rounded-md bg-muted"
-                    transition={{ damping: 30, stiffness: 400, type: 'spring' }}
-                  />
-                )}
-                <Icon className="relative z-10 size-3.5" />
-              </Tooltip.Trigger>
+              />
             ))}
           </div>
         </div>
@@ -124,7 +151,7 @@ export function HeroSection() {
           render={
             <a href={DATA.resumeLink} target="_blank" rel="noopener noreferrer">
               Resume
-              <ArrowUpRightIcon />
+              <ArrowUpRightIcon data-icon="inline-end" />
             </a>
           }
           nativeButton={false}
