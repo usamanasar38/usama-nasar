@@ -9,5 +9,15 @@ export default defineConfig({
   ignorePatterns: core.ignorePatterns,
   rules: {
     'func-style': ['error', 'declaration', { allowArrowFunctions: true }],
+    'no-inline-comments': ['allow'],
+    'no-plusplus': ['allow'],
+    'no-use-before-define': [
+      'error',
+      {
+        classes: true,
+        functions: false,
+        variables: true,
+      },
+    ],
   },
 });

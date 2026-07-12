@@ -85,8 +85,9 @@ export const DATA = {
   work: [
     {
       company: 'Rehani Soko',
-      description:
-        'At Rehani Soko, I lead the development of scalable front-end and back-end solutions, ensuring seamless integration of user-focused designs with robust functionality. I collaborate closely with a team of developers to enhance web performance, optimize web vitals, and ensure code quality through thorough reviews. My work involves diagnosing critical issues, implementing scalable solutions, and improving application efficiency to deliver a smooth user experience.',
+      description: `- Lead development of scalable front-end and back-end solutions, integrating user-focused designs with robust functionality.
+- Collaborate with developers to enhance web performance, optimize Core Web Vitals, and ensure code quality through thorough reviews.
+- Diagnose critical issues and implement scalable solutions to improve application efficiency and user experience.`,
       end: 'Present',
       href: 'https://rehanisoko.com/',
       location: 'Remote',
@@ -112,7 +113,7 @@ export const DATA = {
         },
       ],
       roles: [],
-      start: 'Aug 2024',
+      start: '08.2024',
       technologiesUsed: [
         'Javascript',
         'Typescript',
@@ -130,9 +131,11 @@ export const DATA = {
     },
     {
       company: 'Love, Bonito',
-      description:
-        'During my time at Love, Bonito, I played a key role in migrating their legacy Vue.js e-commerce platform to Next.js, achieving a 3x improvement in web performance and a 50% reduction in load times. I integrated global payment solutions, streamlined the checkout process by reducing API calls, and contributed to infrastructure cost savings through optimized CI/CD pipelines. Additionally, I mentored junior developers and collaborated with cross-functional teams to deliver a seamless customer experience.',
-      end: 'Dec 2024',
+      description: `- Migrated legacy Vue.js e-commerce platform to Next.js, achieving **3× improvement** in web performance and **50% reduction** in load times.
+- Integrated global payment solutions and streamlined checkout by reducing API calls.
+- Contributed to infrastructure cost savings through optimized CI/CD pipelines.
+- Mentored junior developers and collaborated cross-functionally to deliver a seamless customer experience.`,
+      end: '12.2024',
       href: 'https://lovebonito.com/',
       location: 'Remote',
       projects: [
@@ -159,7 +162,7 @@ export const DATA = {
         },
       ],
       roles: [],
-      start: 'Dec 2021',
+      start: '12.2021',
       technologiesUsed: [
         'Javascript',
         'Typescript',
@@ -183,9 +186,10 @@ export const DATA = {
     },
     {
       company: 'Mahjoz | محجوز',
-      description:
-        'At Mahjoz, I focused on optimizing front-end performance and delivering high-quality user interfaces using modern JavaScript frameworks. I conducted extensive testing, identified and fixed bugs early in the development cycle, and collaborated with product managers to streamline workflows. My contributions improved team efficiency, accelerated product releases, and enhanced the overall user experience.',
-      end: 'Dec 2022',
+      description: `- Optimized front-end performance and delivered high-quality UIs using modern JavaScript frameworks.
+- Conducted extensive testing and identified bugs early in the development cycle.
+- Collaborated with product managers to streamline workflows, improving team efficiency and accelerating product releases.`,
+      end: '12.2022',
       href: 'https://mahjoz.io/',
       location: 'Riyadh, SA',
       projects: [
@@ -209,7 +213,7 @@ export const DATA = {
         },
       ],
       roles: [],
-      start: 'Aug 2022',
+      start: '08.2022',
       technologiesUsed: [
         'Javascript',
         'Typescript',
@@ -226,9 +230,12 @@ export const DATA = {
     },
     {
       company: 'Contrive Solutions',
-      description:
-        'During my tenure at Contrive Solutions, I played a key role in developing and optimizing web applications as a Full-Stack Developer. I led the migration of an Express.js project to TypeScript using Nest.js, which significantly improved code maintainability, scalability, and overall project structure. My contributions also included building a high-accuracy web scraping solution with Node.js and Puppeteer, achieving an 80% captcha bypass success rate, streamlining data extraction processes, and enhancing automation efficiency. On the front-end, I worked extensively with Angular to transform design mockups into fully interactive, responsive web pages that ensured seamless navigation and visual consistency across devices. I implemented performance optimizations that improved application efficiency by 10%, addressed cross-browser compatibility challenges, and fine-tuned the overall user experience. Additionally, I collaborated with cross-functional teams, provided technical guidance to junior developers, and contributed to the successful delivery of multiple projects within tight deadlines while maintaining high coding standards and best practices.',
-      end: 'Nov 2021',
+      description: `- Led migration of Express.js project to TypeScript with Nest.js, improving code maintainability and scalability.
+- Built a web scraping solution with Node.js and Puppeteer, achieving **80% captcha bypass** success rate.
+- Developed Angular front-ends from Figma designs, delivering responsive and interactive web pages.
+- Improved application performance by **10%** through targeted optimizations and cross-browser compatibility fixes.
+- Mentored junior developers and delivered multiple projects within tight deadlines.`,
+      end: '11.2021',
       href: 'https://contrivesol.com/',
       location: 'Lahore, PK',
       projects: [
@@ -288,7 +295,7 @@ export const DATA = {
         },
       ],
       roles: ['Frontend Developer'],
-      start: 'Aug 2019',
+      start: '08.2019',
       technologiesUsed: [
         'Javascript',
         'Typescript',
