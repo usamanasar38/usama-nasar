@@ -83,11 +83,10 @@
       "pnpm dlx ultracite fix"
     ]
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "lefthook",
-      "lightningcss"
-    ]
-  }
+  "engines": {
+    "node": ">=24.16.0 <25",
+    "pnpm": ">=11.5.1"
+  },
+  "engineStrict": true,
+  "packageManager": "pnpm@11.5.1"
 }
