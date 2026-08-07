@@ -1,0 +1,15 @@
+BEGIN:VCARD
+VERSION:4.0
+FN:Usama Nasar
+N:Nasar;Usama;;;
+TITLE:Full Stack Engineer
+EMAIL;TYPE=INTERNET,PREF:contact@usamanasar.dev
+URL;TYPE=HOME:https://usamanasar.dev/
+URL;TYPE=x-github:https://github.com/usamanasar38
+URL;TYPE=x-linkedin:https://www.linkedin.com/in/usama-nasar/
+URL;TYPE=x-twitter:https://x.com/usamanasar_
+ADR;TYPE=HOME:;;Mandi Bahauddin;Punjab;;Pakistan;PK
+GEO:geo:32.5869,73.4916
+LANG:en
+NOTE:Full Stack Engineer building scalable\, efficient\, user-centric\, pixel-perfect digital experiences for the web.
+END:VCARD
