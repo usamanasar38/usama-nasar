@@ -1,0 +1,36 @@
+---
+title: "MDX demo: a post with a React component"
+description: "A draft MDX post that renders the same markdown features as the sample post plus one small React component, to check the MDX path end to end."
+date: 2026-11-19
+tags: [react]
+draft: true
+---
+
+export const Counter = () => {
+  const [count, setCount] = React.useState(0);
+  return (
+    <button type="button" className="inline-flex h-9 items-center rounded-full border px-4 text-small transition-colors hover:bg-muted" onClick={() => setCount((c) => c + 1)}>
+      Clicked {count} {count === 1 ? "time" : "times"}
+    </button>
+  );
+};
+
+This post is written in **MDX**, so it can render components inline:
+
+<Counter />
+
+## Code
+
+```tsx title="counter.tsx"
+export const Counter = () => {
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount((c) => c + 1)}>{count}</button>;
+};
+```
+
+## Table
+
+| Format | Use it for |
+| ------ | ---------- |
+| `.md`  | Most posts |
+| `.mdx` | Posts that need a component |
