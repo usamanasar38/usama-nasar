@@ -29,15 +29,17 @@ Every interactive element plays `hover` on pointer enter and the listed sound on
   (`text-lead font-medium text-foreground`).
 - Intro paragraph below: `text-lead text-muted-foreground max-w-[640px]` with an inline brand link.
 - Social chips below that.
-- **Availability badge:** pill `bg-brand-subtle text-brand-subtle-foreground font-mono text-caption px-2.5
-  py-0.5` with a 6px `bg-brand` dot. Hidden when `site.availableForWork` is false.
+- **Availability badge:** pill `h-7 px-3 bg-brand-subtle text-brand-subtle-foreground font-mono text-caption`
+  with a 6px `bg-status` dot. Hidden when `site.availableForWork` is false.
 
 ## Chips (social, stack, tag filter) [shadcn: button / badge variants]
 
 - **Social chip:** link, `h-9 rounded-full border pl-3 pr-3.5 gap-2 text-small` + 16px Phosphor icon. Hover `bg-muted`.
-- **Stack chip:** list item (not a link), `h-8 rounded-full border pl-2.5 pr-3.5 gap-2 text-small` +
+- **Badge size (shared):** availability badge, stack chips and tags are all `<Badge>`: `h-7 rounded-full px-3
+  gap-1.5 text-caption`, 14px icons. Only the variant (fill, border, font) differs.
+- **Stack chip:** list item (not a link), `<Badge variant="chip">` (hairline border) +
   `<TechIcon className="size-3.5" />`. Group names above each row in `font-mono text-caption text-muted-foreground`.
-- **Tag:** `rounded-full bg-muted px-2.5 py-0.5 font-mono text-micro text-muted-foreground`, lowercase.
+- **Tag:** `<Badge variant="tag">`: `bg-muted font-mono text-muted-foreground`, lowercase.
 - **Filter chip** (/blog): a `<Link>` to `/blog?tag=x` (crawlable, shareable), `h-8 rounded-full border
   px-3.5 text-small`; active = `bg-foreground text-background border-foreground` + `aria-current="page"`.
 

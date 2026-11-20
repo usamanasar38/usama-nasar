@@ -105,6 +105,11 @@
   @keyframes un-blink {
     50% { opacity: 0; }
   }
+  @keyframes un-heartbeat {
+    0%, 40%, 100% { scale: 1; }
+    15% { scale: 1.22; }
+    28% { scale: 1.08; }
+  }
   @keyframes un-fade-in {
     to { opacity: 1; }
   }
@@ -154,6 +159,7 @@
 
   /* Status green (green-600): the "available for work" dot only. */
   --status: oklch(0.627 0.194 149.214);
+  --love: oklch(0.637 0.237 25.331);                       /* red-500 */
 
   --code-background: oklch(0.985 0 0);
   --dock: oklch(1 0 0 / 82%);
@@ -202,6 +208,7 @@
   --brand-subtle-foreground: oklch(0.809 0.105 251.813);  /* blue-300 */
 
   --status: oklch(0.792 0.209 151.711);                   /* green-400 */
+  --love: oklch(0.704 0.191 22.216);                      /* red-400 */
 
   --code-background: oklch(0.178 0 0);
   --dock: oklch(0.205 0 0 / 82%);
@@ -252,6 +259,7 @@
   --color-brand-subtle: var(--brand-subtle);
   --color-brand-subtle-foreground: var(--brand-subtle-foreground);
   --color-status: var(--status);
+  --color-love: var(--love);
   --color-code-background: var(--code-background);
   --color-dock: var(--dock);
   --color-scrim: var(--scrim);
@@ -335,6 +343,12 @@
   animation: var(--animate-un-blink);
 }
 
+/* Footer heart: a double-beat every 1.4s. */
+@utility un-heartbeat {
+  transform-origin: center;
+  animation: un-heartbeat 1.4s var(--ease-out-quint, ease-out) infinite;
+}
+
 /* Scroll-progress ring on the back-to-top button. Needs pathLength="1" on the circle. */
 @utility un-progress {
   stroke-dasharray: 1;
@@ -403,7 +417,8 @@
     animation: none !important;
   }
   .un-draw,
-  .un-blink {
+  .un-blink,
+  .un-heartbeat {
     animation: none;
   }
   .un-signal {

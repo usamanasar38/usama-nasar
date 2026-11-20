@@ -54,9 +54,16 @@ const publicFiles = (): Plugin => {
 const PHOSPHOR_DEFS = /@phosphor-icons\/react\/dist\/defs\/[^/]+\.es\.js$/u;
 const PHOSPHOR_WEIGHT = /\n {2}\[\n {4}"(?<weight>bold|duotone|fill|light|regular|thin)",/gu;
 
+/** Icons drawn in a weight other than regular. Each keeps only that weight. */
+const PHOSPHOR_WEIGHT_OVERRIDES: Record<string, string> = {
+  /** The footer's "made with love" heart, filled red. */
+  Heart: "fill",
+};
+
 /**
  * The design uses Phosphor's regular weight only (02-foundations.md#icons), but every icon
- * module ships all six weights. Keep just "regular" so each icon costs one path, not six.
+ * module ships all six weights. Keep just "regular" (or the override above) so each icon
+ * costs one path, not six.
  */
 const phosphorRegularOnly = (): Plugin => ({
   enforce: "pre",
@@ -65,9 +72,11 @@ const phosphorRegularOnly = (): Plugin => ({
     if (!PHOSPHOR_DEFS.test(id.split("?")[0] ?? "")) {
       return null;
     }
+    const name = /(?<name>[^/]+)\.es\.js/u.exec(id)?.groups?.name ?? "";
+    const keep = PHOSPHOR_WEIGHT_OVERRIDES[name] ?? "regular";
     const entries = [...code.matchAll(PHOSPHOR_WEIGHT)];
     const first = entries[0];
-    const regularIndex = entries.findIndex((entry) => entry.groups?.weight === "regular");
+    const regularIndex = entries.findIndex((entry) => entry.groups?.weight === keep);
     const regular = entries[regularIndex];
     const end = code.lastIndexOf("\n]);");
     if (!(first && regular) || end === -1) {

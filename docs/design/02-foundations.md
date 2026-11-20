@@ -18,6 +18,7 @@ shadcn token names, neutral greys (chroma 0) and one blue. Light = `:root`, dark
 | `brand` | blue-600 #155dfc | blue-400 #51a2ff | Links, focus ring, active state, logo hover, progress |
 | `brand-subtle` / `-foreground` | blue-50 / blue-700 | blue-950 / blue-300 | "Available for work" badge only |
 | `status` | green-600 #00a63e | green-400 #05df72 | "Available for work" dot only (6px). Never text, fills or other UI |
+| `love` | red-500 #fb2c36 | red-400 #ff6467 | Footer "made with love" heart only (`un-heartbeat`, off under reduced motion). Nowhere else |
 | `code-background` | #fafafa | #111111 | Code blocks |
 | `dock` | white 82% | #171717 82% | Floating dock (with `backdrop-blur-md`) |
 | `scrim` | black 28% | black 60% | Behind dialogs |
@@ -96,7 +97,7 @@ dock and dialog `shadow-lg shadow-black/5 dark:shadow-black/40`. No shadows on c
 
 ## Icons
 
-**Phosphor** (`@phosphor-icons/react` v2), regular weight, `aria-hidden` unless standalone.
+**Phosphor** (`@phosphor-icons/react` v2), regular weight, `aria-hidden` unless standalone. One exception: the footer heart is `HeartIcon weight="fill"` (set in `PHOSPHOR_WEIGHT_OVERRIDES`, vite.config.ts).
 Sizes: 16px (`size-4`) inline and in chips, 18px in header/dock buttons, 20px in the mobile dock,
 22px on contact links. Import icons by name from `@phosphor-icons/react`; put the name → icon map for `site.ts` icon keys in `src/components/site/icons.tsx`.
 

@@ -1,6 +1,7 @@
 import { BrainIcon, SquaresFourIcon, StackIcon } from "@phosphor-icons/react";
 
 import { SectionHeading } from "@/components/site/section-heading";
+import { Badge } from "@/components/ui/badge";
 import type { StackGroup } from "@/lib/portfolio.functions";
 
 /** Phosphor fallbacks for stack items without a simple-icons logo (by displayName). */
@@ -30,17 +31,14 @@ export const Stack = ({ groups }: { groups: StackGroup[] }) => (
             {group.items.map((item) => {
               const Fallback = item.fallback ? FALLBACKS[item.fallback] : undefined;
               return (
-                <li
-                  className="inline-flex h-8 items-center gap-2 rounded-full border pr-3.5 pl-2.5 text-small"
-                  key={item.key}
-                >
+                <Badge key={item.key} render={<li />} variant="chip">
                   {item.path ? (
                     <LogoPath path={item.path} />
                   ) : Fallback ? (
                     <Fallback aria-hidden className="size-3.5" />
                   ) : null}
                   {item.title}
-                </li>
+                </Badge>
               );
             })}
           </ul>

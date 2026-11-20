@@ -1,10 +1,10 @@
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "cn"
+import { cn } from "@/lib/utils"
 
 const badgeVariants = cva(
-  "group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1.5 overflow-hidden whitespace-nowrap rounded-full border border-transparent px-2.5 py-0.5 font-medium text-caption transition-colors [&>svg]:pointer-events-none [&>svg]:size-3",
+  "group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1.5 overflow-hidden whitespace-nowrap h-7 rounded-full border border-transparent px-3 font-medium text-caption transition-colors [&>svg]:pointer-events-none [&>svg]:size-3.5",
   {
     variants: {
       variant: {
@@ -22,7 +22,9 @@ const badgeVariants = cva(
         brand:
           "bg-brand-subtle font-mono font-normal text-brand-subtle-foreground",
         /** Skill and post tags: lowercase mono on muted. */
-        tag: "bg-muted font-mono font-normal text-micro text-muted-foreground lowercase",
+        tag: "bg-muted font-mono font-normal text-muted-foreground lowercase",
+        /** Stack chips: hairline pill with a 14px logo. */
+        chip: "border-border font-normal text-foreground",
       },
     },
     defaultVariants: {
