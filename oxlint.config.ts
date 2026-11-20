@@ -24,7 +24,18 @@ export default defineConfig({
     landmines,
     antiSlop,
   ],
-  ignorePatterns: core.ignorePatterns,
+  ignorePatterns: [
+    ...core.ignorePatterns,
+    // Vendored registry code (shadcn, Kibo UI, soundcn): re-installs overwrite it.
+    ".agents/**",
+    "src/components/ui/**",
+    "src/components/kibo-ui/**",
+    "src/hooks/use-sound.ts",
+    "src/lib/sound-engine.ts",
+    "src/lib/sound-types.ts",
+    "src/lib/sounds/**",
+    "src/routeTree.gen.ts",
+  ],
   jsPlugins: [
     ...jsPlugins.jsPlugins,
     ...shadcn.jsPlugins,

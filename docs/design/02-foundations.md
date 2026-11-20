@@ -17,6 +17,7 @@ shadcn token names, neutral greys (chroma 0) and one blue. Light = `:root`, dark
 | `primary` | #171717 | #e5e5e5 | Primary button fill (inverts per theme) |
 | `brand` | blue-600 #155dfc | blue-400 #51a2ff | Links, focus ring, active state, logo hover, progress |
 | `brand-subtle` / `-foreground` | blue-50 / blue-700 | blue-950 / blue-300 | "Available for work" badge only |
+| `status` | green-600 #00a63e | green-400 #05df72 | "Available for work" dot only (6px). Never text, fills or other UI |
 | `code-background` | #fafafa | #111111 | Code blocks |
 | `dock` | white 82% | #171717 82% | Floating dock (with `backdrop-blur-md`) |
 | `scrim` | black 28% | black 60% | Behind dialogs |
@@ -45,10 +46,12 @@ and code. Both OFL, self-hosted through Fontsource, `font-display: swap`. Preloa
 | `text-lead` | 18 | 1.65 | 400 | Hero intro, post lead (muted) |
 | `text-body` | 16 | 1.7 | 400 | Default UI text |
 | `text-prose` | 17 | 1.75 | 400 | Article body (set by `.article`) |
+| `text-detail` | 15 | 1.6 | 400 | Overview values, experience bullets |
 | `text-small` | 14 | 1.55 | 400–500 | Nav, buttons, descriptions |
 | `font-mono text-label` | 13 | 1.7 | 400 | Footer line, small mono labels |
 | `font-mono text-caption` | 12 | 1.45 | 400 | Dates, read time, handles |
 | `font-mono text-micro` | 11 | 1.4 | 400 | Tags, kbd, palette group names |
+| `font-mono text-code` | 14 | 1.7 | 400 | Code blocks (`article.css`) |
 
 Headings get `text-wrap: balance`, paragraphs `text-wrap: pretty` (in the base layer).
 UI chrome is lowercase (`about`, `projects`, `overview`); headings are sentence case.
@@ -125,7 +128,7 @@ Respect each brand's guidelines: no recolouring beyond monochrome, no distortion
 | `un-progress` | Ring fills with scroll (CSS scroll-driven) | Floating back-to-top button |
 | `un-reveal` | Fades in between 120 and 400px of scroll | Floating back-to-top button |
 | `<details>` open | Height animates via `::details-content` | Experience rows |
-| Show more | `grid-template-rows` 0fr → 1fr, 500ms ease-out-quint | Experience, projects |
+| `un-collapse` | Show more: `grid-template-rows` 0fr → 1fr (`data-open`), 500ms ease-out-quint | Experience, projects |
 
 Micro-interactions: colour transitions 150ms; arrow nudge 200ms `ease-out-quint`; accordion open
 200ms. Everything turns off under `prefers-reduced-motion` (handled in `app.css`; use `motion-reduce:`

@@ -33,7 +33,7 @@ rehype-pretty-code + Shiki at build time · soundcn sounds behind our own `Sound
 5. **Components:** shadcn first, then Kibo UI / soundcn as listed in `docs/design/07-registries.md`, then
    custom. Restyle every registry component to our tokens and Phosphor icons. **No `lucide-react`.**
 6. **Type scale classes only** (`text-display`, `text-h1`, `text-h2`, `text-section`, `text-h3`, `text-say`,
-   `text-lead`, `text-body`, `text-prose`, `text-small`, `text-label`, `text-caption`, `text-micro`).
+   `text-lead`, `text-body`, `text-prose`, `text-detail`, `text-small`, `text-label`, `text-caption`, `text-micro`).
    Commit Mono (`font-mono`) only for metadata, counters, tags, kbd, code and the name lockup.
 7. **Brand assets are fixed.** Use `Logo`, `LogoTile`, `PromptMark` from `src/components/brand/logo.tsx`
    and files in `public/`. Never redraw or recolour the paths.
