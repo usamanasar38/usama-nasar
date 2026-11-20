@@ -10,33 +10,220 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutDotmdRouteImport } from './routes/about[.]md'
+import { Route as EducationDotmdRouteImport } from './routes/education[.]md'
+import { Route as ExperienceDotmdRouteImport } from './routes/experience[.]md'
+import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
+import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
+import { Route as ProjectsDotmdRouteImport } from './routes/projects[.]md'
+import { Route as RecognitionDotmdRouteImport } from './routes/recognition[.]md'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as RssDotxmlRouteImport } from './routes/rss[.]xml'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as VcardRouteImport } from './routes/vcard'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
+import { Route as BlogChar123slugChar125DotmdRouteImport } from './routes/blog/{$slug}[.]md'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutDotmdRoute = AboutDotmdRouteImport.update({
+  id: '/about.md',
+  path: '/about.md',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EducationDotmdRoute = EducationDotmdRouteImport.update({
+  id: '/education.md',
+  path: '/education.md',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExperienceDotmdRoute = ExperienceDotmdRouteImport.update({
+  id: '/experience.md',
+  path: '/experience.md',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
+  id: '/llms-full.txt',
+  path: '/llms-full.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
+  id: '/llms.txt',
+  path: '/llms.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsDotmdRoute = ProjectsDotmdRouteImport.update({
+  id: '/projects.md',
+  path: '/projects.md',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecognitionDotmdRoute = RecognitionDotmdRouteImport.update({
+  id: '/recognition.md',
+  path: '/recognition.md',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RssDotxmlRoute = RssDotxmlRouteImport.update({
+  id: '/rss.xml',
+  path: '/rss.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VcardRoute = VcardRouteImport.update({
+  id: '/vcard',
+  path: '/vcard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogChar123slugChar125DotmdRoute =
+  BlogChar123slugChar125DotmdRouteImport.update({
+    id: '/blog/{$slug}.md',
+    path: '/blog/{$slug}.md',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about.md': typeof AboutDotmdRoute
+  '/education.md': typeof EducationDotmdRoute
+  '/experience.md': typeof ExperienceDotmdRoute
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/llms.txt': typeof LlmsDottxtRoute
+  '/projects.md': typeof ProjectsDotmdRoute
+  '/recognition.md': typeof RecognitionDotmdRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/rss.xml': typeof RssDotxmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/vcard': typeof VcardRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/{$slug}.md': typeof BlogChar123slugChar125DotmdRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about.md': typeof AboutDotmdRoute
+  '/education.md': typeof EducationDotmdRoute
+  '/experience.md': typeof ExperienceDotmdRoute
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/llms.txt': typeof LlmsDottxtRoute
+  '/projects.md': typeof ProjectsDotmdRoute
+  '/recognition.md': typeof RecognitionDotmdRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/rss.xml': typeof RssDotxmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/vcard': typeof VcardRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/{$slug}.md': typeof BlogChar123slugChar125DotmdRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about.md': typeof AboutDotmdRoute
+  '/education.md': typeof EducationDotmdRoute
+  '/experience.md': typeof ExperienceDotmdRoute
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/llms.txt': typeof LlmsDottxtRoute
+  '/projects.md': typeof ProjectsDotmdRoute
+  '/recognition.md': typeof RecognitionDotmdRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/rss.xml': typeof RssDotxmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/vcard': typeof VcardRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/{$slug}.md': typeof BlogChar123slugChar125DotmdRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about.md'
+    | '/education.md'
+    | '/experience.md'
+    | '/llms-full.txt'
+    | '/llms.txt'
+    | '/projects.md'
+    | '/recognition.md'
+    | '/robots.txt'
+    | '/rss.xml'
+    | '/sitemap.xml'
+    | '/vcard'
+    | '/blog/$slug'
+    | '/blog/{$slug}.md'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about.md'
+    | '/education.md'
+    | '/experience.md'
+    | '/llms-full.txt'
+    | '/llms.txt'
+    | '/projects.md'
+    | '/recognition.md'
+    | '/robots.txt'
+    | '/rss.xml'
+    | '/sitemap.xml'
+    | '/vcard'
+    | '/blog/$slug'
+    | '/blog/{$slug}.md'
+    | '/blog'
+  id:
+    | '__root__'
+    | '/'
+    | '/about.md'
+    | '/education.md'
+    | '/experience.md'
+    | '/llms-full.txt'
+    | '/llms.txt'
+    | '/projects.md'
+    | '/recognition.md'
+    | '/robots.txt'
+    | '/rss.xml'
+    | '/sitemap.xml'
+    | '/vcard'
+    | '/blog/$slug'
+    | '/blog/{$slug}.md'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutDotmdRoute: typeof AboutDotmdRoute
+  EducationDotmdRoute: typeof EducationDotmdRoute
+  ExperienceDotmdRoute: typeof ExperienceDotmdRoute
+  LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
+  LlmsDottxtRoute: typeof LlmsDottxtRoute
+  ProjectsDotmdRoute: typeof ProjectsDotmdRoute
+  RecognitionDotmdRoute: typeof RecognitionDotmdRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
+  RssDotxmlRoute: typeof RssDotxmlRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  VcardRoute: typeof VcardRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  BlogChar123slugChar125DotmdRoute: typeof BlogChar123slugChar125DotmdRoute
+  BlogIndexRoute: typeof BlogIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +235,123 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about.md': {
+      id: '/about.md'
+      path: '/about.md'
+      fullPath: '/about.md'
+      preLoaderRoute: typeof AboutDotmdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/education.md': {
+      id: '/education.md'
+      path: '/education.md'
+      fullPath: '/education.md'
+      preLoaderRoute: typeof EducationDotmdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/experience.md': {
+      id: '/experience.md'
+      path: '/experience.md'
+      fullPath: '/experience.md'
+      preLoaderRoute: typeof ExperienceDotmdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms-full.txt': {
+      id: '/llms-full.txt'
+      path: '/llms-full.txt'
+      fullPath: '/llms-full.txt'
+      preLoaderRoute: typeof LlmsFullDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms.txt': {
+      id: '/llms.txt'
+      path: '/llms.txt'
+      fullPath: '/llms.txt'
+      preLoaderRoute: typeof LlmsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects.md': {
+      id: '/projects.md'
+      path: '/projects.md'
+      fullPath: '/projects.md'
+      preLoaderRoute: typeof ProjectsDotmdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recognition.md': {
+      id: '/recognition.md'
+      path: '/recognition.md'
+      fullPath: '/recognition.md'
+      preLoaderRoute: typeof RecognitionDotmdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rss.xml': {
+      id: '/rss.xml'
+      path: '/rss.xml'
+      fullPath: '/rss.xml'
+      preLoaderRoute: typeof RssDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vcard': {
+      id: '/vcard'
+      path: '/vcard'
+      fullPath: '/vcard'
+      preLoaderRoute: typeof VcardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/{$slug}.md': {
+      id: '/blog/{$slug}.md'
+      path: '/blog/{$slug}.md'
+      fullPath: '/blog/{$slug}.md'
+      preLoaderRoute: typeof BlogChar123slugChar125DotmdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutDotmdRoute: AboutDotmdRoute,
+  EducationDotmdRoute: EducationDotmdRoute,
+  ExperienceDotmdRoute: ExperienceDotmdRoute,
+  LlmsFullDottxtRoute: LlmsFullDottxtRoute,
+  LlmsDottxtRoute: LlmsDottxtRoute,
+  ProjectsDotmdRoute: ProjectsDotmdRoute,
+  RecognitionDotmdRoute: RecognitionDotmdRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
+  RssDotxmlRoute: RssDotxmlRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  VcardRoute: VcardRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  BlogChar123slugChar125DotmdRoute: BlogChar123slugChar125DotmdRoute,
+  BlogIndexRoute: BlogIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
