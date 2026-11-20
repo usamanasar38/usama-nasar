@@ -1,0 +1,219 @@
+/* ==========================================================================
+   Blog / long-form article styles
+   Wrap rendered MDX or markdown in <article class="article">…</article>.
+   Code blocks: Shiki via rehype-pretty-code, dual themes
+   vitesse-light / vitesse-black, highlighted at build time (no runtime JS).
+   Docs: docs/design/03-components.md#article
+   ========================================================================== */
+
+@layer components {
+  .article {
+    font-size: var(--text-prose);
+    line-height: var(--text-prose--line-height);
+    color: var(--foreground);
+    max-width: var(--container-reading);
+  }
+
+  /* Vertical rhythm: one flow value, headings get more space above. */
+  .article > * + * {
+    margin-top: 1.25em;
+  }
+
+  .article h2,
+  .article h3,
+  .article h4 {
+    color: var(--foreground);
+    font-weight: 600;
+    scroll-margin-top: 6rem;
+  }
+  .article h2 {
+    font-size: var(--text-h2);
+    line-height: var(--text-h2--line-height);
+    letter-spacing: var(--text-h2--letter-spacing);
+    margin-top: 2.4em;
+  }
+  .article h3 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    letter-spacing: -0.015em;
+    margin-top: 2em;
+  }
+  .article h4 {
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+    letter-spacing: var(--text-h3--letter-spacing);
+    margin-top: 1.75em;
+  }
+  .article :is(h2, h3, h4) + * {
+    margin-top: 0.75em;
+  }
+
+  /* Heading anchor links (rehype-autolink-headings, behavior: "wrap") */
+  .article :is(h2, h3, h4) > a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .article p.lead {
+    font-size: var(--text-lead);
+    line-height: var(--text-lead--line-height);
+    color: var(--muted-foreground);
+  }
+
+  .article a:not(:is(h2, h3, h4) > a) {
+    color: var(--brand);
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in oklch, var(--brand) 40%, transparent);
+    transition: text-decoration-color 150ms;
+  }
+  .article a:not(:is(h2, h3, h4) > a):hover {
+    text-decoration-color: var(--brand);
+  }
+
+  .article strong {
+    font-weight: 600;
+    color: var(--foreground);
+  }
+
+  .article ul,
+  .article ol {
+    padding-left: 1.25em;
+  }
+  .article ul {
+    list-style: disc;
+  }
+  .article ol {
+    list-style: decimal;
+  }
+  .article li + li {
+    margin-top: 0.375em;
+  }
+  .article li::marker {
+    color: var(--muted-foreground);
+  }
+
+  .article :is(h2, h3, h4) {
+    font-family: var(--font-sans);
+  }
+
+  .article blockquote {
+    border-left: 2px solid var(--border);
+    padding-left: 1.25em;
+    color: var(--muted-foreground);
+    font-style: normal;
+  }
+
+  .article hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin-block: 3em;
+  }
+
+  .article img,
+  .article video {
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    height: auto;
+    max-width: 100%;
+  }
+  .article figure figcaption {
+    margin-top: 0.75em;
+    font-size: var(--text-small);
+    color: var(--muted-foreground);
+    text-align: center;
+  }
+
+  .article kbd {
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    padding: 0.1em 0.4em;
+    border: 1px solid var(--border);
+    border-bottom-width: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Tables scroll inside their own box on small screens */
+  .article .table-wrap {
+    overflow-x: auto;
+  }
+  .article table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-small);
+  }
+  .article th,
+  .article td {
+    text-align: left;
+    padding: 0.6em 0.75em;
+    border-bottom: 1px solid var(--border);
+  }
+  .article th {
+    font-weight: 600;
+  }
+
+  /* Inline code */
+  .article :not(pre) > code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    padding: 0.15em 0.35em;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--muted);
+    color: var(--foreground);
+    overflow-wrap: break-word;
+  }
+
+  /* Code blocks */
+  .article pre {
+    font-family: var(--font-mono);
+    font-size: var(--text-code);
+    line-height: var(--text-code--line-height);
+    background: var(--code-background) !important;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1rem 0;
+    overflow-x: auto;
+    tab-size: 2;
+  }
+  .article pre > code {
+    display: grid;
+    min-width: 100%;
+  }
+  .article pre [data-line] {
+    padding-inline: 1rem;
+  }
+  .article pre [data-highlighted-line] {
+    background: color-mix(in oklch, var(--brand) 10%, transparent);
+    box-shadow: inset 2px 0 0 var(--brand);
+  }
+  .article pre [data-highlighted-chars] {
+    background: color-mix(in oklch, var(--brand) 16%, transparent);
+    border-radius: 0.25rem;
+    padding: 0.1em 0.2em;
+  }
+
+  /* File name above a block: ```ts title="app.config.ts" */
+  .article [data-rehype-pretty-code-title] {
+    font-family: var(--font-mono);
+    font-size: var(--text-caption);
+    color: var(--muted-foreground);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-bottom: 0;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    background: var(--code-background);
+  }
+  .article [data-rehype-pretty-code-title] + pre {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  /* Shiki dual theme: light colours by default, dark ones under .dark */
+  .dark .article pre span[style*="--shiki-dark"],
+  .dark .article code span[style*="--shiki-dark"] {
+    color: var(--shiki-dark) !important;
+  }
+}

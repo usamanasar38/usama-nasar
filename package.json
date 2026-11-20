@@ -1,43 +1,103 @@
 {
-  "name": "usama.nasar",
-  "version": "0.1.0",
+  "name": "usamanasar.dev",
   "private": true,
-  "engines": {
-    "node": ">=22.12.0",
-    "pnpm": ">=9.15.0",
-    "npm": ">=10.5.0"
+  "type": "module",
+  "homepage": "https://usamanasar.dev/",
+  "author": {
+    "name": "Usama Nasar",
+    "email": "contact@usamanasar.dev",
+    "url": "https://github.com/usamanasar38"
+  },
+  "contributors": [
+    {
+      "name": "Usama Nasar",
+      "email": "contact@usamanasar.dev",
+      "url": "https://github.com/usamanasar38"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/usamanasar38/usama-nasar"
+  },
+  "imports": {
+    "#/*": "./src/*"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint ."
+    "dev": "vite dev --port 3000",
+    "generate-routes": "vite build",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "ultracite check",
+    "fix": "ultracite fix",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@base-ui/react": "^1.9.0",
+    "@fontsource-variable/host-grotesk": "^5.3.0",
+    "@fontsource/commit-mono": "^5.3.0",
+    "@phosphor-icons/react": "^2.1.10",
+    "@t3-oss/env-core": "^0.13.10",
+    "@tailwindcss/vite": "^4.1.18",
+    "@tanstack/react-devtools": "0.10.14",
+    "@tanstack/react-form": "1.33.5",
+    "@tanstack/react-router": "1.170.46",
+    "@tanstack/react-router-devtools": "1.167.3",
+    "@tanstack/react-start": "1.169.5",
     "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "lucide-react": "^1.16.0",
-    "next": "16.2.6",
-    "react": "19.2.6",
-    "react-dom": "19.2.6",
-    "tailwind-merge": "^3.6.0",
-    "tailwindcss-animate": "^1.0.7"
+    "cmdk": "^1.1.1",
+    "cn": "^0.5.2",
+    "date-fns": "^4.4.0",
+    "motion": "^14.14.0",
+    "nitro": "3.0.260610-beta",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-medium-image-zoom": "^5.4.9",
+    "shadcn": "^4.23.0",
+    "shiki": "^4.6.0",
+    "simple-icons": "^16.38.0",
+    "tailwindcss": "^4.1.18",
+    "tw-animate-css": "^1.4.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@types/node": "^24.12.4",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
-    "@types/react-syntax-highlighter": "^15.5.13",
-    "eslint": "^10.4.0",
-    "eslint-config-next": "16.2.6",
-    "postcss": "^8.5.14",
-    "tailwindcss": "^3.4.19",
-    "typescript": "^6.0.3"
+    "@content-collections/core": "^0.15.3",
+    "@content-collections/mdx": "^0.2.2",
+    "@content-collections/vite": "^0.3.1",
+    "@interfere/landmines": "^0.1.1",
+    "@rolldown/plugin-babel": "^0.2.3",
+    "@shadcn/lint": "^0.2.5",
+    "@tanstack/devtools-vite": "0.8.6",
+    "@tanstack/intent": "^0.5.6",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "fontaine": "^1.0.3",
+    "github-slugger": "^2.0.0",
+    "lefthook": "^2.2.2",
+    "oxfmt": "^0.79.0",
+    "oxlint": "^1.94.0",
+    "oxlint-plugin-react-doctor": "^0.9.23",
+    "oxlint-tsgolint": "^7.0.2007",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-pretty-code": "^0.14.6",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1",
+    "schema-dts": "^2.1.0",
+    "typescript": "^6.0.2",
+    "ultracite": "8.3.1",
+    "vite": "^8.0.0"
   },
-  "packageManager": "pnpm@10.6.2+sha512.47870716bea1572b53df34ad8647b42962bc790ce2bf4562ba0f643237d7302a3d6a8ecef9e4bdfc01d23af1969aa90485d4cebb0b9638fa5ef1daef656f6c1b",
   "pnpm": {
-    "overrides": {
-      "postcss": "^8.5.14"
-    }
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "lightningcss"
+    ]
+  },
+  "intent": {
+    "skills": [
+      "*"
+    ]
   }
 }

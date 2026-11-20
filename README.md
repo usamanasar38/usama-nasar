@@ -1,44 +1,17 @@
-# Portfolio [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fusamanasar38%2Fusama-nasar%2F&teamSlug=usamanasar38s-projects)
+# Portfolio handoff: Usama Nasar
 
-Built with next.js, and TailwindCSS, deployed on Vercel.
+Everything a coding agent needs to build the portfolio in an existing TanStack Start project. The pages
+themselves are generated in your project by running the prompts in order.
 
-# Features
+| Path | What |
+|---|---|
+| `prompts/` | 15 step-by-step prompts for Claude Code. Start with `00-start-here.md` |
+| `CLAUDE.md` | Rules the agent follows in every session |
+| `docs/design/` | The design system: brand, foundations, components, pages, content, quality, registries, motion |
+| `components.json` | shadcn config: `base-mira`, neutral, Phosphor, `@kibo-ui` and `@soundcn` registries |
+| `src/styles/` | `app.css` (tokens, type scale, theme, motion utilities) and `article.css` (blog prose) |
+| `src/components/brand/logo.tsx` | Wave, Tile and Prompt marks as React components (currentColor) |
+| `src/content/site.ts` | All home-page copy as typed data, with `[BRACKETS]` to fill in |
+| `public/` | Favicons, manifest, default OG images, `brand/` SVGs (currentColor, light, dark, adaptive, outlined lockups) |
 
-- Setup only takes a few minutes by editing the [single config file](./src/data/resume.ts)
-- Built using Next.js 15, React, Typescript, TailwindCSS
-- Responsive for different devices
-- Optimized for Next.js and Vercel
-
-# Getting Started Locally
-
-1. Clone this repository to your local machine:
-
-   ```bash
-   git clone https://github.com/usamanasar38/usama-nasar/
-   ```
-
-2. Move to the cloned directory
-
-   ```bash
-   cd portfolio
-   ```
-
-3. Install dependencies:
-
-   ```bash
-   pnpm install
-   ```
-
-4. Start the local Server:
-
-   ```bash
-   pnpm dev
-   ```
-
-5. Open the [Config file](./src/data/resume.ts) and make changes
-
-6. Open the [Config file](./src/data/metadata.ts) and make changes for metadata
-
-# License
-
-Licensed under the [MIT license](https://github.com/usamanasar38/usama-nasar/blob/main/LICENSE.md).
+Components to install, by registry, are listed in `docs/design/07-registries.md`.
