@@ -24,7 +24,8 @@ export type SoundName =
   | "collapse"
   | "open"
   | "success"
-  | "rise";
+  | "rise"
+  | "press";
 
 type Assets = typeof import("@/lib/sound-assets");
 
@@ -41,6 +42,7 @@ const SOUNDS: Record<
   off: { asset: "switchOffSound", rate: 1, volume: 0.4 },
   on: { asset: "switchOnSound", rate: 1, volume: 0.4 },
   open: { asset: "open001Sound", rate: 1.15, volume: 0.35 },
+  press: { asset: "metalClickSound", rate: 1, volume: 0.45 },
   rise: { asset: "open001Sound", rate: 0.8, volume: 0.4 },
   success: { asset: "successChimeSound", rate: 1, volume: 0.4 },
 };

@@ -95,6 +95,8 @@ file exists for a project's `slug`, the card title links to `/projects/<slug>`.
 
 - Avatar: square, ≥ 384px, AVIF + WebP fallback, `public/avatar.avif`.
 - Project images: 16:10, ≥ 1280×800, `public/projects/<slug>.avif`.
+- Company and project logos: square, ≥ 48px, `public/images/companies/<slug>.{png,svg}`; set
+  `companyLogo` on an experience and `logo` on a project. Use `{ light, dark }` for single-colour marks.
 - Always set `width`, `height` and meaningful `alt` (or `alt=""` if decorative).
 - Only the avatar is `fetchpriority="high"`. Everything below the fold is `loading="lazy"`.
 

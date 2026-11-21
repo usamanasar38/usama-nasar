@@ -16,11 +16,35 @@ Every interactive element plays `hover` on pointer enter and the listed sound on
 
 ## Section heading [custom] → `src/components/site/section-heading.tsx` {#section-heading}
 
-`<SectionHeading id="h-exp" count={6}>Experience</SectionHeading>`
-- `<h2 class="text-section">` with an optional right side: a two-digit mono counter (`06`, with an
-  sr-only "6 items") or a link (`All posts →`).
+`<SectionHeading id="h-experience" anchor="experience" count={4}>Experience</SectionHeading>`
+- `<h2 class="text-section">` whose text is a plain `<a href="#anchor">`, so clicking a heading moves
+  the URL to that section's hash. The enclosing `<section>` has `id={anchor}`.
+- Optional count right after the title: `<sup>` mono caption, muted, `(11)`. Used on Experience,
+  Projects and Recognition.
+- Copy-link button after the heading: 28px ghost circle (`after:-inset-2` hit area), `LinkSimpleIcon`.
+  Hidden (`opacity-0`) until the heading row is hovered or the button has keyboard focus; hidden
+  entirely on coarse pointers (`pointer-coarse:hidden`), where tapping the heading does the job.
+  Click copies `origin + pathname + #anchor`, plays `success`, swaps to a brand `CheckIcon` for 1.8s
+  (`IconSwap`) and announces "Link copied" in a polite live region.
+- Optional right side: a link (`All posts →`).
 - The section element gets `aria-labelledby` pointing at the heading id.
 - No border above or below. Sections are separated by `mt-16 md:mt-20`.
+
+## Brand figure [custom] → `src/components/home/brand-figure.tsx` {#brand-figure}
+
+The top of the home page, above the intro (after chanhdai.com's profile figure, with our own mark).
+- **Drawing:** the tile mark as 8 stacked isometric plates. Every plate is the brand tile
+  (`rx 14` on 64) with `TILE_CUT_PATH` cut through it, drawn from the brand paths in `logo.tsx` under
+  `matrix(0.866 0.5 -0.866 0.5 0 0)` and `scale(2.2)`; nothing is redrawn. viewBox `0 0 480 240`, full width.
+  1px non-scaling outlines in `--iso-line` (foreground 24% into background), a hatched top face and dashed
+  isometric guide lines in `--iso-soft` (11%). Monochrome in both themes.
+- **Press:** the figure is one `<button aria-label="Press the logo">` (keyboard, mouse and touch). `:active`
+  squashes the plates from 6px to 3px apart (120ms `--ease-out-quad`) and they settle back in 350ms
+  `--ease-out-quint`; click plays `press` (soundcn `metal-click`). Under reduced motion the squash is instant.
+- **Glow:** a radial gradient on the top plate's edges follows the pointer (mapped into the tile's own
+  coordinates with `getScreenCTM`, eased 25% per frame, clamped to the tile). Only on `(hover: hover) and
+  (pointer: fine)`, only while the figure is on screen (IntersectionObserver), never under reduced motion.
+- No entrance animation; the server HTML is the final drawing.
 
 ## Hero / intro [shadcn: avatar, badge]
 
@@ -37,8 +61,9 @@ Every interactive element plays `hover` on pointer enter and the listed sound on
 - **Social chip:** link, `h-9 rounded-full border pl-3 pr-3.5 gap-2 text-small` + 16px Phosphor icon. Hover `bg-muted`.
 - **Badge size (shared):** availability badge, stack chips and tags are all `<Badge>`: `h-7 rounded-full px-3
   gap-1.5 text-caption`, 14px icons. Only the variant (fill, border, font) differs.
-- **Stack chip:** list item (not a link), `<Badge variant="chip">` (hairline border) +
-  `<TechIcon className="size-3.5" />`. Group names above each row in `font-mono text-caption text-muted-foreground`.
+- **Stack chip:** `<li>` holding `<Badge variant="chip" render={<a href>}>` (hairline border) +
+  `<TechIcon className="size-3.5" />`. Links to the tool's official site in a new tab (`EXTERNAL` +
+  `NewTabNote`); hover `bg-muted` comes from the `chip` variant (`[a]:hover:bg-muted`). Group names above each row in `font-mono text-caption text-muted-foreground`.
 - **Tag:** `<Badge variant="tag">`: `bg-muted font-mono text-muted-foreground`, lowercase.
 - **Filter chip** (/blog): a `<Link>` to `/blog?tag=x` (crawlable, shareable), `h-8 rounded-full border
   px-3.5 text-small`; active = `bg-foreground text-background border-foreground` + `aria-current="page"`.
@@ -46,16 +71,26 @@ Every interactive element plays `hover` on pointer enter and the listed sound on
 ## Overview list [shadcn: item]
 
 `<dl>` in two columns (`md:grid-cols-2 gap-x-8 gap-y-4`). Item: 36px `rounded-full bg-muted` icon disc +
-`<dt>` (mono micro, muted) over `<dd>` (15px).
+`<dt>` (mono micro, muted) over `<dd>` (15px, truncated).
+- Facts, in order: role (`USER.jobTitle`), experience (from `USER.about`), based in (`USER.address`),
+  local time, email (`mailto:`), phone (`tel:`, shown as `+92 304 232 3349`). Email and phone are brand links.
+- **Copy email / phone:** a 28px ghost circle after the value (`-my-1` so the row keeps its height,
+  `after:-inset-2` for a 44px hit area), always visible. Copies the address or the E.164 number, plays
+  `success`, swaps `CopyIcon` → brand `CheckIcon` for 1.8s (`IconSwap`) and announces "Email address copied" /
+  "Phone number copied". Shares `useCopy()`
+  (`src/hooks/use-copy.ts`) with the section-heading copy-link button.
+- **Local time:** `useSyncExternalStore` ticking every second, formatted `h:mm AM/PM` in `USER.timeZone`,
+  followed by the muted offset (`GMT+5`). The server snapshot is `null`, so the prerendered HTML shows
+  `--:-- · GMT+5` and the time fills in after hydration without a mismatch.
 
 ## Experience [custom: native `<details>`] → `src/components/home/experience.tsx`
 
 - Max **4** rows visible; the rest behind **Show all N** (see Show more).
 - Each row is a native `<details name="experience">` (only one open at a time, zero JS, SSR-friendly):
-  - `<summary>`: 40px `rounded-full bg-muted` monogram disc, company (16/600) over role (14 muted),
+  - `<summary>`: 40px company mark (see Company mark), company (16/600) over role (14 muted),
     dates on the right (≥ md, mono caption), `CaretDownIcon` rotating 180° when open. Hover `bg-muted
     rounded-xl`, padding `p-3 -mx-3`. Remove the default marker (`list-none`, `[&::-webkit-details-marker]:hidden`).
-  - Content (`pl-[54px] pb-4`): bullets 15px muted, then tags.
+  - Content (`pl-13.5 pb-4`): bullets 15px muted, then tags.
   - First row has `open` by default. Height animates via `::details-content` (in `app.css`).
   - `onToggle` plays `expand` / `collapse`.
 - Rows are separated by `gap-1`, never lines.
@@ -64,24 +99,40 @@ Every interactive element plays `hover` on pointer enter and the listed sound on
 
 `<ShowMore items={projects} initial={4} label="projects" render={(items) => <Grid>…</Grid>} />`
 - Renders the first 4, then the rest in a wrapper that animates `grid-template-rows: 0fr → 1fr`
-  (500ms ease-out-quint), then a centred pill button "Show all N" / "Show less" with a rotating caret.
+  (500ms ease-out-quint to open, 250ms to close; the rows inside don't animate), then a centred pill button "Show all N" / "Show less" with a rotating caret.
 - All items are in the server HTML (good for SEO and LLMs). The hidden part is `inert` until opened.
 - Button: `aria-expanded`, `aria-controls`. Opening moves focus to the first revealed link.
 - Sounds: `expand` / `collapse`. Reduced motion: no transition.
 
-## Project card [shadcn: card]
+## Company mark [custom] → `src/components/site/company-mark.tsx` {#company-mark}
 
-- `<article>` `rounded-xl border bg-card overflow-hidden`, hover `border-muted-foreground`.
-- Image 16:10, no inner border, `<img loading="lazy" decoding="async" width height>`; no image = `bg-muted`.
-- Body `p-4 gap-2.5`: title (`text-h3`) + `ArrowUpRightIcon` link (`aria-label="Open {title}"`),
-  description (`text-small text-muted-foreground`), tags.
-- Grid `grid gap-4 md:grid-cols-2`. Home: max 4 + Show all (no separate page needed for projects).
+40px `rounded-full bg-muted` disc, `aria-hidden` (the name sits next to it). Shows the logo at 24px
+(`rounded-md object-contain`, lazy), else the Phosphor icon, else a two-letter mono monogram.
+- Logos rest **greyscale at 60% opacity** and turn to full colour and opacity (`grayscale-0 opacity-100`,
+  150ms) while the row is hovered or holds
+  keyboard focus (`group-has-focus-visible`, not `focus-within`: "Show all" moves focus into the first
+  revealed row programmatically). The opacity matters for single-colour marks (Arena), which greyscale
+  alone can't soften. The row sets `group/item`; the transition is off under reduced motion.
+- Logos are the companies' own marks, so they are exempt from the token-colour rule, but only in colour
+  while hovered. Files: `public/images/companies/<slug>.{png,svg}`, square, ≥ 48px.
+
+## Project row [custom: native `<details>`] → `src/components/home/projects.tsx`
+
+A list, not cards; same anatomy as the experience row.
+- `<summary>`: company mark, title (`h3`, 16/600) over the period (mono caption), a spacer for the
+  link, `CaretDownIcon`. Hover `bg-muted rounded-xl`, `p-3 -mx-3`.
+- The external link (`ArrowUpRightIcon`, `aria-label="Open {title}"`) is positioned over the spacer,
+  outside `<summary>`, so no interactive element is nested in it.
+- Content (`pl-13.5 pb-4`): first description line as a paragraph, the rest as bullets (15px muted),
+  then tags.
+- No `name`, so several rows can be open; `isExpanded` opens one by default.
+- Rows `flex flex-col gap-1`. Home: featured first, max 4 + Show all.
 
 ## Post card [custom on shadcn card styles] → `src/components/blog/post-card.tsx` {#post-card}
 
 - The whole card is one link to `/blog/$slug`.
 - Cover 1200:630 (the same image is the post's OG image), `rounded-xl border overflow-hidden bg-muted`,
-  scales to 1.02 on hover (500ms, off under reduced motion). No cover = title in mono on `bg-muted`.
+  scales to 1.02 on hover (200ms, off under reduced motion). No cover = title in mono on `bg-muted`.
 - Below: title (`text-h3`, underline fades in on hover), then mono caption `Mmm d, yyyy · n min read`
   in a `<time dateTime>`.
 - Heading level: `h3` on home (under "Blog"), `h2` on /blog.
@@ -107,6 +158,19 @@ Pill toolbar `fixed bottom-6` centred, `rounded-full border bg-dock backdrop-blu
   announcement) · book a call · sound toggle (`aria-pressed`).
 - < md: Home · Projects · Blog · Search, 44px circles, active = `bg-muted` + `aria-current="page"`.
 - Back to top is **not** in the dock.
+- **Tooltips** (≥ md) load on the first mouse-enter and share **one** `TooltipProvider`
+  (`DockTooltipGroup`), so the first waits 400ms and the next open at once. Popups that open instantly
+  carry Base UI's `data-instant` and skip the zoom (`data-instant:animate-none` in `tooltip.tsx`).
+- Every dock control has press feedback (see Press feedback below).
+
+## Press feedback {#press}
+
+Hand-rolled pressables (dock buttons and links, back-to-top, intro social chips, overview copy buttons,
+linked stack chips) use `transition-press active:scale-97`. `transition-press` (in `app.css`) transitions only
+color, background, border and `scale`, 150ms on `--ease-out-quad`. The section-heading copy-link uses
+`transition duration-150 ease-out-quint active:scale-97` because it also fades its opacity in.
+`scale` is its own property, so it never fights `translate`-based animations such as back-to-top's
+`un-reveal`. The shared `<Button>` keeps its `active:translate-y-px`.
 
 ## Back to top [custom] → `src/components/site/back-to-top.tsx` {#back-to-top}
 
@@ -122,6 +186,7 @@ rounded-full border bg-dock backdrop-blur-md shadow-lg`, `ArrowUpIcon` 18px.
 
 - Opens from the header, the dock, ⌘K / Ctrl+K and `/` (`src/hooks/use-search-hotkey.ts`). Plays `open`.
 - Dialog `max-w-[580px] rounded-2xl`, `12vh` from the top, scrim `bg-scrim`.
+- **No open/close animation** on the panel or the scrim: it's a keyboard action, so it must feel instant.
 - Input row 54px with `MagnifyingGlassIcon`, placeholder "Search pages, posts, projects, actions…", pill `esc` kbd.
 - Groups (mono micro labels): **pages** · **posts** (title + tags, hint: date) · **projects** · **actions**
   (Copy email, Book a call, Switch theme `⌘D`, Turn sound on/off) · **links**.
@@ -157,7 +222,27 @@ Sticky `top-24`, "on this page" (mono micro), links 13px muted with a 1px left b
 
 ## Theme toggle [custom] → `src/components/site/theme-toggle.tsx`
 
-`useTheme()` from `src/lib/theme.ts` (generated in prompt 01). Label names the target theme. The
-inline `THEME_SCRIPT` in `<head>` sets `.dark` before paint. Switching wraps the class change in
-`document.startViewTransition` when available (250ms cross-fade, skipped under reduced motion). Icon
-swap uses Motion `AnimatePresence` (see 08-motion.md). Sound `on` / `off`.
+`useTheme()` from `src/lib/theme.ts`. Label names the target theme. Ghost icon button, 40px, growing
+to 44px on touch screens (`pointer-coarse:size-11`). The inline `THEME_SCRIPT` in
+`<head>` sets `.dark` before paint. Switching wraps the class change in `document.startViewTransition`
+when available (250ms cross-fade, skipped under reduced motion). Sound `on` / `off`.
+- **Icon:** `ThemeIcon` (`src/components/site/theme-icon.tsx`), a 20px custom SVG: a sun (core + 8 rays)
+  and a moon disc whose phase comes from a mask with a sliding shadow circle. Colours: scoped `sun` /
+  `sun-edge` / `sunset` tokens (mixed with `color-mix`); the moon is `currentColor`.
+  - **One angle drives the sky.** Sun and moon sit opposite each other on an arc (radius 13 viewBox units)
+    whose horizon is the icon's bottom edge. Day is 0°, night 180°, the next day 360° (normalised to 0°),
+    so the sky always turns the same way: bodies rise on the left (east) and set on the right (west).
+  - **Everything follows height, every frame:** the sun yellows → orange and draws in its rays as it nears
+    the horizon (and the reverse as it rises); the moon is a crescent at the horizon and full at the top
+    (waxing as it rises, waning as it sets). Sunset and moonrise overlap, like twilight.
+  - **Motion:** a critically damped spring (ω = 8, no bounce) in `requestAnimationFrame`, about 1s to settle
+    with most of the travel in the first 0.5s. A theme change mid-flight swaps the target back to where it
+    came from and keeps the velocity, so quick clicks reverse the scene in place. It follows `.dark` via
+    `THEME_CHANGE_EVENT`, so ⌘K switches animate too. No React re-render per frame (styles are written to
+    refs), no dependency.
+  - **First paint:** `@utility theme-icon-*` rules in `app.css` show the static day or night pose for the
+    `.dark` class, so the icon is right before hydration; inline styles take over after mount.
+  - **Reduced motion:** the sky jumps straight to the new pose, with no movement.
+- **Browser UI colour:** one `<meta name="theme-color">` sits in the root document before `THEME_SCRIPT`.
+  The script sets it to the chosen theme's background on load and `setTheme()` updates it on every
+  switch, so the mobile address bar follows the app's theme, not the OS.

@@ -9,7 +9,7 @@ export const BlogSection = ({ posts }: { posts: PostSummary[] }) => {
   }
   return (
     <section aria-labelledby="h-blog" className="mt-16 md:mt-20" id="blog">
-      <SectionHeading id="h-blog" link={{ label: "All posts", to: "/blog" }}>
+      <SectionHeading anchor="blog" id="h-blog" link={{ label: "All posts", to: "/blog" }}>
         Blog
       </SectionHeading>
       <div className="grid gap-x-4 gap-y-8 md:grid-cols-2">

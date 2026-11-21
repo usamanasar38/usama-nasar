@@ -70,8 +70,7 @@ const SearchDialog = ({ open, onOpenChange }: SearchDialogProps) => {
   }, [open]);
 
   const switchTheme = () => {
-    play(theme === "dark" ? "on" : "off");
-    toggleTheme();
+    play(toggleTheme() === "light" ? "on" : "off");
   };
 
   useEffect(() => {

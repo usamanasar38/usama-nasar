@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { BlogSection } from "@/components/home/blog";
+import { BrandFigure } from "@/components/home/brand-figure";
 import { Contact } from "@/components/home/contact-links";
 import { Education, Recognition } from "@/components/home/credentials";
 import { ExperienceSection } from "@/components/home/experience";
@@ -16,6 +17,7 @@ const Home = () => {
   const { posts, stack } = Route.useLoaderData();
   return (
     <div className="mx-auto max-w-site px-5 md:px-6">
+      <BrandFigure />
       <Intro />
       <Overview />
       <Stack groups={stack} />

@@ -30,6 +30,8 @@ export type User = {
     website?: string
     experienceId?: string
   }[]
+  /** Second sentence of the home intro, after `bio` (plain text) */
+  intro: string
   /** Rich about section; Markdown supported */
   about: string
   /** Square avatar, ≥ 384px. Same photo works on both themes. */

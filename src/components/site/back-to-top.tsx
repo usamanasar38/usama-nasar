@@ -12,7 +12,7 @@ export const BackToTop = () => {
   return (
     <button
       aria-label="Back to top"
-      className="un-reveal fixed right-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-40 grid size-12 place-items-center rounded-full border bg-dock text-foreground shadow-black/5 shadow-lg backdrop-blur-md transition-colors hover:bg-muted md:right-6 md:bottom-6 dark:shadow-black/40"
+      className="un-reveal fixed right-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-40 grid size-12 place-items-center rounded-full border bg-dock text-foreground shadow-black/5 shadow-lg backdrop-blur-md transition-press active:scale-97 hover:bg-muted md:right-6 md:bottom-6 dark:shadow-black/40"
       onClick={() => {
         play("rise");
         const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

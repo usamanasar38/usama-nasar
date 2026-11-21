@@ -27,6 +27,12 @@ app icons, OG images and as the avatar fallback. Never in the header.
 `> un_` with a blinking cursor. **Footer only**, as `<PromptMark />` next to "designed & built by usama
 nasar". Never as the main logo.
 
+## Isometric figure
+
+The home page opens with the tile mark drawn as stacked isometric plates (`BrandFigure`). It uses the exact
+tile and cut paths from `logo.tsx` (`TILE_CUT_PATH` is exported for this) under an isometric transform, so the
+mark is projected, never redrawn or recoloured.
+
 ## Asset files (`public/`)
 
 | File | What | Use it for |
@@ -42,7 +48,7 @@ nasar". Never as the main logo.
 | `apple-touch-icon.png` (180) | Full-bleed black, white wave | iOS home screen |
 | `icon-192.png`, `icon-512.png` | Full-bleed, maskable-safe | `site.webmanifest` |
 | `logo-512.png` | Tile, black on transparent | JSON-LD `Person.image` fallback, profiles |
-| `og-default-light.png`, `og-default-dark.png` (1200×630) | Tile + name + role | Default OG image for pages without their own. Light is the default; dark is an alternative. Replace `[yourdomain.dev]` before launch, or regenerate at build (see 06-quality.md) |
+| `og-default-light.png`, `og-default-dark.png` (1200×630) | Tile + name + role + domain | Default OG image for pages without their own. Light is the default; dark is an alternative. Generated from `USER` by `pnpm og` (`scripts/generate-og.ts`: satori + resvg, Host Grotesk 600/500, Commit Mono, theme colours from `app.css`). Re-run after changing the name, job title or domain |
 
 ## Light and dark: which method where
 

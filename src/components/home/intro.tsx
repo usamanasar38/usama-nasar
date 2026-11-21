@@ -2,16 +2,12 @@ import { LogoTile } from "@/components/brand/logo";
 import { EXTERNAL, NewTabNote } from "@/components/site/external-note";
 import { ICONS } from "@/components/site/icons";
 import type { IconName } from "@/components/site/icons";
-import { InlineMarkdown, markdownLines } from "@/components/site/inline-markdown";
 import { Badge } from "@/components/ui/badge";
 import { site } from "@/content/site";
 import { SOCIAL_LINKS } from "@/features/portfolio/data/social-links";
 import { USER } from "@/features/portfolio/data/user";
 import { hasPublicFile } from "@/lib/public-asset";
 import { useSounds } from "@/lib/sound";
-
-/** The open-source line from USER.about: the intro's inline brand link (Continue.dev). */
-const INTRO_EXTRA = markdownLines(USER.about).find((line) => line.includes("]("));
 
 const SOCIAL_CHIPS: { label: string; href: string; icon: IconName; external: boolean }[] = [
   ...SOCIAL_LINKS.map((link) => ({
@@ -65,13 +61,7 @@ export const Intro = () => {
       </div>
 
       <p className="max-w-[640px] text-lead text-muted-foreground">
-        {USER.bio}
-        {INTRO_EXTRA ? (
-          <>
-            {" "}
-            <InlineMarkdown text={INTRO_EXTRA} />
-          </>
-        ) : null}
+        {USER.bio} {USER.intro}
       </p>
 
       <ul aria-label="Social links" className="flex flex-wrap gap-2">
@@ -80,7 +70,7 @@ export const Intro = () => {
           return (
             <li key={chip.label}>
               <a
-                className="inline-flex h-9 items-center gap-2 rounded-full border pr-3.5 pl-3 text-small transition-colors duration-150 hover:bg-muted"
+                className="inline-flex h-9 items-center gap-2 rounded-full border pr-3.5 pl-3 text-small transition-press active:scale-97 hover:bg-muted"
                 href={chip.href}
                 {...(chip.external ? EXTERNAL : {})}
                 {...hoverProps}

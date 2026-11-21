@@ -1,7 +1,7 @@
 {
   "name": "Usama Nasar",
   "short_name": "Usama Nasar",
-  "description": "I build scalable, efficient, user-centric, pixel-perfect digital experiences for the web.",
+  "description": "I build fast, accessible web apps with React, Next.js, Angular and Vue, focused on quick first loads, solid Core Web Vitals and consistent UI.",
   "id": "/?utm_source=pwa",
   "start_url": "/?utm_source=pwa",
   "scope": "/",

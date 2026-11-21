@@ -11,6 +11,7 @@ export type TechStackCategory =
   | "Testing"
   | "DevOps"
   | "Observability"
+  | "Infrastructure"
   | "AI"
 
 export type TechStack = {
