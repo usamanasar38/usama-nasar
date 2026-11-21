@@ -81,18 +81,24 @@ const CredentialRow = ({ row, icon: RowIcon }: { row: Credential; icon: Icon }) 
 
 const CredentialSection = ({
   id,
+  anchor,
   title,
   rows,
   icon,
+  showCount = false,
 }: {
   id: string;
+  anchor: string;
   title: string;
   rows: Credential[];
   icon: Icon;
+  showCount?: boolean;
 }) =>
   rows.length === 0 ? null : (
-    <section aria-labelledby={id} className="mt-16 md:mt-20">
-      <SectionHeading id={id}>{title}</SectionHeading>
+    <section aria-labelledby={id} className="mt-16 md:mt-20" id={anchor}>
+      <SectionHeading anchor={anchor} count={showCount ? rows.length : undefined} id={id}>
+        {title}
+      </SectionHeading>
       <ul className="flex flex-col gap-1">
         {rows.map((row) => (
           <CredentialRow icon={icon} key={row.key} row={row} />
@@ -102,9 +108,16 @@ const CredentialSection = ({
   );
 
 export const Education = () => (
-  <CredentialSection icon={GraduationCapIcon} id="h-education" rows={EDUCATION_ROWS} title="Education" />
+  <CredentialSection anchor="education" icon={GraduationCapIcon} id="h-education" rows={EDUCATION_ROWS} title="Education" />
 );
 
 export const Recognition = () => (
-  <CredentialSection icon={TrophyIcon} id="h-recognition" rows={RECOGNITION_ROWS} title="Recognition" />
+  <CredentialSection
+    anchor="recognition"
+    icon={TrophyIcon}
+    id="h-recognition"
+    rows={RECOGNITION_ROWS}
+    showCount
+    title="Recognition"
+  />
 );

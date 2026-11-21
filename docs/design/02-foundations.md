@@ -113,7 +113,7 @@ Sizes: 16px (`size-4`) inline and in chips, 18px in header/dock buttons, 20px in
 | Expand | `CaretDownIcon` |
 | Nav: home / projects / blog | `HouseIcon` / `FolderSimpleIcon` / `NotebookIcon` |
 | Social | `GithubLogoIcon`, `LinkedinLogoIcon`, `XLogoIcon`, `FileTextIcon` (résumé) |
-| Overview facts | `CodeIcon`, `BriefcaseIcon`, `ClockIcon`, `StackIcon`, `MapPinIcon`, `GlobeSimpleIcon` |
+| Overview facts | `CodeIcon` (role), `HourglassSimpleIcon` (experience), `MapPinIcon` (based in), `ClockIcon` (local time), `EnvelopeSimpleIcon` (email), `PhoneIcon` (phone) |
 | Education / recognition | `GraduationCapIcon` / `TrophyIcon` |
 
 **Tech logos** (stack section): simple-icons, monochrome, 14px, via `<TechIcon icon={siReact} />`.

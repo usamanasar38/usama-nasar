@@ -19,7 +19,13 @@ export type Project = {
    * otherwise a single path.
    */
   image?: ThemedSrc
-  /** Phosphor icon shown when there's no image */
+  /**
+   * Square company/product mark (≥ 48px) under /public/images/companies/.
+   * Shown greyscale in the list row, in colour on hover. Use { light, dark } for
+   * single-colour marks that would vanish on one theme.
+   */
+  logo?: ThemedSrc
+  /** Phosphor icon shown when there's no logo */
   icon?: PhosphorIcon
   /** Shown in the first 4 on the home page */
   isFeatured?: boolean

@@ -25,7 +25,7 @@ No dividers anywhere. Each section after the hero starts with a `SectionHeading`
 |---|---|---|---|
 | 1 | Intro `#about` | (none, the name is the h1) | Round avatar, badge, name, role, intro, social chips |
 | 2 | Overview | Overview | 6 facts, 2 columns |
-| 3 | Stack | Stack | 3 groups of pill chips |
+| 3 | Stack | Stack | 5 groups of linked pill chips (languages, frontend, backend & data, ai & tooling, observability & infra) |
 | 4 | Experience `#experience` | Experience (counter) | 4 `<details>` rows + Show all |
 | 5 | Projects `#projects` | Projects (counter) | 4 cards (2-col) + Show all |
 | 6 | Blog `#blog` | Blog (All posts →) | Latest 4 post cards (2-col) |

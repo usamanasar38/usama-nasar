@@ -7,7 +7,7 @@ import { PROJECTS } from "@/features/portfolio/data/projects"
 import { SOCIAL_LINKS } from "@/features/portfolio/data/social-links"
 import { TECH_STACK } from "@/features/portfolio/data/tech-stack"
 import { USER } from "@/features/portfolio/data/user"
-import { formatPeriod } from "@/features/portfolio/lib/format"
+import { decodeB64, formatPeriod } from "@/features/portfolio/lib/format"
 
 /**
  * Markdown versions of each portfolio section, for LLMs and AI search.
@@ -25,6 +25,27 @@ export type LlmsPost = {
   raw?: string
 }
 
+const currentRole = () => {
+  const company = EXPERIENCES.find((e) => e.isCurrentEmployer)
+  const position = company?.positions[0]
+  return position ? `${position.title} · ${company.companyName} (${formatPeriod(position.employmentPeriod)})` : undefined
+}
+
+/** Key facts as a list, shared by /about.md and /llms.txt so AI answers get them first. */
+function atAGlance() {
+  const facts = [
+    `Role: ${USER.jobTitle}`,
+    "Experience: 7+ years",
+    `Based in: ${USER.address} (${USER.timeZone}, UTC+5)`,
+    currentRole() ? `Currently: ${currentRole()}` : undefined,
+    `Open to work: ${USER.availableForWork ? "yes, senior frontend roles and contracts" : "no"}`,
+    `Core stack: TypeScript, ${TECH_STACK.filter((t) => t.isFeatured && ["Frontend", "Styling"].includes(t.categories[0] ?? "")).map((t) => t.title).join(", ")}`,
+    `Email: ${decodeB64(USER.emailB64)}`,
+    `Website: ${SITE_INFO.url}`,
+  ]
+  return facts.filter(Boolean).map((fact) => `- ${fact}`).join("\n")
+}
+
 export function aboutMarkdown() {
   return `# About ${USER.displayName}
 
@@ -32,11 +53,18 @@ ${USER.jobTitle} · ${USER.address}
 
 ${USER.bio}
 
+## At a glance
+
+${atAGlance()}
+
+## Summary
+
 ${USER.about.trim()}
 
 ## Links
 
 - Website: ${SITE_INFO.url}
+- Email: ${decodeB64(USER.emailB64)}
 ${SOCIAL_LINKS.map((s) => `- ${s.title}: ${s.href}`).join("\n")}
 - Résumé: ${USER.resume.default}
 
@@ -67,13 +95,19 @@ ${position.description?.trim() ?? ""}`
 `
 }
 
+const projectCompany = (experienceId?: string) => {
+  const company = EXPERIENCES.find((e) => e.id === experienceId)
+  const title = company?.positions[0]?.title
+  return company ? [company.companyName, title].filter(Boolean).join(", as ") : undefined
+}
+
 export function projectsMarkdown() {
   return `# Projects
 
 ${PROJECTS.map(
   (p) => `## ${p.title}
 
-Period: ${formatPeriod(p.period)}${p.link ? `\n\nLink: ${p.link}` : ""}
+Period: ${formatPeriod(p.period)}${projectCompany(p.experienceId) ? `\n\nBuilt at: ${projectCompany(p.experienceId)}` : ""}${p.link ? `\n\nLink: ${p.link}` : ""}
 
 Skills: ${p.skills.join(", ")}
 
@@ -123,7 +157,11 @@ ${OPEN_SOURCE.map((o) => `- ${o.project}${o.highlight ? ` (${o.highlight})` : ""
 export function llmsTxt(posts: LlmsPost[]) {
   return `# ${SITE_INFO.name}
 
-> ${USER.jobTitle} with 7+ years of experience. ${USER.bio}
+> ${USER.jobTitle} with 7+ years of experience, based in ${USER.address}. ${USER.bio}
+
+${atAGlance()}
+
+## Pages
 
 - [About](${absoluteUrl("/about.md")}): Who I am, my tech stack, and how to reach me.
 - [Experience](${absoluteUrl("/experience.md")}): Roles, teams and measurable outcomes.

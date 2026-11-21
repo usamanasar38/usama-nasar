@@ -14,6 +14,8 @@ import { EXPERIENCES } from "@/features/portfolio/data/experiences"
 import { SOCIAL_LINKS } from "@/features/portfolio/data/social-links"
 import { TECH_STACK } from "@/features/portfolio/data/tech-stack"
 import { USER } from "@/features/portfolio/data/user"
+import { decodeB64 } from "@/features/portfolio/lib/format"
+import { hasPublicFile } from "@/lib/public-asset"
 
 /**
  * Stable @id anchors so Google can merge JSON-LD nodes across separate
@@ -26,6 +28,9 @@ export const JSON_LD_ID = {
 
 const current = EXPERIENCES.find((e) => e.isCurrentEmployer)
 
+/** The avatar once it exists in public/, else the square brand mark (never a 404). */
+const PERSON_IMAGE = absoluteUrl(hasPublicFile(USER.avatar) ? USER.avatar : "/logo-512.png")
+
 export const personJsonLd: Person = {
   "@type": "Person",
   "@id": JSON_LD_ID.person,
@@ -35,9 +40,16 @@ export const personJsonLd: Person = {
   alternateName: [USER.username],
   description: SITE_INFO.description,
   jobTitle: USER.jobTitle,
-  image: absoluteUrl(USER.avatar),
+  image: PERSON_IMAGE,
   url: SITE_INFO.url,
-  address: { "@type": "PostalAddress", addressLocality: "Mandi Bahauddin", addressRegion: "Punjab", addressCountry: "PK" },
+  email: `mailto:${decodeB64(USER.emailB64)}`,
+  address: { "@type": "PostalAddress", addressLocality: "Islamabad", addressRegion: "Islamabad Capital Territory", addressCountry: "PK" },
+  hasOccupation: {
+    "@type": "Occupation",
+    name: USER.jobTitle,
+    occupationLocation: { "@type": "City", name: USER.address },
+    skills: TECH_STACK.filter((t) => t.isFeatured).map((t) => t.title).join(", "),
+  },
   ...(current?.companyName && current.companyName !== "Freelance"
     ? { worksFor: { "@type": "Organization", name: current.companyName, url: current.companyWebsite } }
     : {}),

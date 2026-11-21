@@ -6,7 +6,7 @@ import { jsonLdScript } from "@/lib/seo";
 
 /**
  * Data that only the server needs to touch. JSON-LD pulls in the whole tech stack
- * (44 simple-icons objects for `knowsAbout`), so it's built here and handed to head()
+ * (the simple-icons objects for `knowsAbout`), so it's built here and handed to head()
  * through loaders instead of being bundled for the client.
  */
 
@@ -21,6 +21,7 @@ export const getHomeData = createServerFn({ method: "GET" }).handler(() => ({
   stack: TECH_STACK_GROUPS.map((group) => ({
     items: group.items.map((item) => ({
       fallback: item.fallbackIcon?.displayName,
+      href: item.href,
       key: item.key,
       path: item.icon?.path,
       title: item.title,

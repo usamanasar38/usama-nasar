@@ -64,7 +64,7 @@ export function seo(input: SeoInput): HeadResult {
   const description = input.description ?? SITE_INFO.description
   const url = absoluteUrl(input.path)
   const image = absoluteUrl(input.image ?? SITE_INFO.ogImage.light)
-  const imageAlt = input.imageAlt ?? (input.title ?? SITE_INFO.name)
+  const imageAlt = input.imageAlt ?? (input.title ?? `${SITE_INFO.name}, ${USER.jobTitle}`)
   const type = input.type ?? (input.path === "/" ? "profile" : "website")
 
   const meta: MetaTag[] = [
@@ -86,6 +86,7 @@ export function seo(input: SeoInput): HeadResult {
     { name: "twitter:title", content: title },
     { name: "twitter:description", content: description },
     { name: "twitter:image", content: image },
+    { name: "twitter:image:alt", content: imageAlt },
   ]
 
   if (type === "profile") {

@@ -16,9 +16,17 @@ Every interactive element plays `hover` on pointer enter and the listed sound on
 
 ## Section heading [custom] → `src/components/site/section-heading.tsx` {#section-heading}
 
-`<SectionHeading id="h-exp" count={6}>Experience</SectionHeading>`
-- `<h2 class="text-section">` with an optional right side: a two-digit mono counter (`06`, with an
-  sr-only "6 items") or a link (`All posts →`).
+`<SectionHeading id="h-experience" anchor="experience" count={4}>Experience</SectionHeading>`
+- `<h2 class="text-section">` whose text is a plain `<a href="#anchor">`, so clicking a heading moves
+  the URL to that section's hash. The enclosing `<section>` has `id={anchor}`.
+- Optional count right after the title: `<sup>` mono caption, muted, `(11)`. Used on Experience,
+  Projects and Recognition.
+- Copy-link button after the heading: 28px ghost circle (`after:-inset-2` hit area), `LinkSimpleIcon`.
+  Hidden (`opacity-0`) until the heading row is hovered or the button has keyboard focus; hidden
+  entirely on coarse pointers (`pointer-coarse:hidden`), where tapping the heading does the job.
+  Click copies `origin + pathname + #anchor`, plays `success`, swaps to a brand `CheckIcon` for 1.8s
+  (`IconSwap`) and announces "Link copied" in a polite live region.
+- Optional right side: a link (`All posts →`).
 - The section element gets `aria-labelledby` pointing at the heading id.
 - No border above or below. Sections are separated by `mt-16 md:mt-20`.
 
@@ -37,8 +45,9 @@ Every interactive element plays `hover` on pointer enter and the listed sound on
 - **Social chip:** link, `h-9 rounded-full border pl-3 pr-3.5 gap-2 text-small` + 16px Phosphor icon. Hover `bg-muted`.
 - **Badge size (shared):** availability badge, stack chips and tags are all `<Badge>`: `h-7 rounded-full px-3
   gap-1.5 text-caption`, 14px icons. Only the variant (fill, border, font) differs.
-- **Stack chip:** list item (not a link), `<Badge variant="chip">` (hairline border) +
-  `<TechIcon className="size-3.5" />`. Group names above each row in `font-mono text-caption text-muted-foreground`.
+- **Stack chip:** `<li>` holding `<Badge variant="chip" render={<a href>}>` (hairline border) +
+  `<TechIcon className="size-3.5" />`. Links to the tool's official site in a new tab (`EXTERNAL` +
+  `NewTabNote`); hover `bg-muted` comes from the `chip` variant (`[a]:hover:bg-muted`). Group names above each row in `font-mono text-caption text-muted-foreground`.
 - **Tag:** `<Badge variant="tag">`: `bg-muted font-mono text-muted-foreground`, lowercase.
 - **Filter chip** (/blog): a `<Link>` to `/blog?tag=x` (crawlable, shareable), `h-8 rounded-full border
   px-3.5 text-small`; active = `bg-foreground text-background border-foreground` + `aria-current="page"`.
@@ -46,16 +55,21 @@ Every interactive element plays `hover` on pointer enter and the listed sound on
 ## Overview list [shadcn: item]
 
 `<dl>` in two columns (`md:grid-cols-2 gap-x-8 gap-y-4`). Item: 36px `rounded-full bg-muted` icon disc +
-`<dt>` (mono micro, muted) over `<dd>` (15px).
+`<dt>` (mono micro, muted) over `<dd>` (15px, truncated).
+- Facts, in order: role (`USER.jobTitle`), experience (from `USER.about`), based in (`USER.address`),
+  local time, email (`mailto:`), phone (`tel:`, shown as `+92 304 232 3349`). Email and phone are brand links.
+- **Local time:** `useSyncExternalStore` ticking every second, formatted `h:mm AM/PM` in `USER.timeZone`,
+  followed by the muted offset (`GMT+5`). The server snapshot is `null`, so the prerendered HTML shows
+  `--:-- · GMT+5` and the time fills in after hydration without a mismatch.
 
 ## Experience [custom: native `<details>`] → `src/components/home/experience.tsx`
 
 - Max **4** rows visible; the rest behind **Show all N** (see Show more).
 - Each row is a native `<details name="experience">` (only one open at a time, zero JS, SSR-friendly):
-  - `<summary>`: 40px `rounded-full bg-muted` monogram disc, company (16/600) over role (14 muted),
+  - `<summary>`: 40px company mark (see Company mark), company (16/600) over role (14 muted),
     dates on the right (≥ md, mono caption), `CaretDownIcon` rotating 180° when open. Hover `bg-muted
     rounded-xl`, padding `p-3 -mx-3`. Remove the default marker (`list-none`, `[&::-webkit-details-marker]:hidden`).
-  - Content (`pl-[54px] pb-4`): bullets 15px muted, then tags.
+  - Content (`pl-13.5 pb-4`): bullets 15px muted, then tags.
   - First row has `open` by default. Height animates via `::details-content` (in `app.css`).
   - `onToggle` plays `expand` / `collapse`.
 - Rows are separated by `gap-1`, never lines.
@@ -69,13 +83,27 @@ Every interactive element plays `hover` on pointer enter and the listed sound on
 - Button: `aria-expanded`, `aria-controls`. Opening moves focus to the first revealed link.
 - Sounds: `expand` / `collapse`. Reduced motion: no transition.
 
-## Project card [shadcn: card]
+## Company mark [custom] → `src/components/site/company-mark.tsx` {#company-mark}
 
-- `<article>` `rounded-xl border bg-card overflow-hidden`, hover `border-muted-foreground`.
-- Image 16:10, no inner border, `<img loading="lazy" decoding="async" width height>`; no image = `bg-muted`.
-- Body `p-4 gap-2.5`: title (`text-h3`) + `ArrowUpRightIcon` link (`aria-label="Open {title}"`),
-  description (`text-small text-muted-foreground`), tags.
-- Grid `grid gap-4 md:grid-cols-2`. Home: max 4 + Show all (no separate page needed for projects).
+40px `rounded-full bg-muted` disc, `aria-hidden` (the name sits next to it). Shows the logo at 24px
+(`rounded-md object-contain`, lazy), else the Phosphor icon, else a two-letter mono monogram.
+- Logos are **greyscale** and turn to colour (`grayscale-0`, 150ms) while the row is hovered or holds
+  keyboard focus (`group-has-focus-visible`, not `focus-within`: "Show all" moves focus into the first
+  revealed row programmatically). The row sets `group/item`; the transition is off under reduced motion.
+- Logos are the companies' own marks, so they are exempt from the token-colour rule, but only in colour
+  while hovered. Files: `public/images/companies/<slug>.{png,svg}`, square, ≥ 48px.
+
+## Project row [custom: native `<details>`] → `src/components/home/projects.tsx`
+
+A list, not cards; same anatomy as the experience row.
+- `<summary>`: company mark, title (`h3`, 16/600) over the period (mono caption), a spacer for the
+  link, `CaretDownIcon`. Hover `bg-muted rounded-xl`, `p-3 -mx-3`.
+- The external link (`ArrowUpRightIcon`, `aria-label="Open {title}"`) is positioned over the spacer,
+  outside `<summary>`, so no interactive element is nested in it.
+- Content (`pl-13.5 pb-4`): first description line as a paragraph, the rest as bullets (15px muted),
+  then tags.
+- No `name`, so several rows can be open; `isExpanded` opens one by default.
+- Rows `flex flex-col gap-1`. Home: featured first, max 4 + Show all.
 
 ## Post card [custom on shadcn card styles] → `src/components/blog/post-card.tsx` {#post-card}
 

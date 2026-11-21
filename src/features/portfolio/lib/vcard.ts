@@ -16,7 +16,7 @@ export function buildVCard() {
     `TITLE:${USER.jobTitle}`,
     `EMAIL;TYPE=work:${decodeB64(USER.emailB64)}`,
     `TEL;TYPE=cell:${decodeB64(USER.phoneNumberB64)}`,
-    `ADR;TYPE=home:;;;Mandi Bahauddin;Punjab;;Pakistan`,
+    `ADR;TYPE=home:;;;Islamabad;Islamabad Capital Territory;;Pakistan`,
     `URL:${SITE_INFO.url}`,
     ...SOCIAL_LINKS.map((s) => `X-SOCIALPROFILE;TYPE=${s.name}:${s.href}`),
     `NOTE:${USER.bio}`,

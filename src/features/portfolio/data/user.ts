@@ -5,18 +5,18 @@ export const USER: User = {
   lastName: "Nasar",
   displayName: "Usama Nasar",
   username: "usamanasar",
-  bio: "I build scalable, efficient, user-centric, pixel-perfect digital experiences for the web.",
+  bio: "I build fast, accessible web apps with React, Next.js, Angular and Vue, focused on quick first loads, solid Core Web Vitals and consistent UI.",
   taglines: [
-    "I build scalable, efficient, user-centric, pixel-perfect digital experiences for the web.",
-    "Senior Full-Stack Engineer.",
+    "Senior Frontend Engineer.",
     "7+ years shipping for the web.",
-    "Open source contributor to Continue.dev.",
+    "React, Next.js, Angular and Vue, with TypeScript throughout.",
+    "Open-source contributor to Continue.dev.",
   ],
-  address: "Mandi Bahauddin, Punjab, Pakistan",
+  address: "Islamabad, Pakistan",
   phoneNumberB64: "KzkyMzA0MjMyMzM0OQ==", // +923042323349, E.164, base64 encoded
   emailB64: "Y29udGFjdEB1c2FtYW5hc2FyLmRldg==", // contact@usamanasar.dev, base64 encoded
   website: "https://usamanasar.dev",
-  jobTitle: "Senior Full-Stack Engineer",
+  jobTitle: "Senior Frontend Engineer",
   jobs: [
     {
       title: "Senior Software Engineer",
@@ -24,9 +24,10 @@ export const USER: User = {
       experienceId: "freelance",
     },
   ],
-  about: `- Senior Full-Stack Engineer with 7+ years of experience building scalable, high-performance web applications with Angular, React, Vue, TypeScript, Node.js and NestJS.
-- I lead large migrations (Vue → Next.js, Express → NestJS, Angular 17 → 22), fix Core Web Vitals and SEO with SSR, and build shared UI systems and microfrontends.
-- I've led frontend teams of up to 8 engineers, and I contribute to open source, including [Continue.dev](https://github.com/continuedev/continue) (25K+ GitHub stars).
+  intro: "I've led engineering teams of up to 8 and mentor developers through code review.",
+  about: `- Senior Frontend Engineer with 7+ years of experience building scalable, high-performance web apps with React, Next.js, Angular, Vue and TypeScript, backed by hands-on Node.js and NestJS work on the server.
+- I lead large migrations (Vue → Next.js, Angular 17 → 22, Express → NestJS), fix SEO and Core Web Vitals with SSR, and build shared component libraries, design systems and microfrontends.
+- I've led engineering teams of up to 8, mentor developers through code review, and contribute to open source, including [Continue.dev](https://github.com/continuedev/continue) (25K+ GitHub stars).
 `,
   avatar: "/images/avatar.webp", // TODO(usama): add a square photo, ≥ 384×384
   resume: {
@@ -46,12 +47,15 @@ export const USER: User = {
     "usamanasar",
     "usamanasar38",
     "usama nasar developer",
-    "senior full-stack engineer",
     "senior frontend engineer",
+    "senior frontend developer",
+    "senior full-stack engineer",
+    "next.js developer",
     "angular developer",
     "react developer",
     "vue developer",
     "nestjs developer",
+    "islamabad",
     "pakistan",
   ],
   timeZone: "Asia/Karachi",

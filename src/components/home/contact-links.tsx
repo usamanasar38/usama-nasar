@@ -40,7 +40,9 @@ export const Contact = () => {
           <h2 className="text-h1" id="h-contact">
             Say hi.
           </h2>
-          <p className="text-muted-foreground">Email is the fastest way to reach me.</p>
+          <p className="text-muted-foreground">
+            Hiring for a senior frontend role, or need help with a migration or Core Web Vitals? Email is the fastest way to reach me.
+          </p>
         </div>
         <SoundPill />
       </div>

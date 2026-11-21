@@ -1,6 +1,7 @@
 import { CaretDownIcon } from "@phosphor-icons/react";
 import type { MouseEvent } from "react";
 
+import { CompanyMark } from "@/components/site/company-mark";
 import { InlineMarkdown, markdownLines } from "@/components/site/inline-markdown";
 import { SectionHeading } from "@/components/site/section-heading";
 import { ShowMore, StaggerItem } from "@/components/site/show-more";
@@ -9,13 +10,6 @@ import { EXPERIENCES } from "@/features/portfolio/data/experiences";
 import type { Experience } from "@/features/portfolio/types/experiences";
 import { formatPeriod, periodDateTime } from "@/features/portfolio/lib/format";
 import { useSounds } from "@/lib/sound";
-
-/** "Love, Bonito" → "lb", "Mahjoz | محجوز" → "ma", "Contrive Solutions" → "cs". */
-const monogram = (name: string) => {
-  const words = name.split(/[^\p{L}\p{N}]+/u).filter((word) => /^[a-z0-9]/iu.test(word));
-  const [first = "", second] = words;
-  return (second ? `${first[0]}${second[0]}` : first.slice(0, 2)).toLowerCase();
-};
 
 const Dates = ({ experience }: { experience: Experience }) => {
   const position = experience.positions[0];
@@ -35,7 +29,6 @@ const Dates = ({ experience }: { experience: Experience }) => {
 const ExperienceRow = ({ experience, open }: { experience: Experience; open: boolean }) => {
   const { play, hoverProps } = useSounds();
   const position = experience.positions[0];
-  const Icon = experience.companyIcon;
 
   /** Sound on the user's own toggle only (the initial `open` also fires a toggle event). */
   const onSummaryClick = (event: MouseEvent<HTMLElement>) => {
@@ -46,18 +39,17 @@ const ExperienceRow = ({ experience, open }: { experience: Experience; open: boo
   };
 
   return (
-    <details className="group/exp" name="experience" open={open}>
+    <details className="group/exp group/item" name="experience" open={open}>
       <summary
         className="-mx-3 flex cursor-pointer list-none items-center gap-3.5 rounded-xl p-3 transition-colors duration-150 hover:bg-muted [&::-webkit-details-marker]:hidden"
         onClick={onSummaryClick}
         {...hoverProps}
       >
-        <span
-          aria-hidden
-          className="grid size-10 shrink-0 place-items-center rounded-full bg-muted font-mono text-caption"
-        >
-          {Icon ? <Icon className="size-[18px]" /> : monogram(experience.companyName)}
-        </span>
+        <CompanyMark
+          icon={experience.companyIcon}
+          logo={experience.companyLogo}
+          name={experience.companyName}
+        />
         <span className="min-w-0 flex-1">
           <span className="block font-semibold text-body">{experience.companyName}</span>
           <span className="block text-muted-foreground text-small">
@@ -73,7 +65,7 @@ const ExperienceRow = ({ experience, open }: { experience: Experience; open: boo
           className="size-4 shrink-0 text-muted-foreground transition-transform duration-200 group-open/exp:rotate-180 motion-reduce:transition-none"
         />
       </summary>
-      <div className="flex flex-col gap-3 pb-4 pl-[54px]">
+      <div className="flex flex-col gap-3 pb-4 pl-13.5">
         <span className="md:hidden">
           <Dates experience={experience} />
         </span>
@@ -100,7 +92,7 @@ const ExperienceRow = ({ experience, open }: { experience: Experience; open: boo
 
 export const ExperienceSection = () => (
   <section aria-labelledby="h-experience" className="mt-16 md:mt-20" id="experience">
-    <SectionHeading count={EXPERIENCES.length} id="h-experience">
+    <SectionHeading anchor="experience" count={EXPERIENCES.length} id="h-experience">
       Experience
     </SectionHeading>
     <ShowMore initial={4} items={EXPERIENCES} label="roles">

@@ -23,8 +23,8 @@ const badgeVariants = cva(
           "bg-brand-subtle font-mono font-normal text-brand-subtle-foreground",
         /** Skill and post tags: lowercase mono on muted. */
         tag: "bg-muted font-mono font-normal text-muted-foreground lowercase",
-        /** Stack chips: hairline pill with a 14px logo. */
-        chip: "border-border font-normal text-foreground",
+        /** Stack chips: hairline pill with a 14px logo; as a link it fills on hover. */
+        chip: "border-border font-normal text-foreground [a]:hover:bg-muted",
       },
     },
     defaultVariants: {
