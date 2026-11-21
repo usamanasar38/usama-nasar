@@ -9,6 +9,7 @@ import {
 import type { ReactNode } from "react";
 
 import { MotionProvider } from "@/components/motion-provider";
+import { META_THEME_COLORS } from "@/config/site";
 import { SearchProvider } from "@/components/search/search-provider";
 import { BackToTop } from "@/components/site/back-to-top";
 import { Dock } from "@/components/site/dock";
@@ -25,6 +26,12 @@ import appCss from "@/styles/app.css?url";
 const RootDocument = ({ children }: { children: ReactNode }) => (
   <html lang="en" suppressHydrationWarning>
     <head>
+      {/* Browser-UI colour for the chosen theme; THEME_SCRIPT and setTheme() update it. */}
+      <meta
+        content={META_THEME_COLORS.light}
+        name="theme-color"
+        suppressHydrationWarning
+      />
       {/* Sets .dark before first paint: no flash, no shift. Must stay before the stylesheet. */}
       {/* oxlint-disable-next-line react/no-danger -- static, build-time string */}
       <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />

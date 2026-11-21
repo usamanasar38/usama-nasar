@@ -154,6 +154,7 @@ export const PROJECTS: Project[] = [
 - Managed tournament formats (knockout, double elimination), live scores and team management for different games.
 - Real-time API integrations, backed by a Lumen API with ElasticSearch search, Redis caching and RabbitMQ queues.`,
     image: "/media/esports-construct.png",
+    logo: "/images/companies/esports-construct.png",
     icon: GameControllerIcon,
   },
 ]

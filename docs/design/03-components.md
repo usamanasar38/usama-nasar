@@ -58,6 +58,11 @@ Every interactive element plays `hover` on pointer enter and the listed sound on
 `<dt>` (mono micro, muted) over `<dd>` (15px, truncated).
 - Facts, in order: role (`USER.jobTitle`), experience (from `USER.about`), based in (`USER.address`),
   local time, email (`mailto:`), phone (`tel:`, shown as `+92 304 232 3349`). Email and phone are brand links.
+- **Copy email / phone:** a 28px ghost circle after the value (`-my-1` so the row keeps its height,
+  `after:-inset-2` for a 44px hit area), always visible. Copies the address or the E.164 number, plays
+  `success`, swaps `CopyIcon` → brand `CheckIcon` for 1.8s (`IconSwap`) and announces "Email address copied" /
+  "Phone number copied". Shares `useCopy()`
+  (`src/hooks/use-copy.ts`) with the section-heading copy-link button.
 - **Local time:** `useSyncExternalStore` ticking every second, formatted `h:mm AM/PM` in `USER.timeZone`,
   followed by the muted offset (`GMT+5`). The server snapshot is `null`, so the prerendered HTML shows
   `--:-- · GMT+5` and the time fills in after hydration without a mismatch.
@@ -87,9 +92,11 @@ Every interactive element plays `hover` on pointer enter and the listed sound on
 
 40px `rounded-full bg-muted` disc, `aria-hidden` (the name sits next to it). Shows the logo at 24px
 (`rounded-md object-contain`, lazy), else the Phosphor icon, else a two-letter mono monogram.
-- Logos are **greyscale** and turn to colour (`grayscale-0`, 150ms) while the row is hovered or holds
+- Logos rest **greyscale at 60% opacity** and turn to full colour and opacity (`grayscale-0 opacity-100`,
+  150ms) while the row is hovered or holds
   keyboard focus (`group-has-focus-visible`, not `focus-within`: "Show all" moves focus into the first
-  revealed row programmatically). The row sets `group/item`; the transition is off under reduced motion.
+  revealed row programmatically). The opacity matters for single-colour marks (Arena), which greyscale
+  alone can't soften. The row sets `group/item`; the transition is off under reduced motion.
 - Logos are the companies' own marks, so they are exempt from the token-colour rule, but only in colour
   while hovered. Files: `public/images/companies/<slug>.{png,svg}`, square, ≥ 48px.
 
@@ -185,7 +192,12 @@ Sticky `top-24`, "on this page" (mono micro), links 13px muted with a 1px left b
 
 ## Theme toggle [custom] → `src/components/site/theme-toggle.tsx`
 
-`useTheme()` from `src/lib/theme.ts` (generated in prompt 01). Label names the target theme. The
-inline `THEME_SCRIPT` in `<head>` sets `.dark` before paint. Switching wraps the class change in
-`document.startViewTransition` when available (250ms cross-fade, skipped under reduced motion). Icon
-swap uses Motion `AnimatePresence` (see 08-motion.md). Sound `on` / `off`.
+`useTheme()` from `src/lib/theme.ts`. Label names the target theme. The inline `THEME_SCRIPT` in
+`<head>` sets `.dark` before paint. Switching wraps the class change in `document.startViewTransition`
+when available (250ms cross-fade, skipped under reduced motion). Sound `on` / `off`.
+- **Icon:** Phosphor `CircleHalfIcon` that rotates 180° under `.dark` (`dark:rotate-180`, 500ms
+  ease-out-quint, CSS only; after chanhdai.com's "Dark Side" toggle). Because it follows the class, it is
+  correct before hydration and animates for every theme change, including ⌘K.
+- **Browser UI colour:** one `<meta name="theme-color">` sits in the root document before `THEME_SCRIPT`.
+  The script sets it to the chosen theme's background on load and `setTheme()` updates it on every
+  switch, so the mobile address bar follows the app's theme, not the OS.

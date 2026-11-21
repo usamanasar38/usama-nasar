@@ -27,7 +27,7 @@ const monogram = (name: string) => {
 };
 
 const LOGO =
-  "size-6 rounded-md object-contain grayscale transition duration-150 group-hover/item:grayscale-0 group-has-focus-visible/item:grayscale-0 motion-reduce:transition-none";
+  "size-6 rounded-md object-contain opacity-60 grayscale transition duration-150 group-hover/item:opacity-100 group-hover/item:grayscale-0 group-has-focus-visible/item:opacity-100 group-has-focus-visible/item:grayscale-0 motion-reduce:transition-none";
 
 const LogoImage = ({ src, className }: { src: string; className?: string }) => (
   <img

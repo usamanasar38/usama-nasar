@@ -1,4 +1,4 @@
-import { absoluteUrl, META_THEME_COLORS, SITE_INFO, X_HANDLE } from "@/config/site"
+import { absoluteUrl, SITE_INFO, X_HANDLE } from "@/config/site"
 import { USER } from "@/features/portfolio/data/user"
 
 /**
@@ -117,10 +117,9 @@ export function seo(input: SeoInput): HeadResult {
 }
 
 /**
- * Site-wide tags for the root route: charset, viewport, keywords, theme colour
- * per scheme, favicons (light/dark via the adaptive SVG), manifest, RSS and llms.txt.
- * The app's own light/dark switch is the `.dark` class; theme-color follows the OS
- * because browsers only support media queries for it.
+ * Site-wide tags for the root route: charset, viewport, keywords, favicons (light/dark
+ * via the adaptive SVG), manifest, RSS and llms.txt. `theme-color` is not here: it lives
+ * in the root document before THEME_SCRIPT, which sets it to the chosen theme.
  */
 export function rootHead(): HeadResult {
   return {
@@ -130,8 +129,6 @@ export function rootHead(): HeadResult {
       { name: "keywords", content: SITE_INFO.keywords.join(", ") },
       { name: "author", content: SITE_INFO.name },
       { name: "color-scheme", content: "light dark" },
-      { name: "theme-color", media: "(prefers-color-scheme: light)", content: META_THEME_COLORS.light },
-      { name: "theme-color", media: "(prefers-color-scheme: dark)", content: META_THEME_COLORS.dark },
     ],
     links: [
       { rel: "icon", href: "/favicon.ico", sizes: "48x48" },

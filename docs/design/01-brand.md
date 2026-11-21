@@ -42,7 +42,7 @@ nasar". Never as the main logo.
 | `apple-touch-icon.png` (180) | Full-bleed black, white wave | iOS home screen |
 | `icon-192.png`, `icon-512.png` | Full-bleed, maskable-safe | `site.webmanifest` |
 | `logo-512.png` | Tile, black on transparent | JSON-LD `Person.image` fallback, profiles |
-| `og-default-light.png`, `og-default-dark.png` (1200×630) | Tile + name + role | Default OG image for pages without their own. Light is the default; dark is an alternative. Replace `[yourdomain.dev]` before launch, or regenerate at build (see 06-quality.md) |
+| `og-default-light.png`, `og-default-dark.png` (1200×630) | Tile + name + role + domain | Default OG image for pages without their own. Light is the default; dark is an alternative. Generated from `USER` by `pnpm og` (`scripts/generate-og.ts`: satori + resvg, Host Grotesk 600/500, Commit Mono, theme colours from `app.css`). Re-run after changing the name, job title or domain |
 
 ## Light and dark: which method where
 

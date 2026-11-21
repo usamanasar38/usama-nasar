@@ -40,7 +40,7 @@
 - `sitemap.xml` (all non-draft routes with `lastmod`), `robots.txt`, `rss.xml` (full posts).
 - OG images generated at build time: tile mark, title in Host Grotesk 600, mono date, on white or black.
 - One `<h1>` per page; headings in order; descriptive link text (no "click here").
-- `lang="en"`, `theme-color` meta for both schemes, manifest and icons from `public/`.
+- `lang="en"`, one `theme-color` meta that follows the chosen theme (set by `THEME_SCRIPT`), manifest and icons from `public/`.
 
 ## LLM and AI-search readability {#llms}
 

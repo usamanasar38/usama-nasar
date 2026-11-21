@@ -4,43 +4,22 @@ import {
   LinkSimpleIcon,
 } from "@phosphor-icons/react";
 import { Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 
 import { IconSwap } from "@/components/site/icon-swap";
+import { useCopy } from "@/hooks/use-copy";
 import { useSounds } from "@/lib/sound";
 
-const COPIED_MS = 1800;
-
 const CopyLinkButton = ({ anchor }: { anchor: string }) => {
-  const { play, hoverProps } = useSounds();
-  const [copied, setCopied] = useState(false);
-  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const { hoverProps } = useSounds();
+  const { copied, copy } = useCopy();
 
-  useEffect(
-    () => () => {
-      clearTimeout(timer.current);
-    },
-    []
-  );
-
-  const copy = async () => {
+  const onCopy = async () => {
     const url = `${window.location.origin}${window.location.pathname}#${anchor}`;
 
-    try {
-      await navigator.clipboard.writeText(url);
-    } catch {
+    if (!(await copy(url))) {
       window.location.hash = anchor;
-
-      return;
     }
-
-    play("success");
-    setCopied(true);
-    clearTimeout(timer.current);
-    timer.current = setTimeout(() => {
-      setCopied(false);
-    }, COPIED_MS);
   };
 
   return (
@@ -50,8 +29,8 @@ const CopyLinkButton = ({ anchor }: { anchor: string }) => {
         className="text-muted-foreground hover:bg-muted hover:text-foreground relative grid size-7 shrink-0 place-items-center rounded-full opacity-0 transition duration-150 group-hover/heading:opacity-100 after:absolute after:-inset-2 focus-visible:opacity-100 data-copied:opacity-100 motion-reduce:transition-none pointer-coarse:hidden"
         data-copied={copied ? "" : undefined}
         onClick={() => {
-          copy().catch(() => {
-            setCopied(false);
+          onCopy().catch(() => {
+            window.location.hash = anchor;
           });
         }}
         type="button"
