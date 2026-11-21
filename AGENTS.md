@@ -141,3 +141,88 @@ Oxlint + Oxfmt will catch most mechanical issues automatically. Focus your atten
 ---
 
 Most formatting and common issues are automatically fixed by Oxlint + Oxfmt. Run `pnpm exec ultracite fix` before committing to ensure compliance.
+
+---
+
+# usamanasar.dev: agent rules
+
+Personal portfolio and blog for Usama Nasar, senior frontend & full-stack engineer. Monochrome, one blue
+accent, pill-and-circle shapes, sections separated by space, small UI sounds.
+
+## How to work
+
+- `docs/design/` is the source of truth for design and content. Read the relevant doc before changing a
+  page or component (`02-foundations.md` for tokens, `03-components.md` for components, `04-pages.md` for
+  layouts, `08-motion.md` before adding any animation). If code and a doc disagree, the doc wins; if you
+  change a rule on purpose, update the doc in the same change.
+- `prompts/` holds the original build prompts and the agent rules they were written against (`prompts/CLAUDE.md`). They are history now: read them for intent, not as a to-do list.
+- Finish every change with `pnpm typecheck` and `pnpm build`, then check the page at 390px and 1440px in
+  light and dark. Report what you did and anything left open.
+- Don't commit unless asked. Never commit straight to `main`.
+
+## Stack (don't swap)
+
+TanStack Start 1.x (React 19, SSR, Vite, Nitro, Vercel) · TypeScript strict · Tailwind CSS 4 · shadcn/ui
+`base-mira` on Base UI · Motion via `LazyMotion` (`m.*` only) · Phosphor icons · simple-icons for tech logos ·
+content-collections for `.md`/`.mdx` posts · rehype-pretty-code + Shiki at build time · soundcn sounds
+behind our own `SoundProvider` · Ultracite (Oxlint + Oxfmt).
+
+## Hard rules
+
+1. **Tokens only.** No hex/rgb/oklch or Tailwind palette colours in components. Use the tokens in
+   `src/styles/app.css` (`bg-background`, `text-foreground`, `text-muted-foreground`, `border`, `bg-muted`,
+   `text-brand`, `bg-brand-subtle`…). Missing token → add it to `app.css` (light and `.dark`) and
+   `02-foundations.md`.
+2. **Blue is the only accent:** links, focus rings, active state, logo hover, progress ring, availability
+   badge. No blue buttons, cards or backgrounds. Two scoped exceptions exist and must stay scoped:
+   `status` (green, the "available for work" dot) and `love` (red, the footer heart).
+3. **Shapes:** `rounded-full` for chips, tags, badges, buttons, inputs, kbd and the dock; circles for the
+   avatar, icon discs and back-to-top; `rounded-xl` for cards and images; `rounded-2xl` for the command
+   dialog; `rounded-lg` for code blocks.
+4. **Badges share one size.** Availability badge, stack chips and tags are all `<Badge>` (`h-7 px-3
+   text-caption`, 14px icons). Change look with a variant (`brand`, `chip`, `tag`), never with a size class.
+5. **No section dividers.** Space and a `SectionHeading` separate sections.
+6. **Components:** shadcn first, then Kibo UI / soundcn (`docs/design/07-registries.md`), then custom.
+   Restyle every registry component to our tokens and Phosphor icons. **No `lucide-react`.**
+7. **Type scale classes only:** `text-display`, `text-h1`, `text-h2`, `text-section`, `text-h3`, `text-say`,
+   `text-lead`, `text-body`, `text-prose`, `text-detail`, `text-small`, `text-label`, `text-caption`,
+   `text-micro`, `text-code`. Commit Mono (`font-mono`) only for metadata, counters, tags, kbd, code and the
+   name lockup.
+8. **Icons are Phosphor regular weight.** A Vite plugin strips every other weight from the bundle, so
+   `weight="fill"` renders nothing unless the icon is listed in `PHOSPHOR_WEIGHT_OVERRIDES`
+   (`vite.config.ts`). Today only `Heart` (fill) is.
+9. **Brand assets are fixed.** Use `Logo`, `LogoTile`, `PromptMark` from `src/components/brand/logo.tsx`
+   and the files in `public/`. Never redraw or recolour the paths.
+10. **Never invent content.** Facts come from `src/features/portfolio/data/` and `src/content/site.ts`.
+    `[BRACKETS]` are placeholders for Usama and stay hidden until filled. Drafts are hidden in production.
+11. **SSR and Core Web Vitals first.** Every fact is in the server HTML. No splash or loader, no
+    above-the-fold entrance animations, no scroll listeners. CSS for motion by default; Motion only where
+    `08-motion.md` allows. Every animation stops under `prefers-reduced-motion`.
+12. **Sound** only through `useSounds()` (`src/lib/sound.tsx`): never on load or scroll, nothing loaded before
+    the first interaction, the toggle always available.
+13. **Accessibility is part of done:** semantic elements, visible focus, labels on icon buttons, 44px touch
+    targets, WCAG AA (the tokens pass; don't lighten them).
+14. **SEO and LLMs:** every route sets title, description, canonical, OG and JSON-LD. Posts appear in the
+    sitemap, RSS and `llms.txt`, and have a `.md` twin.
+15. **Keep the client bundle lean.** Server-only work (Shiki, post bodies, JSON-LD, simple-icons paths) stays
+    in server functions or `*.server.ts`. Lazy-load anything not needed for first paint (search dialog,
+    tooltips, sounds).
+
+## Project gotchas
+
+- Import `cn` from `@/lib/utils`, never from `"cn"` directly. The local one knows our type scale; the raw one
+  treats `text-caption` as a colour and drops it when a text colour is also present.
+- Server functions use `createServerFn().validator(...)` (not `.inputValidator`). Return plain serialisable
+  data; JSON-LD goes out as an escaped string.
+- In `createFileRoute` options keep the order `validateSearch → loaderDeps → loader → head → component`,
+  or `loaderData` loses its types. Don't let a formatter sort them.
+- Suffix routes use brackets: `blog/{$slug}[.]md.ts`, `llms[.]txt.ts`. `src/routeTree.gen.ts` is generated.
+- Keep dynamic `import()` at module scope, not inside components (React Compiler can't handle it).
+- Images inside MDX paragraphs are unwrapped by `mdxComponents.p`, so `<div>` never lands inside `<p>`.
+- Every page is prerendered at build time (`/vcard` excepted). A page that throws fails the build.
+
+## Definition of done
+
+- `pnpm typecheck` and `pnpm build` pass with no new warnings.
+- Keyboard-only pass works; no console errors; no hydration warnings.
+- Lighthouse mobile on changed pages: Performance ≥ 95, Accessibility / Best Practices / SEO = 100.
