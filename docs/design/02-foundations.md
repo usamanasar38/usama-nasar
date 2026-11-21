@@ -155,6 +155,7 @@ volumes and playback rates is in `07-registries.md#soundcn`.
 | `expand` / `collapse` | Show all / show less, experience rows, closing dialogs |
 | `open` | Command palette opens |
 | `success` | Email copied, code copied |
+| `press` | Brand figure pressed (soundcn `metal-click`, like chanhdai.com's figure) |
 | `rise` | Back to top |
 | `note(i)` | Contact links: each row plays the next step of a pentatonic run |
 

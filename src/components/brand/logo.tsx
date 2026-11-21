@@ -2,7 +2,8 @@ import type { SVGProps } from "react";
 
 /** Wave mark path, 64×64 grid. Do not edit: see docs/design/01-brand.md. */
 export const WAVE_PATH = "M10 16V37A11 11 0 0 0 32 37V27A11 11 0 0 1 54 27V48";
-const TILE_CUT_PATH = "M17 21V35.5A7.5 7.5 0 0 0 32 35.5V28.5A7.5 7.5 0 0 1 47 28.5V43";
+/** Wave cut out of the tile mark, 64×64 grid, stroke 5.5. Do not edit: see docs/design/01-brand.md. */
+export const TILE_CUT_PATH = "M17 21V35.5A7.5 7.5 0 0 0 32 35.5V28.5A7.5 7.5 0 0 1 47 28.5V43";
 
 type SvgProps = Omit<SVGProps<SVGSVGElement>, "children">;
 

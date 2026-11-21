@@ -20,6 +20,8 @@ JavaScript. **Motion** (`motion/react`, already installed) is allowed only for t
 | Copy-link reveal | `opacity-0` → `100`, 150ms, on heading hover / button focus | Section headings |
 | Press feedback | `transition-press active:scale-97`: color, background, border and `scale`, 150ms `--ease-out-quad` | Dock, back-to-top, social chips, copy buttons, stack chips |
 | Tooltip groups | First dock tooltip waits 400ms; the rest open instantly with no zoom (`data-instant:animate-none`) | Dock |
+| Brand figure press | Plates squash 6px → 3px apart on `:active` (120ms `--ease-out-quad`), settle back in 350ms `--ease-out-quint`; instant under reduced motion | Home brand figure |
+| Brand figure glow | Radial gradient on the top edges follows the pointer, eased 25% per frame; fine pointers only, while on screen, off under reduced motion | Home brand figure |
 | Theme icon | One sky angle on a critically damped spring (ω = 8, ~1s): the sun sets right (yellow → orange, rays in) while a crescent rises left and waxes to full; dawn is the reverse. Quick clicks reverse in place. Rare action, so it gets a delight budget. Reduced motion: no movement | Theme toggle |
 | Dialog in/out | None for ⌘K: a keyboard-opened palette opens and closes instantly (`animate-none` on panel and backdrop) | ⌘K |
 | Theme switch | View Transitions API (`document.startViewTransition`) cross-fade, 250ms | Theme toggle |

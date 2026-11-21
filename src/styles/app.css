@@ -435,6 +435,59 @@
   stroke: var(--sun-edge);
 }
 
+/*
+ * Isometric brand figure (brand-figure.tsx), above the intro. Lines mix from foreground into
+ * background so they follow the theme. Press = `:active` on the button: plates squash fast
+ * (120ms) and settle back (350ms). Each plate's offset is on the plate itself (`--iso-i`), so
+ * the press never recalculates styles through a variable on the parent.
+ */
+@utility iso-press {
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@utility iso-mark {
+  --iso-line: color-mix(in oklch, var(--foreground) 24%, var(--background));
+  --iso-soft: color-mix(in oklch, var(--foreground) 11%, var(--background));
+  overflow: visible;
+}
+
+@utility iso-layer {
+  translate: 0 calc(var(--iso-i) * -6px);
+  transition: translate 350ms var(--ease-out-quint);
+  :where(.iso-press:active) & {
+    translate: 0 calc(var(--iso-i) * -3px);
+    transition: translate 120ms var(--ease-out-quad);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+    :where(.iso-press:active) & {
+      transition: none;
+    }
+  }
+}
+
+@utility iso-glow {
+  stop-color: var(--foreground);
+}
+
+/* Mask luminance, not theme colours: white keeps, black cuts. */
+@utility iso-mask-area {
+  fill: white;
+}
+
+@utility iso-mask-line {
+  fill: none;
+  stroke: white;
+}
+
+@utility iso-mask-hole {
+  fill: none;
+  stroke: black;
+}
+
 /* Show all / Show less (ShowMore): the hidden part grows from 0fr to 1fr (500ms) and collapses in 250ms. */
 @utility un-collapse {
   display: grid;

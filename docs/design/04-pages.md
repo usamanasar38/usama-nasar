@@ -23,6 +23,7 @@ No dividers anywhere. Each section after the hero starts with a `SectionHeading`
 
 | # | Section | Heading (right side) | Content |
 |---|---|---|---|
+| 0 | Brand figure | (none, decorative) | Isometric tile mark you can press (see 03-components.md#brand-figure) |
 | 1 | Intro `#about` | (none, the name is the h1) | Round avatar, badge, name, role, intro, social chips |
 | 2 | Overview | Overview | 6 facts, 2 columns |
 | 3 | Stack | Stack | 5 groups of linked pill chips (languages, frontend, backend & data, ai & tooling, observability & infra) |

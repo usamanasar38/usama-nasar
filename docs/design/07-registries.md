@@ -65,7 +65,7 @@ a pill is just a styled Badge here), `snippet`, `marquee`, `ticker`.
 pnpm dlx shadcn@latest add @soundcn/use-sound \
   @soundcn/hover-tick @soundcn/click-soft @soundcn/tick-001 \
   @soundcn/switch-on @soundcn/switch-off \
-  @soundcn/open-001 @soundcn/close-001 @soundcn/success-chime
+  @soundcn/open-001 @soundcn/close-001 @soundcn/success-chime @soundcn/metal-click
 ```
 
 This installs `useSound`, `sound-engine` (`playSound`, `getAudioContext`), `sound-types`, and one module
@@ -79,6 +79,7 @@ per sound exporting e.g. `hoverTickSound` (a base64 `dataUri`). Check the CLI ou
 | `expand` / `collapse` | `open-001` / `close-001` | 0.4 | Show all, experience rows, dialog close |
 | `open` | `open-001` at `playbackRate 1.15` | 0.35 | Command palette |
 | `success` | `success-chime` (0.49s, 4 kB) | 0.4 | Email copied |
+| `press` | `metal-click` (0.45s, 4 kB, CC0, Kenney) | 0.45 | Brand figure press |
 | `rise` | `open-001` at `playbackRate 0.8` | 0.4 | Back to top |
 | `note(i)` | `tick-001` at `playbackRate` 1, 1.125, 1.25, 1.5, 1.667 | 0.35 | Contact links: a pentatonic run down the list |
 

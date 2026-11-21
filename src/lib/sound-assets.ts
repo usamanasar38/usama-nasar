@@ -10,6 +10,8 @@ export { close001Sound } from "@/lib/sounds/close-001";
 
 export { hoverTickSound } from "@/lib/sounds/hover-tick";
 
+export { metalClickSound } from "@/lib/sounds/metal-click";
+
 export { open001Sound } from "@/lib/sounds/open-001";
 
 export { successChimeSound } from "@/lib/sounds/success-chime";

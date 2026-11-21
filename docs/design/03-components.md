@@ -30,6 +30,22 @@ Every interactive element plays `hover` on pointer enter and the listed sound on
 - The section element gets `aria-labelledby` pointing at the heading id.
 - No border above or below. Sections are separated by `mt-16 md:mt-20`.
 
+## Brand figure [custom] → `src/components/home/brand-figure.tsx` {#brand-figure}
+
+The top of the home page, above the intro (after chanhdai.com's profile figure, with our own mark).
+- **Drawing:** the tile mark as 8 stacked isometric plates. Every plate is the brand tile
+  (`rx 14` on 64) with `TILE_CUT_PATH` cut through it, drawn from the brand paths in `logo.tsx` under
+  `matrix(0.866 0.5 -0.866 0.5 0 0)` and `scale(2.2)`; nothing is redrawn. viewBox `0 0 480 240`, full width.
+  1px non-scaling outlines in `--iso-line` (foreground 24% into background), a hatched top face and dashed
+  isometric guide lines in `--iso-soft` (11%). Monochrome in both themes.
+- **Press:** the figure is one `<button aria-label="Press the logo">` (keyboard, mouse and touch). `:active`
+  squashes the plates from 6px to 3px apart (120ms `--ease-out-quad`) and they settle back in 350ms
+  `--ease-out-quint`; click plays `press` (soundcn `metal-click`). Under reduced motion the squash is instant.
+- **Glow:** a radial gradient on the top plate's edges follows the pointer (mapped into the tile's own
+  coordinates with `getScreenCTM`, eased 25% per frame, clamped to the tile). Only on `(hover: hover) and
+  (pointer: fine)`, only while the figure is on screen (IntersectionObserver), never under reduced motion.
+- No entrance animation; the server HTML is the final drawing.
+
 ## Hero / intro [shadcn: avatar, badge]
 
 - Row (stacks below md): avatar `size-28 rounded-full border` (`<img width=112 height=112

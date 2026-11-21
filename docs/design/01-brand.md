@@ -27,6 +27,12 @@ app icons, OG images and as the avatar fallback. Never in the header.
 `> un_` with a blinking cursor. **Footer only**, as `<PromptMark />` next to "designed & built by usama
 nasar". Never as the main logo.
 
+## Isometric figure
+
+The home page opens with the tile mark drawn as stacked isometric plates (`BrandFigure`). It uses the exact
+tile and cut paths from `logo.tsx` (`TILE_CUT_PATH` is exported for this) under an isometric transform, so the
+mark is projected, never redrawn or recoloured.
+
 ## Asset files (`public/`)
 
 | File | What | Use it for |
