@@ -174,8 +174,9 @@ behind our own `SoundProvider` · Ultracite (Oxlint + Oxfmt).
    `text-brand`, `bg-brand-subtle`…). Missing token → add it to `app.css` (light and `.dark`) and
    `02-foundations.md`.
 2. **Blue is the only accent:** links, focus rings, active state, logo hover, progress ring, availability
-   badge. No blue buttons, cards or backgrounds. Two scoped exceptions exist and must stay scoped:
-   `status` (green, the "available for work" dot) and `love` (red, the footer heart).
+   badge. No blue buttons, cards or backgrounds. Three scoped exceptions exist and must stay scoped:
+   `status` (green, the "available for work" dot) and `love` (red, the footer heart), plus `sun` / `sun-edge` /
+   `sunset` (yellow and orange, the theme-toggle icon only).
 3. **Shapes:** `rounded-full` for chips, tags, badges, buttons, inputs, kbd and the dock; circles for the
    avatar, icon discs and back-to-top; `rounded-xl` for cards and images; `rounded-2xl` for the command
    dialog; `rounded-lg` for code blocks.

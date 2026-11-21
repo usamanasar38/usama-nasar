@@ -13,24 +13,26 @@ JavaScript. **Motion** (`motion/react`, already installed) is allowed only for t
 | Cursor blink | `un-blink` | Footer `> un_` |
 | Scroll-progress ring | `un-progress` (`animation-timeline: scroll()`) | Back-to-top |
 | Back-to-top reveal | `un-reveal` (scroll-driven, 120–400px) | Back-to-top |
-| Show all open/close | `grid-template-rows` 0fr → 1fr, 500ms ease-out-quint | Experience, projects |
-| Experience row open | `<details>` + `::details-content` + `interpolate-size` | Experience |
-| Hover states | `transition-colors` 150ms; cover `scale-[1.02]` 500ms; arrow nudge 200ms | Everywhere |
+| Show all open/close | `grid-template-rows` 0fr → 1fr, 500ms ease-out-quint to open, 250ms to close. The only entrance: rows inside don't animate (no double entry) | Experience, projects |
+| Experience / project row open | `<details>` + `::details-content` + `interpolate-size`, 300ms to open, 200ms to close; caret 200ms ease-in-out-quint | Experience, projects |
+| Hover states | `transition-colors` 150ms; cover `scale-[1.02]` 200ms; arrow nudge 200ms | Everywhere |
 | Logo colour | `grayscale opacity-60` → `grayscale-0 opacity-100`, 150ms, on row hover / keyboard focus | Experience, projects |
 | Copy-link reveal | `opacity-0` → `100`, 150ms, on heading hover / button focus | Section headings |
-| Theme icon | `CircleHalfIcon` `rotate-0` → `180deg` under `.dark`, 500ms ease-out-quint | Theme toggle |
-| Dialog in/out | `tw-animate-css` classes shadcn already uses | ⌘K |
+| Press feedback | `transition-press active:scale-97`: color, background, border and `scale`, 150ms `--ease-out-quad` | Dock, back-to-top, social chips, copy buttons, stack chips |
+| Tooltip groups | First dock tooltip waits 400ms; the rest open instantly with no zoom (`data-instant:animate-none`) | Dock |
+| Theme icon | One sky angle on a critically damped spring (ω = 8, ~1s): the sun sets right (yellow → orange, rays in) while a crescent rises left and waxes to full; dawn is the reverse. Quick clicks reverse in place. Rare action, so it gets a delight budget. Reduced motion: no movement | Theme toggle |
+| Dialog in/out | None for ⌘K: a keyboard-opened palette opens and closes instantly (`animate-none` on panel and backdrop) | ⌘K |
 | Theme switch | View Transitions API (`document.startViewTransition`) cross-fade, 250ms | Theme toggle |
 
 ## Where Motion is used
 
-Only for presence animations that CSS can't do cleanly:
+Only for presence animations that CSS can't do cleanly. (The theme icon's sky uses its own tiny
+spring in `requestAnimationFrame` instead: it needs a continuous, reversible value with velocity, and
+loading Motion's animation engine into the header just for that would cost first-paint bundle.)
 
 1. **Icon swaps** with `AnimatePresence mode="popLayout"`: dock Envelope → Check,
    Speaker on ↔ off. Scale 0.6 → 1 and opacity, 160ms.
-2. **Show all stagger:** when the hidden items open, each fades in and moves up 8px with a 40ms
-   stagger (on top of the CSS height animation). On close there's no stagger.
-3. **Copy feedback** in code blocks, section headings and the overview email and phone: Copy / Link → Check icon swap (same as 1).
+2. **Copy feedback** in code blocks, section headings and the overview email and phone: Copy / Link → Check icon swap (same as 1).
 
 ## Setup rules
 
@@ -63,6 +65,6 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
 |---|---|---|
 | fast | 150ms | colour, opacity |
 | base | 200–250ms | icon swaps, arrows, theme fade |
-| slow | 500ms | Show all, cover zoom |
+| slow | 500ms | Show all (opening only) |
 | `ease-out-quint` | `cubic-bezier(0.22, 1, 0.36, 1)` | Things entering or growing |
 | `ease-in-out-quint` | `cubic-bezier(0.83, 0, 0.17, 1)` | The logo draw |

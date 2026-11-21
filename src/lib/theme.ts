@@ -5,7 +5,8 @@ import { META_THEME_COLORS } from "@/config/site";
 export type Theme = "light" | "dark";
 
 const STORAGE_KEY = "theme";
-const CHANGE_EVENT = "un:theme-change";
+/** Fired on `window` after the `.dark` class has changed. */
+export const THEME_CHANGE_EVENT = "un:theme-change";
 const META_SELECTOR = 'meta[name="theme-color"]';
 
 /**
@@ -36,7 +37,7 @@ export const setTheme = (theme: Theme) => {
   const apply = () => {
     document.documentElement.classList.toggle("dark", theme === "dark");
     syncMetaColor(theme);
-    window.dispatchEvent(new Event(CHANGE_EVENT));
+    window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
   };
 
   try {
@@ -56,10 +57,10 @@ export const setTheme = (theme: Theme) => {
 };
 
 const subscribe = (onChange: () => void) => {
-  window.addEventListener(CHANGE_EVENT, onChange);
+  window.addEventListener(THEME_CHANGE_EVENT, onChange);
 
   return () => {
-    window.removeEventListener(CHANGE_EVENT, onChange);
+    window.removeEventListener(THEME_CHANGE_EVENT, onChange);
   };
 };
 

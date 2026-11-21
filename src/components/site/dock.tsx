@@ -27,7 +27,7 @@ const SHELL =
   "fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] left-1/2 z-40 -translate-x-1/2 rounded-full border bg-dock p-1.5 shadow-black/5 shadow-lg backdrop-blur-md dark:shadow-black/40";
 
 const ICON_BUTTON =
-  "grid size-[38px] place-items-center rounded-full text-foreground transition-colors duration-150 hover:bg-muted aria-pressed:text-foreground";
+  "grid size-[38px] place-items-center rounded-full text-foreground transition-press active:scale-97 hover:bg-muted aria-pressed:text-foreground";
 
 /** Arrow keys move between the toolbar's controls (WAI-ARIA toolbar pattern). */
 const onToolbarKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -52,6 +52,14 @@ const onToolbarKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
 const loadTooltip = () => import("@/components/site/dock-tooltip");
 const LazyTooltip = lazy(loadTooltip);
 
+const loadTooltipGroup = async () => {
+  const { DockTooltipGroup } = await loadTooltip();
+
+  return { default: DockTooltipGroup };
+};
+
+const LazyTooltipGroup = lazy(loadTooltipGroup);
+
 /** True once a mouse has entered the dock: from then on, buttons get real tooltips. */
 const TooltipsReady = createContext(false);
 
@@ -59,6 +67,15 @@ const DockTooltip = ({ label, children }: { label: string; children: ReactElemen
   useContext(TooltipsReady) ? (
     <Suspense fallback={children}>
       <LazyTooltip label={label}>{children}</LazyTooltip>
+    </Suspense>
+  ) : (
+    children
+  );
+
+const DockTooltipScope = ({ ready, children }: { ready: boolean; children: ReactElement }) =>
+  ready ? (
+    <Suspense fallback={children}>
+      <LazyTooltipGroup>{children}</LazyTooltipGroup>
     </Suspense>
   ) : (
     children
@@ -171,9 +188,11 @@ const DesktopDock = () => {
       role="toolbar"
     >
       <TooltipsReady value={tooltips}>
+      <DockTooltipScope ready={tooltips}>
+      <>
       <button
         aria-haspopup="dialog"
-        className="bg-background/60 text-muted-foreground text-small hover:bg-muted hover:text-foreground flex h-[38px] w-58 items-center gap-2 rounded-full border pr-1.5 pl-3 text-left transition-colors duration-150"
+        className="bg-background/60 text-muted-foreground text-small hover:bg-muted hover:text-foreground flex h-[38px] w-58 items-center gap-2 rounded-full border pr-1.5 pl-3 text-left transition-press active:scale-97"
         onClick={openSearch}
         type="button"
         {...prefetchProps}
@@ -202,13 +221,15 @@ const DesktopDock = () => {
         </DockTooltip>
       ) : null}
       <SoundToggleButton />
+      </>
+      </DockTooltipScope>
       </TooltipsReady>
     </div>
   );
 };
 
 const MOBILE_ITEM =
-  "grid size-11 place-items-center rounded-full text-muted-foreground transition-colors duration-150 hover:text-foreground aria-[current=page]:bg-muted aria-[current=page]:text-foreground";
+  "grid size-11 place-items-center rounded-full text-muted-foreground transition-press active:scale-97 hover:text-foreground aria-[current=page]:bg-muted aria-[current=page]:text-foreground";
 
 const MobileDock = () => {
   const { openSearch, prefetchProps } = useSearch();

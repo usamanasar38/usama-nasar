@@ -1,13 +1,11 @@
-import { CircleHalfIcon } from "@phosphor-icons/react";
-
+import { ThemeIcon } from "@/components/site/theme-icon";
 import { Button } from "@/components/ui/button";
 import { useSounds } from "@/lib/sound";
 import { useTheme } from "@/lib/theme";
 
 /**
- * Theme switch. The half-filled circle turns 180° whenever `.dark` lands on <html>
- * (CSS only), so the icon is right before hydration and animates on every change,
- * including ones made from ⌘K.
+ * Theme switch. The icon (ThemeIcon) turns the sky: the sun sets as a crescent moon rises and
+ * waxes to full, and the reverse at dawn. Quick clicks reverse the scene in place.
  */
 export const ThemeToggle = () => {
   const { theme, toggle } = useTheme();
@@ -20,14 +18,12 @@ export const ThemeToggle = () => {
       onClick={() => {
         play(toggle() === "light" ? "on" : "off");
       }}
+      className="pointer-coarse:size-11"
       size="icon"
       variant="ghost"
       {...hoverProps}
     >
-      <CircleHalfIcon
-        aria-hidden
-        className="ease-out-quint transition-transform duration-500 motion-reduce:transition-none dark:rotate-180"
-      />
+      <ThemeIcon />
     </Button>
   );
 };

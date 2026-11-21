@@ -83,7 +83,7 @@ Every interactive element plays `hover` on pointer enter and the listed sound on
 
 `<ShowMore items={projects} initial={4} label="projects" render={(items) => <Grid>…</Grid>} />`
 - Renders the first 4, then the rest in a wrapper that animates `grid-template-rows: 0fr → 1fr`
-  (500ms ease-out-quint), then a centred pill button "Show all N" / "Show less" with a rotating caret.
+  (500ms ease-out-quint to open, 250ms to close; the rows inside don't animate), then a centred pill button "Show all N" / "Show less" with a rotating caret.
 - All items are in the server HTML (good for SEO and LLMs). The hidden part is `inert` until opened.
 - Button: `aria-expanded`, `aria-controls`. Opening moves focus to the first revealed link.
 - Sounds: `expand` / `collapse`. Reduced motion: no transition.
@@ -116,7 +116,7 @@ A list, not cards; same anatomy as the experience row.
 
 - The whole card is one link to `/blog/$slug`.
 - Cover 1200:630 (the same image is the post's OG image), `rounded-xl border overflow-hidden bg-muted`,
-  scales to 1.02 on hover (500ms, off under reduced motion). No cover = title in mono on `bg-muted`.
+  scales to 1.02 on hover (200ms, off under reduced motion). No cover = title in mono on `bg-muted`.
 - Below: title (`text-h3`, underline fades in on hover), then mono caption `Mmm d, yyyy · n min read`
   in a `<time dateTime>`.
 - Heading level: `h3` on home (under "Blog"), `h2` on /blog.
@@ -142,6 +142,19 @@ Pill toolbar `fixed bottom-6` centred, `rounded-full border bg-dock backdrop-blu
   announcement) · book a call · sound toggle (`aria-pressed`).
 - < md: Home · Projects · Blog · Search, 44px circles, active = `bg-muted` + `aria-current="page"`.
 - Back to top is **not** in the dock.
+- **Tooltips** (≥ md) load on the first mouse-enter and share **one** `TooltipProvider`
+  (`DockTooltipGroup`), so the first waits 400ms and the next open at once. Popups that open instantly
+  carry Base UI's `data-instant` and skip the zoom (`data-instant:animate-none` in `tooltip.tsx`).
+- Every dock control has press feedback (see Press feedback below).
+
+## Press feedback {#press}
+
+Hand-rolled pressables (dock buttons and links, back-to-top, intro social chips, overview copy buttons,
+linked stack chips) use `transition-press active:scale-97`. `transition-press` (in `app.css`) transitions only
+color, background, border and `scale`, 150ms on `--ease-out-quad`. The section-heading copy-link uses
+`transition duration-150 ease-out-quint active:scale-97` because it also fades its opacity in.
+`scale` is its own property, so it never fights `translate`-based animations such as back-to-top's
+`un-reveal`. The shared `<Button>` keeps its `active:translate-y-px`.
 
 ## Back to top [custom] → `src/components/site/back-to-top.tsx` {#back-to-top}
 
@@ -157,6 +170,7 @@ rounded-full border bg-dock backdrop-blur-md shadow-lg`, `ArrowUpIcon` 18px.
 
 - Opens from the header, the dock, ⌘K / Ctrl+K and `/` (`src/hooks/use-search-hotkey.ts`). Plays `open`.
 - Dialog `max-w-[580px] rounded-2xl`, `12vh` from the top, scrim `bg-scrim`.
+- **No open/close animation** on the panel or the scrim: it's a keyboard action, so it must feel instant.
 - Input row 54px with `MagnifyingGlassIcon`, placeholder "Search pages, posts, projects, actions…", pill `esc` kbd.
 - Groups (mono micro labels): **pages** · **posts** (title + tags, hint: date) · **projects** · **actions**
   (Copy email, Book a call, Switch theme `⌘D`, Turn sound on/off) · **links**.
@@ -192,12 +206,27 @@ Sticky `top-24`, "on this page" (mono micro), links 13px muted with a 1px left b
 
 ## Theme toggle [custom] → `src/components/site/theme-toggle.tsx`
 
-`useTheme()` from `src/lib/theme.ts`. Label names the target theme. The inline `THEME_SCRIPT` in
+`useTheme()` from `src/lib/theme.ts`. Label names the target theme. Ghost icon button, 40px, growing
+to 44px on touch screens (`pointer-coarse:size-11`). The inline `THEME_SCRIPT` in
 `<head>` sets `.dark` before paint. Switching wraps the class change in `document.startViewTransition`
 when available (250ms cross-fade, skipped under reduced motion). Sound `on` / `off`.
-- **Icon:** Phosphor `CircleHalfIcon` that rotates 180° under `.dark` (`dark:rotate-180`, 500ms
-  ease-out-quint, CSS only; after chanhdai.com's "Dark Side" toggle). Because it follows the class, it is
-  correct before hydration and animates for every theme change, including ⌘K.
+- **Icon:** `ThemeIcon` (`src/components/site/theme-icon.tsx`), a 20px custom SVG: a sun (core + 8 rays)
+  and a moon disc whose phase comes from a mask with a sliding shadow circle. Colours: scoped `sun` /
+  `sun-edge` / `sunset` tokens (mixed with `color-mix`); the moon is `currentColor`.
+  - **One angle drives the sky.** Sun and moon sit opposite each other on an arc (radius 13 viewBox units)
+    whose horizon is the icon's bottom edge. Day is 0°, night 180°, the next day 360° (normalised to 0°),
+    so the sky always turns the same way: bodies rise on the left (east) and set on the right (west).
+  - **Everything follows height, every frame:** the sun yellows → orange and draws in its rays as it nears
+    the horizon (and the reverse as it rises); the moon is a crescent at the horizon and full at the top
+    (waxing as it rises, waning as it sets). Sunset and moonrise overlap, like twilight.
+  - **Motion:** a critically damped spring (ω = 8, no bounce) in `requestAnimationFrame`, about 1s to settle
+    with most of the travel in the first 0.5s. A theme change mid-flight swaps the target back to where it
+    came from and keeps the velocity, so quick clicks reverse the scene in place. It follows `.dark` via
+    `THEME_CHANGE_EVENT`, so ⌘K switches animate too. No React re-render per frame (styles are written to
+    refs), no dependency.
+  - **First paint:** `@utility theme-icon-*` rules in `app.css` show the static day or night pose for the
+    `.dark` class, so the icon is right before hydration; inline styles take over after mount.
+  - **Reduced motion:** the sky jumps straight to the new pose, with no movement.
 - **Browser UI colour:** one `<meta name="theme-color">` sits in the root document before `THEME_SCRIPT`.
   The script sets it to the chosen theme's background on load and `setTheme()` updates it on every
   switch, so the mobile address bar follows the app's theme, not the OS.

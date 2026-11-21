@@ -19,6 +19,7 @@ shadcn token names, neutral greys (chroma 0) and one blue. Light = `:root`, dark
 | `brand-subtle` / `-foreground` | blue-50 / blue-700 | blue-950 / blue-300 | "Available for work" badge only |
 | `status` | green-600 #00a63e | green-400 #05df72 | "Available for work" dot only (6px). Never text, fills or other UI |
 | `love` | red-500 #fb2c36 | red-400 #ff6467 | Footer "made with love" heart only (`un-heartbeat`, off under reduced motion). Nowhere else |
+| `sun` / `sun-edge` / `sunset` | yellow-400 #fac800 / amber-600 #e17100 / orange-600 #f54900 (both themes) | same | Theme-toggle icon only: sun fill, sun outline and rays, setting sun. Nowhere else |
 | `code-background` | #fafafa | #111111 | Code blocks |
 | `dock` | white 82% | #171717 82% | Floating dock (with `backdrop-blur-md`) |
 | `scrim` | black 28% | black 60% | Behind dialogs |
@@ -97,7 +98,7 @@ dock and dialog `shadow-lg shadow-black/5 dark:shadow-black/40`. No shadows on c
 
 ## Icons
 
-**Phosphor** (`@phosphor-icons/react` v2), regular weight, `aria-hidden` unless standalone. One exception: the footer heart is `HeartIcon weight="fill"` (set in `PHOSPHOR_WEIGHT_OVERRIDES`, vite.config.ts).
+**Phosphor** (`@phosphor-icons/react` v2), regular weight, `aria-hidden` unless standalone. Two exceptions: the footer heart is `HeartIcon weight="fill"` (set in `PHOSPHOR_WEIGHT_OVERRIDES`, vite.config.ts), and the theme toggle draws its own sun/moon SVG (`ThemeIcon`) because Phosphor can't animate moon phases.
 Sizes: 16px (`size-4`) inline and in chips, 18px in header/dock buttons, 20px in the mobile dock,
 22px on contact links. Import icons by name from `@phosphor-icons/react`; put the name → icon map for `site.ts` icon keys in `src/components/site/icons.tsx`.
 
@@ -128,8 +129,13 @@ Respect each brand's guidelines: no recolouring beyond monochrome, no distortion
 | `un-blink` | Cursor blinks | Footer `> un_` |
 | `un-progress` | Ring fills with scroll (CSS scroll-driven) | Floating back-to-top button |
 | `un-reveal` | Fades in between 120 and 400px of scroll | Floating back-to-top button |
-| `<details>` open | Height animates via `::details-content` | Experience rows |
-| `un-collapse` | Show more: `grid-template-rows` 0fr → 1fr (`data-open`), 500ms ease-out-quint | Experience, projects |
+| `<details>` open | Height animates via `::details-content`: 300ms open, 200ms close | Experience and project rows |
+| `un-collapse` | Show more: `grid-template-rows` 0fr → 1fr (`data-open`), 500ms open / 250ms close, ease-out-quint | Experience, projects |
+| `transition-press` | color, background, border and `scale` at 150ms `--ease-out-quad`; pair with `active:scale-97` | Hand-rolled pressables (03-components.md#press) |
+
+Easing tokens (`app.css`): `--ease-out-quint` `cubic-bezier(0.22, 1, 0.36, 1)` for things entering or
+growing; `--ease-in-out-quint` `cubic-bezier(0.83, 0, 0.17, 1)` for on-screen rotation and the logo draw;
+`--ease-out-quad` `cubic-bezier(0.25, 0.46, 0.45, 0.94)` for press feedback.
 
 Micro-interactions: colour transitions 150ms; arrow nudge 200ms `ease-out-quint`; accordion open
 200ms. Everything turns off under `prefers-reduced-motion` (handled in `app.css`; use `motion-reduce:`

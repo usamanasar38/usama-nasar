@@ -76,7 +76,7 @@ const CopyButton = ({ value, what }: { value: string; what: string }) => {
     <>
       <button
         aria-label={`Copy ${what}`}
-        className="text-muted-foreground hover:bg-muted hover:text-foreground relative -my-1 grid size-7 shrink-0 place-items-center rounded-full transition-colors duration-150 after:absolute after:-inset-2"
+        className="text-muted-foreground hover:bg-muted hover:text-foreground relative -my-1 grid size-7 shrink-0 place-items-center rounded-full transition-press active:scale-97 after:absolute after:-inset-2"
         onClick={() => {
           copy(value).catch(() => false);
         }}

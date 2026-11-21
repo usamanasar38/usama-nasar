@@ -29,6 +29,10 @@ function Command({
   )
 }
 
+/**
+ * Opened from the keyboard (⌘K, /), so it opens and closes instantly: no fade or zoom on
+ * the panel or the backdrop (08-motion.md, "keyboard actions don't animate").
+ */
 function CommandDialog({
   title = "Command Palette",
   description = "Search for a command to run...",
@@ -47,9 +51,10 @@ function CommandDialog({
     <Dialog {...props}>
       <DialogContent
         className={cn(
-          "top-[12vh] max-w-[calc(100%-2rem)] translate-y-0 gap-0 overflow-hidden p-0 sm:max-w-[580px]",
+          "top-[12vh] max-w-[calc(100%-2rem)] translate-y-0 gap-0 overflow-hidden p-0 sm:max-w-[580px] data-open:animate-none data-closed:animate-none",
           className
         )}
+        overlayClassName="data-open:animate-none data-closed:animate-none"
         showCloseButton={showCloseButton}
       >
         {/* Inside the popup so the dialog gets its accessible name and description. */}

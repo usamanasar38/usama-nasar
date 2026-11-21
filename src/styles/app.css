@@ -89,6 +89,7 @@
 
   /* Motion */
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
   --animate-un-draw: un-draw 1100ms var(--ease-in-out-quint) 120ms both;
   --animate-un-signal: un-signal 1.1s linear infinite;
@@ -161,6 +162,11 @@
   --status: oklch(0.627 0.194 149.214);
   --love: oklch(0.637 0.237 25.331);                       /* red-500 */
 
+  /* Theme-toggle icon only (sun → sunset → moon). Same in both themes: the sun rests on light. */
+  --sun: oklch(0.852 0.199 91.936);                        /* yellow-400, fill */
+  --sun-edge: oklch(0.666 0.179 58.318);                   /* amber-600, outline + rays (≥3:1 on white) */
+  --sunset: oklch(0.646 0.222 41.116);                     /* orange-600 */
+
   --code-background: oklch(0.985 0 0);
   --dock: oklch(1 0 0 / 82%);
   --scrim: oklch(0.145 0 0 / 28%);
@@ -209,6 +215,11 @@
 
   --status: oklch(0.792 0.209 151.711);                   /* green-400 */
   --love: oklch(0.704 0.191 22.216);                      /* red-400 */
+
+  /* Theme-toggle icon only (sun → sunset → moon). Same in both themes: the sun rests on light. */
+  --sun: oklch(0.852 0.199 91.936);                        /* yellow-400, fill */
+  --sun-edge: oklch(0.666 0.179 58.318);                   /* amber-600, outline + rays (≥3:1 on white) */
+  --sunset: oklch(0.646 0.222 41.116);                     /* orange-600 */
 
   --code-background: oklch(0.178 0 0);
   --dock: oklch(0.205 0 0 / 82%);
@@ -373,13 +384,65 @@
   }
 }
 
-/* Show all / Show less (ShowMore): the hidden part grows from 0fr to 1fr. No height measuring. */
+/* Press feedback (03-components.md#press): only the properties that change, on the course's press curve. */
+@utility transition-press {
+  transition-property: color, background-color, border-color, scale;
+  transition-duration: 150ms;
+  transition-timing-function: var(--ease-out-quad);
+}
+
+/*
+ * Theme-toggle icon (theme-icon.tsx): static day/night poses for the first paint, keyed on
+ * `.dark`. After hydration the component animates the sky with inline styles, which win over
+ * these. Bodies ride an arc of radius 13 (viewBox units): the top is the icon's centre, the
+ * opposite point (26 units down) is below the horizon.
+ */
+@utility theme-icon {
+  overflow: hidden;
+}
+
+/* Mask luminance, not theme colours: white shows the moon disc, black is its shadow. */
+@utility theme-icon-mask {
+  fill: white;
+}
+
+@utility theme-icon-shadow {
+  fill: black;
+  :where(.dark) & {
+    transform: translateX(-14px);
+  }
+}
+
+@utility theme-icon-moon {
+  transform: translateY(26px);
+  :where(.dark) & {
+    transform: none;
+  }
+}
+
+@utility theme-icon-sun {
+  :where(.dark) & {
+    transform: translateY(26px);
+  }
+}
+
+@utility theme-icon-core {
+  fill: var(--sun);
+  stroke: var(--sun-edge);
+}
+
+@utility theme-icon-rays {
+  stroke: var(--sun-edge);
+}
+
+/* Show all / Show less (ShowMore): the hidden part grows from 0fr to 1fr (500ms) and collapses in 250ms. */
 @utility un-collapse {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 500ms var(--ease-out-quint);
+  transition: grid-template-rows 250ms var(--ease-out-quint);
   &[data-open] {
     grid-template-rows: 1fr;
+    transition-duration: 500ms;
   }
   @media (prefers-reduced-motion: reduce) {
     transition: none;
@@ -399,6 +462,9 @@
     }
     details[open]::details-content {
       height: auto;
+    }
+    details:not([open])::details-content {
+      transition-duration: 200ms;
     }
   }
 }

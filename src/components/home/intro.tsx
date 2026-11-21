@@ -70,7 +70,7 @@ export const Intro = () => {
           return (
             <li key={chip.label}>
               <a
-                className="inline-flex h-9 items-center gap-2 rounded-full border pr-3.5 pl-3 text-small transition-colors duration-150 hover:bg-muted"
+                className="inline-flex h-9 items-center gap-2 rounded-full border pr-3.5 pl-3 text-small transition-press active:scale-97 hover:bg-muted"
                 href={chip.href}
                 {...(chip.external ? EXTERNAL : {})}
                 {...hoverProps}

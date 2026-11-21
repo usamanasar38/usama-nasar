@@ -4,7 +4,7 @@ import type { MouseEvent } from "react";
 import { CompanyMark } from "@/components/site/company-mark";
 import { InlineMarkdown, markdownLines } from "@/components/site/inline-markdown";
 import { SectionHeading } from "@/components/site/section-heading";
-import { ShowMore, StaggerItem } from "@/components/site/show-more";
+import { ShowMore } from "@/components/site/show-more";
 import { Badge } from "@/components/ui/badge";
 import { EXPERIENCES } from "@/features/portfolio/data/experiences";
 import type { Experience } from "@/features/portfolio/types/experiences";
@@ -62,7 +62,7 @@ const ExperienceRow = ({ experience, open }: { experience: Experience; open: boo
         </span>
         <CaretDownIcon
           aria-hidden
-          className="size-4 shrink-0 text-muted-foreground transition-transform duration-200 group-open/exp:rotate-180 motion-reduce:transition-none"
+          className="size-4 shrink-0 text-muted-foreground transition-transform duration-200 ease-in-out-quint group-open/exp:rotate-180 motion-reduce:transition-none"
         />
       </summary>
       <div className="flex flex-col gap-3 pb-4 pl-13.5">
@@ -98,15 +98,13 @@ export const ExperienceSection = () => (
     <ShowMore initial={4} items={EXPERIENCES} label="roles">
       {(items, part) => (
         <div className={part === "hidden" ? "flex flex-col gap-1 pt-1" : "flex flex-col gap-1"}>
-          {items.map((experience, index) =>
-            part === "hidden" ? (
-              <StaggerItem index={index} key={experience.id}>
-                <ExperienceRow experience={experience} open={false} />
-              </StaggerItem>
-            ) : (
-              <ExperienceRow experience={experience} key={experience.id} open={index === 0} />
-            )
-          )}
+          {items.map((experience, index) => (
+            <ExperienceRow
+              experience={experience}
+              key={experience.id}
+              open={part === "visible" && index === 0}
+            />
+          ))}
         </div>
       )}
     </ShowMore>

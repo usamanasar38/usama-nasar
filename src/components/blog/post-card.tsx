@@ -28,7 +28,7 @@ export const PostCard = ({ post, as: Heading = "h3", priority = false }: PostCar
         {cover ? (
           <img
             alt=""
-            className="size-full object-cover transition-transform duration-500 ease-out-quint group-hover:scale-[1.02] motion-reduce:transition-none"
+            className="size-full object-cover transition-transform duration-200 ease-out-quint group-hover:scale-[1.02] motion-reduce:transition-none"
             decoding="async"
             fetchPriority={priority ? "high" : undefined}
             height={630}

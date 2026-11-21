@@ -26,7 +26,7 @@ const CopyLinkButton = ({ anchor }: { anchor: string }) => {
     <>
       <button
         aria-label={`Copy link to the ${anchor} section`}
-        className="text-muted-foreground hover:bg-muted hover:text-foreground relative grid size-7 shrink-0 place-items-center rounded-full opacity-0 transition duration-150 group-hover/heading:opacity-100 after:absolute after:-inset-2 focus-visible:opacity-100 data-copied:opacity-100 motion-reduce:transition-none pointer-coarse:hidden"
+        className="text-muted-foreground hover:bg-muted hover:text-foreground relative grid size-7 shrink-0 place-items-center rounded-full opacity-0 transition duration-150 ease-out-quint active:scale-97 group-hover/heading:opacity-100 after:absolute after:-inset-2 focus-visible:opacity-100 data-copied:opacity-100 motion-reduce:transition-none pointer-coarse:hidden"
         data-copied={copied ? "" : undefined}
         onClick={() => {
           onCopy().catch(() => {

@@ -1,51 +1,10 @@
 import { CaretDownIcon } from "@phosphor-icons/react";
-import { m } from "motion/react";
-import { createContext, useContext, useId, useMemo, useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import type { ReactNode } from "react";
 
 import { Button } from "@/components/ui/button";
 import { useSounds } from "@/lib/sound";
 import { cn } from "@/lib/utils";
-
-const MAX_STAGGERED = 8;
-const STAGGER_S = 0.04;
-const EASE_OUT_QUINT = [0.22, 1, 0.36, 1] as const;
-
-const RevealContext = createContext<{ revealed: boolean }>({ revealed: false });
-
-/**
- * Wrap each item in the hidden part: when Show all opens, items fade in and rise 8px with a
- * 40ms stagger (08-motion.md), on top of the CSS height animation. No animation on close, and
- * MotionConfig reducedMotion="user" drops the transform for people who ask for less motion.
- */
-export const StaggerItem = ({
-  index,
-  className,
-  children,
-}: {
-  index: number;
-  className?: string;
-  children: ReactNode;
-}) => {
-  const { revealed } = useContext(RevealContext);
-  if (!revealed) {
-    return <div className={className}>{children}</div>;
-  }
-  return (
-    <m.div
-      animate={{ opacity: 1, y: 0 }}
-      className={className}
-      initial={{ opacity: 0, y: 8 }}
-      transition={{
-        delay: 0.06 + Math.min(index, MAX_STAGGERED) * STAGGER_S,
-        duration: 0.32,
-        ease: EASE_OUT_QUINT,
-      }}
-    >
-      {children}
-    </m.div>
-  );
-};
 
 interface ShowMoreProps<T> {
   items: T[];
@@ -70,11 +29,9 @@ export const ShowMore = <T,>({
 }: ShowMoreProps<T>) => {
   const [open, setOpen] = useState(false);
   const [settled, setSettled] = useState(false);
-  const [revealed, setRevealed] = useState(false);
   const regionId = useId();
   const region = useRef<HTMLDivElement>(null);
   const { play, hoverProps } = useSounds();
-  const reveal = useMemo(() => ({ revealed }), [revealed]);
 
   const visible = items.slice(0, initial);
   const rest = items.slice(initial);
@@ -88,7 +45,6 @@ export const ShowMore = <T,>({
     play(next ? "expand" : "collapse");
     setOpen(next);
     setSettled(false);
-    setRevealed(next);
 
     if (next) {
       requestAnimationFrame(() => {
@@ -122,9 +78,7 @@ export const ShowMore = <T,>({
             settled ? "overflow-visible" : "overflow-hidden"
           )}
         >
-          <RevealContext value={reveal}>
-            {children(rest, "hidden")}
-          </RevealContext>
+          {children(rest, "hidden")}
         </div>
       </div>
       <div className="mt-6 flex justify-center">
@@ -141,7 +95,7 @@ export const ShowMore = <T,>({
           <CaretDownIcon
             aria-hidden
             className={cn(
-              "size-3.5 transition-transform duration-200 motion-reduce:transition-none",
+              "size-3.5 transition-transform duration-200 ease-in-out-quint motion-reduce:transition-none",
               open && "rotate-180"
             )}
           />

@@ -8,7 +8,7 @@ import {
   markdownLines,
 } from "@/components/site/inline-markdown";
 import { SectionHeading } from "@/components/site/section-heading";
-import { ShowMore, StaggerItem } from "@/components/site/show-more";
+import { ShowMore } from "@/components/site/show-more";
 import { Badge } from "@/components/ui/badge";
 import { PROJECTS_HOME } from "@/features/portfolio/data/projects";
 import { formatPeriod, periodDateTime } from "@/features/portfolio/lib/format";
@@ -86,7 +86,7 @@ const ProjectRow = ({ project }: { project: Project }) => {
           )}
           <CaretDownIcon
             aria-hidden
-            className="text-muted-foreground size-4 shrink-0 transition-transform duration-200 group-open/project:rotate-180 motion-reduce:transition-none"
+            className="text-muted-foreground size-4 shrink-0 transition-transform duration-200 ease-in-out-quint group-open/project:rotate-180 motion-reduce:transition-none"
           />
         </summary>
         <div className="flex flex-col gap-3 pb-4 pl-13.5">
@@ -140,15 +140,9 @@ export const Projects = () => (
               : "flex flex-col gap-1"
           }
         >
-          {items.map((project, index) =>
-            part === "hidden" ? (
-              <StaggerItem index={index} key={project.id}>
-                <ProjectRow project={project} />
-              </StaggerItem>
-            ) : (
-              <ProjectRow key={project.id} project={project} />
-            )
-          )}
+          {items.map((project) => (
+            <ProjectRow key={project.id} project={project} />
+          ))}
         </div>
       )}
     </ShowMore>
